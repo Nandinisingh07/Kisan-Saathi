@@ -7,7 +7,7 @@ opencv-python-headless
 gtts
 firebase-admin
 requests
-tensorflow
+tensorflow-cpu==2.15.0
 google-generativeai
 apscheduler
 python-dotenv
