@@ -1,3 +1,5 @@
+from model_downloader import download_model_if_missing
+download_model_if_missing()
 from app_factory import create_app
 
 app = create_app()
