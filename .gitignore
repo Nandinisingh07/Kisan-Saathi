@@ -52,3 +52,7 @@ index.html
 style.css
 
 *.h5
+
+ crop detection and pesticide reccomendation.py
+generate_qr_codes.py
+.vscode/
