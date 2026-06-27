@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<style>
+    .ivr-tree-card {
+        padding: 1.5rem;
+        background: var(--cream-bg);
+        border: 2px solid var(--pista-border);
+        border-radius: 16px;
+        margin-bottom: 1.5rem;
+    }
+    /* Simple CSS diagram flow styling */
+    .tree-diagram {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1rem;
+        overflow-x: auto;
+    }
+    .tree-node {
+        background: var(--cream-bg);
+        border: 2px solid var(--pista-primary);
+        border-radius: 8px;
+        padding: 0.6rem 1rem;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: var(--shadow);
+        font-family: var(--font-body);
+        position: relative;
+    }
+    .tree-node::after {
+        content: '';
+        position: absolute;
+        bottom: -1.5rem;
+        left: 50%;
+        width: 2px;
+        height: 1.5rem;
+        background: var(--pista-primary);
+        z-index: -1;
+    }
+    .tree-node.leaf::after {
+        display: none;
+    }
+    .tree-branches {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        width: 100%;
+        position: relative;
+    }
+    .tree-branch-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .call-logs-container {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+    .call-log-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.85rem 1rem;
+        border-bottom: 1px solid var(--pista-border);
+        transition: var(--transition);
+        border-left: 4px solid transparent;
+        border-radius: 0 8px 8px 0;
+    }
+    .call-log-row:hover {
+        background: var(--pista-light);
+        border-left-color: var(--pista-primary);
+    }
+    .call-log-row:not(:hover) {
+        border-left-color: rgba(147, 197, 114, 0.4);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="bilingual-text" style="margin-bottom: 1.5rem;" data-i18n="ivr_title">
+    <h2 class="hi-text" style="font-size: 2rem;">📞 कॉल सेंटर व आई.वी.आर. डैशबोर्ड | Helpline & IVR Logs</h2>
+    <span class="en-text" style="font-size: 1.05rem;">Helpline performance dashboard, interactive menu diagram, and simulated client calls</span>
+</div>
+
+<!-- Key Performance Indicators -->
+<div class="dashboard-grid" style="margin-bottom: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+    <div class="glass-card" style="padding: 1.25rem;">
+        <span style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="kpi_total">कुल प्राप्त कॉल / Total Calls</span>
+        <div class="stat-value" id="kpi-total-calls" style="color:var(--primary);">1,420</div>
+        <span style="font-size: 0.75rem; color: var(--accent);"><i class="fas fa-arrow-up"></i> +12% इस सप्ताह</span>
+    </div>
+    <div class="glass-card" style="padding: 1.25rem;">
+        <span style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="kpi_active">सक्रिय कॉलर्स / Active Callers</span>
+        <div class="stat-value" id="kpi-active-calls" style="color:#e63946;">--</div>
+        <span style="font-size: 0.75rem; color: var(--text-muted);">Real-time Twilio triggers</span>
+    </div>
+    <div class="glass-card" style="padding: 1.25rem;">
+        <span style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="kpi_menu">लोकप्रिय मेनू / Top Selected Option</span>
+        <div class="stat-value" style="font-size: 1.35rem; margin-top: 0.4rem; color:var(--primary-dark);">मंडी भाव (42%)</div>
+        <span style="font-size: 0.75rem; color: var(--text-muted);">Press 2 for Mandi info</span>
+    </div>
+    <div class="glass-card" style="padding: 1.25rem;">
+        <span style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="kpi_lang">सिस्टम भाषा / Primary Language</span>
+        <div class="stat-value" style="font-size: 1.35rem; margin-top: 0.4rem; color:var(--primary-dark);">हिंदी Devanagari (85%)</div>
+        <span style="font-size: 0.75rem; color: var(--text-muted);">Preferred by local farmers</span>
+    </div>
+</div>
+
+<div class="dashboard-grid" style="grid-template-columns: 1.2fr 0.8fr; margin-top: 0;">
+    <!-- Live Call Simulation logs -->
+    <div class="glass-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+            <div class="bilingual-text" data-i18n="logs_header">
+                <h3 class="hi-text" style="font-size: 1.3rem;"><i class="fas fa-clipboard-list"></i> लाइव हेल्पलाइन कॉल लॉग</h3>
+                <span class="en-text" style="font-size: 0.85rem;">Recent Twilio & Helpline caller registers</span>
+            </div>
+            <button class="btn btn-secondary" id="btn-simulate-call" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">
+                <i class="fas fa-phone-slash"></i> <span data-i18n="btn_simulate">कॉल सिम्युलेट करें / Simulate</span>
+            </button>
+        </div>
+
+        <div class="call-logs-container" id="logs-container">
+            <!-- Simulated Logs here -->
+            <p style="text-align: center; padding: 2rem; color: var(--text-muted);">कॉल लॉग लोड हो रहे हैं... / Loading logs...</p>
+        </div>
+    </div>
+
+    <!-- IVR flow diagram tree -->
+    <div class="glass-card">
+        <div class="bilingual-text" style="border-bottom: 1px solid var(--border); padding-bottom: 0.75rem; margin-bottom: 1rem;" data-i18n="diagram_header">
+            <h3 class="hi-text" style="font-size: 1.3rem;"><i class="fas fa-sitemap"></i> आई.वी.आर. मेनू आर्किटेक्चर</h3>
+            <span class="en-text" style="font-size: 0.85rem;">Interactive Voice Response menu layout</span>
+        </div>
+
+        <div class="tree-diagram">
+            <div class="tree-node">
+                <strong>हेल्पलाइन कॉल प्रारंभ</strong><br>
+                <span style="font-size:0.75rem; color:var(--text-muted);">Welcome Center</span>
+            </div>
+            <div class="tree-node" style="background: var(--pista-primary); color: white; border-color: var(--pista-dark);">
+                <strong>भाषा चुनें (Select Lang)</strong><br>
+                <span style="font-size:0.75rem;">Press 1 (Hi) / 2 (En)</span>
+            </div>
+            <div class="tree-branches">
+                <div class="tree-branch-container">
+                    <div class="tree-node leaf" style="min-width: 120px; font-size: 0.85rem;">
+                        <strong>दबाएं 2: मंडी भाव</strong><br>
+                        <span style="font-size:0.7rem; color:var(--text-muted);">Press 2: Mandi Info</span>
+                    </div>
+                </div>
+                <div class="tree-branch-container">
+                    <div class="tree-node leaf" style="min-width: 120px; font-size: 0.85rem;">
+                        <strong>दबाएं 3: मौसम जानकारी</strong><br>
+                        <span style="font-size:0.7rem; color:var(--text-muted);">Press 3: Weather</span>
+                    </div>
+                </div>
+                <div class="tree-branch-container">
+                    <div class="tree-node leaf" style="min-width: 120px; font-size: 0.85rem;">
+                        <strong>दबाएं 4: फसल चयन</strong><br>
+                        <span style="font-size:0.7rem; color:var(--text-muted);">Press 4: Crop selection</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/ivr.js') }}"></script>
+{% endblock %}

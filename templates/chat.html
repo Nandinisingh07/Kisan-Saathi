@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<style>
+    .chat-layout {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 1.5rem;
+        height: 600px;
+    }
+    @media (max-width: 768px) {
+        .chat-layout {
+            grid-template-columns: 1fr;
+            height: auto;
+        }
+        .chat-sidebar {
+            display: none;
+        }
+    }
+    .chat-sidebar {
+        background: var(--cream-bg);
+        border: 2px solid var(--pista-border);
+        border-radius: 16px;
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    [data-theme="dark"] .chat-sidebar {
+        background: rgba(26, 46, 16, 0.7);
+    }
+    .chat-window {
+        background: var(--card-bg);
+        border: 2px solid var(--pista-border);
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+    }
+    .chat-messages {
+        flex-grow: 1;
+        padding: 1.5rem;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        background: rgba(200, 230, 160, 0.05);
+    }
+    .msg-bubble {
+        max-width: 75%;
+        padding: 0.85rem 1.1rem;
+        border-radius: 12px;
+        line-height: 1.45;
+        position: relative;
+    }
+    .msg-user {
+        background: var(--pista-primary);
+        color: white;
+        align-self: flex-end;
+        border-bottom-right-radius: 2px;
+        box-shadow: 0 4px 12px rgba(147, 197, 114, 0.3);
+    }
+    .msg-ai {
+        background: var(--pista-light);
+        color: var(--text-dark);
+        align-self: flex-start;
+        border-bottom-left-radius: 2px;
+        border: 1.5px solid var(--pista-border);
+    }
+    [data-theme="dark"] .msg-ai {
+        background: rgba(147, 197, 114, 0.12);
+        color: var(--text);
+        border-color: rgba(147, 197, 114, 0.3);
+    }
+    .msg-audio-play {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+        padding: 0.3rem 0.6rem;
+        background: rgba(147, 197, 114, 0.25);
+        border-radius: 6px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        color: var(--pista-dark);
+        font-weight: bold;
+    }
+    .chat-input-area {
+        padding: 1rem;
+        border-top: 2px solid var(--pista-border);
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        background: var(--card-bg);
+    }
+    .suggestion-container {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+    }
+    .suggestion-chip {
+        padding: 0.5rem 0.8rem;
+        background: var(--cream-bg);
+        border: 1px solid var(--pista-border);
+        border-radius: 20px;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: var(--transition);
+        color: var(--pista-dark);
+    }
+    .suggestion-chip:hover {
+        background: var(--pista-primary);
+        color: white;
+        border-color: var(--pista-dark);
+    }
+    .recording-pulse {
+        width: 12px;
+        height: 12px;
+        background: red;
+        border-radius: 50%;
+        display: inline-block;
+        animation: pulse 1s infinite alternate;
+        margin-right: 5px;
+    }
+    @keyframes pulse {
+        from { transform: scale(0.8); opacity: 0.5; }
+        to { transform: scale(1.2); opacity: 1; }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="bilingual-text" style="margin-bottom: 1.5rem;" data-i18n="chat_title">
+    <h2 class="hi-text" style="font-size: 2rem;">💬  किसान सहाय ए.आई. चैटबॉट | Kisan AI Chatbot</h2>
+    <span class="en-text" style="font-size: 1.05rem;">Voice-enabled intelligent farming assistant with audio speech responses</span>
+</div>
+
+<div class="chat-layout">
+    <!-- Sidebar -->
+    <div class="chat-sidebar">
+        <div>
+            <div class="bilingual-text" style="border-bottom: 1px solid var(--border); padding-bottom: 0.75rem; margin-bottom: 1rem;" data-i18n="sidebar_header">
+                <h3 class="hi-text" style="font-size: 1.2rem;"><i class="fas fa-info-circle"></i>  सहायता विषय</h3>
+                <span class="en-text">AI Guidance Scope</span>
+            </div>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem;">
+                <li><i class="fas fa-leaf" style="color:var(--accent);"></i>  फसल रोगों का निदान</li>
+                <li><i class="fas fa-hand-holding-usd" style="color:var(--secondary);"></i>  लाइव मंडी दरें और भाव</li>
+                <li><i class="fas fa-umbrella" style="color:#4a90e2;"></i>  मौसम अपडेट और बुवाई सलाह</li>
+                <li><i class="fas fa-spray-can" style="color:red;"></i>  कीटनाशक उपयोग दिशानिर्देश</li>
+            </ul>
+        </div>
+
+        <div style="background:var(--bg); padding:0.75rem; border-radius:8px; font-size:0.8rem; border:1px solid var(--border);">
+            <div class="bilingual-text">
+                <span class="hi-text" style="color:var(--primary-dark);"><i class="fas fa-language"></i>  भाषा: हिंदी / English</span>
+                <span class="en-text">Ask in Hindi or English. Speak to translate.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Dialog -->
+    <div class="chat-window">
+        <!-- Message list thread -->
+        <div class="chat-messages" id="chat-messages-box">
+            <!-- Welcome message -->
+            <div class="msg-bubble msg-ai">
+                <div class="bilingual-text" data-i18n="chat_welcome">
+                    <span class="hi-text">नमस्ते! मैं आपका किसान साथी ए.आई. सहायक हूँ। आप मुझसे मंडी भाव, मौसम या फसल रोग पर कुछ भी पूछ सकते हैं।</span>
+                    <span class="en-text">Hello! I am your Kisan Saathi AI assistant. Ask me anything about crop prices, weather, or plant disease treatments.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Suggestion box -->
+        <div style="padding: 0 1.5rem;">
+            <div class="suggestion-container" id="chat-suggestions">
+                <div class="suggestion-chip" data-query="गेहूं का भाव क्या है?">गेहूं भाव क्या है? / Wheat price?</div>
+                <div class="suggestion-chip" data-query="टमाटर रोग अर्ली ब्लाइट का कीटनाशक बताएं?">अर्ली ब्लाइट कीटनाशक / Early Blight?</div>
+                <div class="suggestion-chip" data-query="इंदौर का मौसम कैसा रहेगा?">इंदौर का मौसम / Indore weather?</div>
+            </div>
+        </div>
+
+        <!-- Floating Input area -->
+        <div class="chat-input-area">
+            <button class="btn btn-outline" id="btn-voice-rec" title="आवाज से दर्ज करें / Speech Input" style="border-radius: 50%; width: 45px; height: 45px; padding: 0;">
+                <i class="fas fa-microphone" id="mic-icon"></i>
+            </button>
+            
+            <input type="text" class="form-control" id="chat-input-text" placeholder="अपना सवाल यहाँ लिखें... / Write your query here..." style="flex-grow: 1; border-radius: 20px;" data-i18n="placeholder_chat">
+            
+            <button class="btn btn-primary" id="btn-chat-send" style="border-radius: 50%; width: 45px; height: 45px; padding: 0;">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}

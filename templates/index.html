@@ -1,0 +1,289 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<style>
+    .welcome-hero {
+        background: linear-gradient(135deg, rgba(44, 74, 30, 0.92), rgba(90, 138, 60, 0.88)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=1000') no-repeat center/cover;
+        color: white;
+        border-radius: 16px;
+        padding: 2.5rem 2rem;
+        margin-bottom: 2rem;
+        box-shadow: var(--shadow);
+        border: 2px solid var(--pista-border);
+    }
+    .welcome-hero h2 {
+        color: var(--gold-accent);
+        font-size: 2.2rem;
+        margin-bottom: 0.5rem;
+    }
+    .welcome-hero p {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+    }
+    .quick-actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    .stat-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 180px;
+        background: var(--cream-bg);
+        border: 2px solid var(--pista-border);
+    }
+    [data-theme="dark"] .stat-card {
+        background: rgba(26, 46, 16, 0.7);
+    }
+    .stat-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+    .stat-icon {
+        background: rgba(147, 197, 114, 0.2);
+        color: var(--pista-dark);
+        width: 45px;
+        height: 45px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+    }
+    [data-theme="dark"] .stat-icon {
+        background: rgba(147, 197, 114, 0.25);
+        color: var(--pista-primary);
+    }
+    .stat-value {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+        color: var(--pista-dark);
+    }
+    [data-theme="dark"] .stat-value {
+        color: var(--pista-primary);
+    }
+    .stat-footer {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        border-top: 1px solid var(--pista-border);
+        padding-top: 0.75rem;
+        margin-top: 1rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="welcome-hero">
+    <div class="bilingual-text" data-i18n="hero_title">
+        <h2 class="hi-text">नमस्ते किसान भाई! किसान साथी में आपका स्वागत है।</h2>
+        <span class="en-text" style="color: rgba(255, 255, 255, 0.85); font-size: 1.2rem; margin-bottom: 1rem;">Hello Farmer! Welcome to Kisan Saathi.</span>
+    </div>
+    <p data-i18n="hero_desc">ए.आई. संचालित फसल सुरक्षा, सटीक लाइव मंडी भाव, मौसम पूर्वानुमान और कॉल सेंटर का एक ही स्थान पर समन्वय।</p>
+    <div class="quick-actions">
+        <a href="/scan" class="btn btn-secondary">
+            <i class="fas fa-camera"></i>
+            <span class="bilingual-text" style="text-align: left;" data-i18n="btn_scan">
+                <span class="hi-text" style="font-size:0.9rem;">फसल रोग स्कैन</span>
+                <span class="en-text" style="color: #000; font-size:0.75rem;">Scan Crop Disease</span>
+            </span>
+        </a>
+        <a href="/chat" class="btn btn-primary">
+            <i class="fas fa-robot"></i>
+            <span class="bilingual-text" style="text-align: left;" data-i18n="btn_chat">
+                <span class="hi-text" style="font-size:0.9rem;">किसान ए.आई. से बात करें</span>
+                <span class="en-text" style="color: #eee; font-size:0.75rem;">Talk to Kisan AI</span>
+            </span>
+        </a>
+    </div>
+</div>
+
+<div class="dashboard-grid">
+    <!-- Weather Widget Card -->
+    <div class="glass-card stat-card">
+        <div>
+            <div class="stat-header">
+                <div class="bilingual-text" data-i18n="card_weather">
+                    <h3 class="hi-text">मौसम पूर्वानुमान</h3>
+                    <span class="en-text">Weather Forecast</span>
+                </div>
+                <div class="stat-icon"><i class="fas fa-cloud-sun"></i></div>
+            </div>
+            <div class="stat-value" id="dash-weather-temp">--°C</div>
+            <div class="hi-text" id="dash-weather-desc">मौसम लोड हो रहा है...</div>
+        </div>
+        <div class="stat-footer">
+            <div class="bilingual-text">
+                <span class="hi-text" id="dash-weather-city">स्थान: इंदौर (मध्य प्रदेश)</span>
+                <span class="en-text">Indore, MP (Forecast next 12 hrs)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- AgriScan Disease Alerts -->
+    <div class="glass-card stat-card">
+        <div>
+            <div class="stat-header">
+                <div class="bilingual-text" data-i18n="card_scan">
+                    <h3 class="hi-text">फसल स्कैन अलर्ट</h3>
+                    <span class="en-text">Crop Scan Alert</span>
+                </div>
+                <div class="stat-icon" style="color:#e63946; background:rgba(230,57,70,0.15);"><i class="fas fa-bug"></i></div>
+            </div>
+            <div class="stat-value" style="font-size: 1.4rem; color: #e63946;" id="dash-scan-title">कोई हालिया संक्रमण नहीं</div>
+            <div class="hi-text" id="dash-scan-recom">खेत स्वस्थ और सुरक्षित है।</div>
+        </div>
+        <div class="stat-footer">
+            <div class="bilingual-text">
+                <span class="hi-text">अंतिम जांच: आज</span>
+                <span class="en-text">Last verified via AgriScan AI model</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mandi Price Trends -->
+    <div class="glass-card stat-card">
+        <div>
+            <div class="stat-header">
+                <div class="bilingual-text" data-i18n="card_mandi">
+                    <h3 class="hi-text">शीर्ष मंडी भाव</h3>
+                    <span class="en-text">Top Mandi Rates</span>
+                </div>
+                <div class="stat-icon" style="color:var(--secondary); background:rgba(212,175,55,0.15);"><i class="fas fa-coins"></i></div>
+            </div>
+            <div class="stat-value" id="dash-mandi-price">₹4,650/क्विं</div>
+            <div class="hi-text" id="dash-mandi-crop">सोयाबीन (इंदौर मंडी)</div>
+        </div>
+        <div class="stat-footer">
+            <div class="bilingual-text">
+                <span class="hi-text"><a href="/market" style="color: var(--primary); text-decoration:none;">सभी मंडी भाव देखें &rarr;</a></span>
+                <span class="en-text">View all MP Mandi market price lists</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Helpline Status -->
+    <div class="glass-card stat-card">
+        <div>
+            <div class="stat-header">
+                <div class="bilingual-text" data-i18n="card_ivr">
+                    <h3 class="hi-text">कॉल सेंटर हेल्पलाइन</h3>
+                    <span class="en-text">IVR Helpline Service</span>
+                </div>
+                <div class="stat-icon"><i class="fas fa-phone-alt"></i></div>
+            </div>
+            <div class="stat-value" style="font-size: 1.4rem; color: var(--primary);" id="dash-ivr-num">1800-180-1551</div>
+            <div class="hi-text" id="dash-ivr-status">सक्रिय (ट्विलियो लाइव) | Active</div>
+        </div>
+        <div class="stat-footer">
+            <div class="bilingual-text">
+                <span class="hi-text"><a href="/ivr" style="color: var(--primary); text-decoration:none;">कॉल लॉग व चार्ट देखें &rarr;</a></span>
+                <span class="en-text">Helpline caller log & system diagram</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-grid grid-span-2" style="margin-top: 1.5rem;">
+    <!-- Agri-Insight Tips -->
+    <div class="glass-card" style="grid-column: span 2;">
+        <div class="bilingual-text" style="margin-bottom: 1rem;" data-i18n="advisory_title">
+            <h3 class="hi-text" style="font-size: 1.5rem;">🌾 आज की कृषि सलाह (मध्य प्रदेश मालवा क्षेत्र)</h3>
+            <span class="en-text" style="font-size: 0.95rem;">Today's Agronomy Advisory for Malwa MP</span>
+        </div>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 1rem;">
+            <li style="padding: 1rem; background: var(--bg); border-radius: 8px; border-left: 4px solid var(--accent); display: flex; gap: 1rem; align-items: center;">
+                <span style="font-size: 1.5rem;">🚜</span>
+                <div class="bilingual-text">
+                    <span class="hi-text">सोयाबीन बुवाई की तैयारी:</span>
+                    <span class="en-text">Soyabean Sowing preparation: Ensure seed treatment with Thiram (3g/kg seed) before sowing to protect against fungal infections.</span>
+                </div>
+            </li>
+            <li style="padding: 1rem; background: var(--bg); border-radius: 8px; border-left: 4px solid var(--accent); display: flex; gap: 1rem; align-items: center;">
+                <span style="font-size: 1.5rem;">💦</span>
+                <div class="bilingual-text">
+                    <span class="hi-text">उद्यानिकी फसल सिंचाई:</span>
+                    <span class="en-text">Irrigation advice: Drip irrigate vegetables early morning or late evening to prevent moisture loss from high heat.</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Fetch live weather details on load to fill the dashboard stats
+    document.addEventListener('DOMContentLoaded', async () => {
+        try {
+            const response = await fetch('/api/weather?city=Indore');
+            const data = await response.json();
+            if (data && data.success) {
+                document.getElementById('dash-weather-temp').textContent = `${Math.round(data.temp)}°C`;
+                
+                // Handle localized weather description mapping
+                const curLang = localStorage.getItem('kisanLanguage') || 'hi';
+                if (curLang !== 'hi' && curLang !== 'en') {
+                    // Query googletrans or use dynamic local mapping in javascript translations
+                    document.getElementById('dash-weather-desc').textContent = data.desc_hi || data.desc;
+                } else if (curLang === 'en') {
+                    document.getElementById('dash-weather-desc').textContent = data.desc;
+                } else {
+                    document.getElementById('dash-weather-desc').textContent = data.desc_hi || data.desc;
+                }
+            }
+        } catch (err) {
+            console.error("Dashboard weather fetch failed", err);
+        }
+
+        // Fetch last scan from localstorage or API
+        const lastScan = localStorage.getItem('lastScanResult');
+        if (lastScan) {
+            try {
+                const parsed = JSON.parse(lastScan);
+                document.getElementById('dash-scan-title').textContent = parsed.disease || 'स्वस्थ फसल | Healthy';
+                document.getElementById('dash-scan-title').style.color = parsed.is_healthy ? 'var(--primary)' : '#e63946';
+                document.getElementById('dash-scan-recom').textContent = `कीटनाशक: ${parsed.pesticide || 'आवश्यकता नहीं / None'}`;
+            } catch (e) {
+                console.error("Error parsing scan result from storage", e);
+            }
+        }
+
+        // Fetch actual market prices to populate highest price crop in Indore
+        try {
+            const response = await fetch('/api/market?state=Madhya Pradesh&district=Indore');
+            const data = await response.json();
+            if (data && data.success && data.records && data.records.length > 0) {
+                // Find highest price
+                const sorted = data.records.sort((a,b) => b.modal_price - a.modal_price);
+                const highest = sorted[0];
+                document.getElementById('dash-mandi-price').textContent = `₹${highest.modal_price}/क्विं`;
+                document.getElementById('dash-mandi-crop').textContent = `${highest.commodity} (${highest.market} मंडी)`;
+            }
+        } catch (err) {
+            console.error("Dashboard market fetch failed", err);
+        }
+    });
+
+    // Re-localize weather description when language selection updates
+    document.addEventListener('languageChanged', async (e) => {
+        try {
+            const response = await fetch('/api/weather?city=Indore');
+            const data = await response.json();
+            if (data && data.success) {
+                if (e.detail === 'en') {
+                    document.getElementById('dash-weather-desc').textContent = data.desc;
+                } else {
+                    document.getElementById('dash-weather-desc').textContent = data.desc_hi || data.desc;
+                }
+            }
+        } catch (err) {
+            console.error("Language change weather fetch failed", err);
+        }
+    });
+</script>
+{% endblock %}

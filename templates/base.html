@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌾 किसान साथी | Kisan Saathi - AI Farmer Platform</title>
+    <!-- Fonts and icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+    <script>
+        // Privacy protection: Scrub real contact number if it exists in local storage
+        try {
+            const savedPhone = localStorage.getItem('farmerPhone');
+            if (savedPhone && (savedPhone.includes('81094') || savedPhone.includes('78398'))) {
+                localStorage.setItem('farmerPhone', '+919999999999');
+            }
+        } catch (e) {
+            console.error("Local storage privacy check failed", e);
+        }
+    </script>
+    {% block styles %}{% endblock %}
+</head>
+<body>
+    <!-- Pista green top accent strip -->
+    <div style="height: 4px; background: linear-gradient(90deg, #5A8A3C, #93C572, #D4A843, #93C572, #5A8A3C); width: 100%;"></div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="/" class="logo-section">
+                <i class="fas fa-seedling" style="font-size: 2rem; color: var(--accent);"></i>
+                <h1>
+                    किसान साथी
+                    <span>Kisan Saathi</span>
+                </h1>
+            </a>
+
+            <button class="menu-toggle" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-menu">
+                <li>
+                    <a href="/" class="nav-link {% if active_page == 'dashboard' %}active{% endif %}" data-i18n="nav_dashboard">
+                        <i class="fas fa-chart-line"></i>
+                        <span class="hi-text" style="font-size:0.85rem;">डैशबोर्ड</span>
+                        <span class="en-text" style="font-size:0.7rem; color:rgba(255,255,255,0.7);">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/scan" class="nav-link {% if active_page == 'scan' %}active{% endif %}" data-i18n="nav_scan">
+                        <i class="fas fa-qrcode"></i>
+                        <span class="hi-text" style="font-size:0.85rem;">कृषि स्कैन</span>
+                        <span class="en-text" style="font-size:0.7rem; color:rgba(255,255,255,0.7);">AgriScan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/market" class="nav-link {% if active_page == 'market' %}active{% endif %}" data-i18n="nav_market">
+                        <i class="fas fa-store"></i>
+                        <span class="hi-text" style="font-size:0.85rem;">मंडी बाज़ार</span>
+                        <span class="en-text" style="font-size:0.7rem; color:rgba(255,255,255,0.7);">Market Price</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/chat" class="nav-link {% if active_page == 'chat' %}active{% endif %}" data-i18n="nav_chat">
+                        <i class="fas fa-comment-dots"></i>
+                        <span class="hi-text" style="font-size:0.85rem;">किसान सहाय</span>
+                        <span class="en-text" style="font-size:0.7rem; color:rgba(255,255,255,0.7);">Kisan Chat</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/ivr" class="nav-link {% if active_page == 'ivr' %}active{% endif %}" data-i18n="nav_ivr">
+                        <i class="fas fa-phone-alt"></i>
+                        <span class="hi-text" style="font-size:0.85rem;">हेल्पलाइन</span>
+                        <span class="en-text" style="font-size:0.7rem; color:rgba(255,255,255,0.7);">Helpline Logs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/settings" class="nav-link {% if active_page == 'settings' %}active{% endif %}" data-i18n="nav_settings">
+                        <i class="fas fa-cog"></i>
+                        <span class="hi-text" style="font-size:0.85rem;">सेटिंग्स</span>
+                        <span class="en-text" style="font-size:0.7rem; color:rgba(255,255,255,0.7);">Settings</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="header-meta">
+                <div class="weather-widget-mini" id="weather-mini">
+                    <i class="fas fa-cloud-sun" id="mini-weather-icon"></i>
+                    <div class="bilingual-text" style="font-size: 0.75rem; line-height: 1.1;">
+                        <span class="hi-text" id="mini-weather-hi">तापमान लोड हो रहा है...</span>
+                        <span class="en-text" id="mini-weather-en" style="color: rgba(255,255,255,0.8);">Loading...</span>
+                    </div>
+                </div>
+
+                <select id="language-selector" style="background: rgba(255,255,255,0.15); color: white; border: none; border-radius: 4px; padding: 0.35rem 0.5rem; font-family: var(--font-body); font-size: 0.85rem; outline: none; cursor: pointer; backdrop-filter: blur(5px);">
+                    <option value="hi" style="color: black;">हिन्दी</option>
+                    <option value="en" style="color: black;">English</option>
+                    <option value="mr" style="color: black;">मराठी</option>
+                    <option value="gu" style="color: black;">ગુજરાતી</option>
+                    <option value="bn" style="color: black;">বাংলা</option>
+                </select>
+
+                <button id="theme-toggle" class="theme-switch" aria-label="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Advisory Alert Bar -->
+    <div class="advisory-banner">
+        <i class="fas fa-bullhorn" style="color: #1b4332;"></i>
+        <marquee scrollamount="4" onmouseover="this.stop();" onmouseout="this.start();">
+            ⚠️ <strong>मौसम चेतावनी:</strong> मालवा क्षेत्र में अगले 48 घंटों में हल्की वर्षा की संभावना, कटी फसलों को सुरक्षित स्थान पर रखें। / <strong>Weather Warning:</strong> Light rain expected in Malwa region in the next 48 hrs. Guard harvested crops. &nbsp;&nbsp;&nbsp;&nbsp; 📈 <strong>बाजार भाव:</strong> सोयाबीन का इंदौर मंडी में नया रेट ₹4650 प्रति क्विंटल। / <strong>Market Price:</strong> Soyabean rate at Indore Mandi is ₹4650/quintal.
+        </marquee>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section" style="flex: 2; min-width: 280px;">
+                <h3>🌾 <span data-i18n="logo_name">किसान साथी | Kisan Saathi</span></h3>
+                <p>मध्य प्रदेश के किसानों के लिए समर्पित एक एकीकृत आई.टी. और ए.आई. मंच। यहाँ आपको फसल रोग निदान, सटीक मंडी भाव और मौसम सलाह मिलेगी।</p>
+                <p style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">An AI-powered agricultural intelligence platform custom-built for farmers of Madhya Pradesh, India.</p>
+            </div>
+            <div class="footer-section" style="flex: 1; min-width: 150px;">
+                <h3>त्वरित लिंक्स / Links</h3>
+                <ul style="list-style: none; line-height: 1.8;">
+                    <li><a href="/" style="color: rgba(255,255,255,0.7); text-decoration: none;" data-i18n="nav_dashboard"><i class="fas fa-chevron-right" style="font-size: 0.7rem; margin-right: 5px;"></i> डैशबोर्ड / Dashboard</a></li>
+                    <li><a href="/scan" style="color: rgba(255,255,255,0.7); text-decoration: none;" data-i18n="nav_scan"><i class="fas fa-chevron-right" style="font-size: 0.7rem; margin-right: 5px;"></i> कृषि स्कैन / AgriScan</a></li>
+                    <li><a href="/market" style="color: rgba(255,255,255,0.7); text-decoration: none;" data-i18n="nav_market"><i class="fas fa-chevron-right" style="font-size: 0.7rem; margin-right: 5px;"></i> मंडी भाव / Market</a></li>
+                </ul>
+            </div>
+            <div class="footer-section" style="flex: 1; min-width: 200px;">
+                <h3>संपर्क व सहायता / Contact</h3>
+                <p><i class="fas fa-phone-alt"></i> हेल्पलाइन: 1800-180-1551</p>
+                <p><i class="fas fa-envelope"></i> support@kisansaathi.in</p>
+                <p><i class="fas fa-map-marker-alt"></i> भोपाल, मध्य प्रदेश, भारत</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 किसान साथी टीम। सर्वाधिकार सुरक्षित। | Kisan Saathi. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Global Scripts -->
+    <script src="{{ url_for('static', filename='js/toast.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/translations.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

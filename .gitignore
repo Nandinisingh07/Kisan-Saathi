@@ -1,0 +1,54 @@
+# Secrets
+.env
+firebase_key.json
+
+# Database
+*.db
+ivr_logs.db
+
+# Logs
+*.log
+logs/
+
+# Audio cache
+static/audio/*.mp3
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# ML Models (large files)
+*.h5
+*.keras
+
+# Virtual environment
+venv/
+env/
+
+# Test and temp files
+test_apis.py
+test_crash.py
+audit.py
+requirements_actual.txt
+
+# OS files
+.DS_Store
+Thumbs.db
+
+*.mp3
+flask_session/
+*.csv
+agriscan.py
+chatbot.py
+invr.py
+ivr.py
+market.py
+newmarket.py
+weather.py
+try.py
+app.js
+index.html
+style.css
+
+*.h5

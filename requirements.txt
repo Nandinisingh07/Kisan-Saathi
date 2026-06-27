@@ -1,0 +1,14 @@
+flask==3.0.2
+flask-session==0.5.0
+numpy
+pandas
+pillow
+opencv-python-headless
+gtts
+firebase-admin
+requests
+tensorflow
+google-generativeai
+apscheduler
+python-dotenv
+langdetect

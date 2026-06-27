@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<style>
+    .market-layout {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 1.5rem;
+    }
+    @media (max-width: 900px) {
+        .market-layout {
+            grid-template-columns: 1fr;
+        }
+    }
+    .mandi-table-container {
+        overflow-x: auto;
+        margin-top: 1.5rem;
+    }
+    .mandi-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+    }
+    .mandi-table th, .mandi-table td {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var(--pista-border);
+    }
+    .mandi-table th {
+        background-color: var(--pista-dark);
+        color: white;
+        font-family: var(--font-body);
+        font-weight: 600;
+    }
+    .mandi-table tbody tr:nth-child(even) {
+        background-color: #EFF7E8;
+    }
+    [data-theme="dark"] .mandi-table tbody tr:nth-child(even) {
+        background-color: rgba(200, 230, 160, 0.05);
+    }
+    .mandi-table tr:hover {
+        background-color: var(--pista-light) !important;
+    }
+    .recom-badge {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        background: rgba(212, 168, 67, 0.15);
+        color: #9a7410;
+        border: 1px solid rgba(212, 168, 67, 0.35);
+    }
+    .chart-container {
+        position: relative;
+        height: 300px;
+        width: 100%;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="bilingual-text" style="margin-bottom: 1.5rem;" data-i18n="market_title">
+    <h2 class="hi-text" style="font-size: 2rem;">🌾 किसान बाज़ार सलाहकार | Mandi Advisor</h2>
+    <span class="en-text" style="font-size: 1.05rem;">Live Mandi rates, profitable recommendations, and offline data download</span>
+</div>
+
+<div class="market-layout">
+    <!-- Filter Sidebar -->
+    <div class="glass-card" style="height: fit-content;">
+        <div class="bilingual-text" style="border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.25rem;" data-i18n="filter_header">
+            <h3 class="hi-text" style="font-size: 1.25rem;">खोज मापदंड</h3>
+            <span class="en-text">Filter Criteria</span>
+        </div>
+
+        <form id="market-filter-form">
+            <div class="form-group">
+                <label class="form-label" data-i18n="label_state">
+                    <span class="hi-text" style="font-size:0.85rem;">राज्य / State</span>
+                </label>
+                <input type="text" class="form-control" id="filter-state" value="Madhya Pradesh" placeholder="e.g., Madhya Pradesh">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" data-i18n="label_district">
+                    <span class="hi-text" style="font-size:0.85rem;">जिला / District</span>
+                </label>
+                <select class="form-control" id="filter-district">
+                    <option value="Alirajpur">Alirajpur (अलीराजपुर)</option>
+                    <option value="Indore" selected>Indore (इन्दौर)</option>
+                    <option value="Dhar">Dhar (धार)</option>
+                    <option value="Khargone">Khargone (खरगोन)</option>
+                    <option value="Ujjain">Ujjain (उज्जैन)</option>
+                    <option value="Dewas">Dewas (देवास)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" data-i18n="label_land">
+                    <span class="hi-text" style="font-size:0.85rem;">भूमि का प्रकार / Land Type</span>
+                </label>
+                <select class="form-control" id="filter-land">
+                    <option value="dry">Dry Land (शुष्क भूमि)</option>
+                    <option value="wet">Wet Land (आर्द्र भूमि)</option>
+                    <option value="other" selected>Normal/Other (सामान्य)</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
+                <i class="fas fa-search"></i> <span data-i18n="btn_advisory">सलाह प्राप्त करें / Advisory</span>
+            </button>
+        </form>
+    </div>
+
+    <!-- Data Visualization and Tables -->
+    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        
+        <!-- Recommendations and Chart Grid -->
+        <div class="dashboard-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top:0;">
+            <!-- Recommended Crops Card -->
+            <div class="glass-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                    <div class="bilingual-text" style="margin-bottom: 1rem;" data-i18n="recom_crop_header">
+                        <h3 class="hi-text" style="font-size: 1.2rem; color: var(--primary);"><i class="fas fa-magic"></i> अनुशंसित फसलें</h3>
+                        <span class="en-text" style="font-size:0.8rem;">Recommended Profitable Crops</span>
+                    </div>
+                    <div id="recommended-crops-list" style="display:flex; flex-direction:column; gap:0.5rem;">
+                        <!-- JS Loaded -->
+                        <span style="color: var(--text-muted);">लोड हो रहा है... / Loading...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Most Traded Crops Card -->
+            <div class="glass-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+                <div>
+                    <div class="bilingual-text" style="margin-bottom: 1rem;" data-i18n="popular_crop_header">
+                        <h3 class="hi-text" style="font-size: 1.2rem; color: var(--primary-light);"><i class="fas fa-chart-line"></i> सर्वाधिक बिकने वाली</h3>
+                        <span class="en-text" style="font-size:0.8rem;">Most Traded in Area</span>
+                    </div>
+                    <div id="popular-crops-list" style="display:flex; flex-direction:column; gap:0.5rem;">
+                        <!-- JS Loaded -->
+                        <span style="color: var(--text-muted);">लोड हो रहा है... / Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparative Chart -->
+        <div class="glass-card">
+            <div class="bilingual-text" style="margin-bottom:1rem;" data-i18n="chart_header">
+                <h3 class="hi-text" style="font-size: 1.3rem;"><i class="fas fa-chart-bar"></i> फसल मूल्य तुलनात्मक विश्लेषण</h3>
+                <span class="en-text" style="font-size:0.85rem;">Comparative Crop Modal Price Analysis (₹ / Quintal)</span>
+            </div>
+            <div class="chart-container">
+                <canvas id="crop-price-chart"></canvas>
+            </div>
+        </div>
+
+        <!-- Mandi prices list table -->
+        <div class="glass-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.75rem;">
+                <div class="bilingual-text" data-i18n="table_header">
+                    <h3 class="hi-text" style="font-size: 1.3rem;"><i class="fas fa-table"></i> मंडी बाजार लाइव दरें</h3>
+                    <span class="en-text" style="font-size:0.85rem;">Live Mandi price sheet database</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <input type="text" class="form-control" id="table-search" placeholder="फसल खोजें... / Search crop..." style="padding: 0.5rem; font-size: 0.9rem;" data-i18n="placeholder_search">
+                    <button class="btn btn-secondary" id="btn-export-csv" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+                        <i class="fas fa-download"></i> <span data-i18n="btn_export">다운로드 CSV / Download CSV</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mandi-table-container">
+                <table class="mandi-table">
+                    <thead>
+                        <tr>
+                            <th>फसल (Commodity)</th>
+                            <th>मंडी (Market)</th>
+                            <th>किस्म (Variety)</th>
+                            <th>न्यूनतम (Min)</th>
+                            <th>अधिकतम (Max)</th>
+                            <th>औसत भाव (Modal)</th>
+                            <th>तारीख (Date)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mandi-table-body">
+                        <!-- Loaded dynamically -->
+                        <tr>
+                            <td colspan="7" style="text-align: center; color: var(--text-muted); padding: 2rem;">
+                                डेटा लोड हो रहा है... कृपया प्रतीक्षा करें। / Loading live mandi data...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<!-- ChartJS from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/market.js') }}"></script>
+{% endblock %}
