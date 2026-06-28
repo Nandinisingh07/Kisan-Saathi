@@ -12,7 +12,6 @@ from firebase_admin import credentials, firestore
 app = Flask(__name__)
 app.config['SESSION_TYPE'] = 'filesystem'
 app.secret_key = os.getenv("FLASK_SECRET_KEY", "kisan_saathi_secret")
-from flask_session import Session
 Session(app)
 
 os.makedirs("static/css", exist_ok=True)
@@ -156,8 +155,10 @@ def get_market_data():
     district = request.args.get("district","Indore")
     land_type = request.args.get("land_type","other")
     try:
-        df = pd.read_csv("mandi_prices.csv")
+        csv_path = os.path.join(os.path.dirname(__file__), "mandi_prices.csv")
+        df = pd.read_csv(csv_path)
         filtered = df[(df["state"].str.lower()==state.lower())&(df["district"].str.lower()==district.lower())]
+        filtered = filtered.copy()
         filtered["modal_price"] = pd.to_numeric(filtered["modal_price"],errors="coerce")
         avg_prices = filtered.groupby("commodity")["modal_price"].mean().to_dict()
         profitable = filtered.groupby("commodity")["modal_price"].mean().sort_values(ascending=False)
@@ -225,21 +226,53 @@ def chat_api():
         return jsonify({"success":False,"error":"No message"})
     query=req_data["message"].lower()
     lang=req_data.get("lang","hi")
-    if "weather" in query or "मौसम" in query:
-        hi="इंदौर में आज मौसम सुहाना है। तापमान 32°C रहेगा।"; en="Indore weather is pleasant. Temp ~32C."
-    elif "mandi" in query or "भाव" in query or "गेहूं" in query:
-        hi="सोयाबीन ₹4650/क्विंटल, गेहूं ₹2350/क्विंटल।"; en="Soyabean ₹4650/q, Wheat ₹2350/q."
-    elif "disease" in query or "रोग" in query or "झुलसा" in query:
-        hi="पत्तियों पर काले धब्बे हों तो Mancozeb छिड़कें।"; en="Black spots on leaves? Spray Mancozeb."
-    elif "hello" in query or "नमस्ते" in query:
-        hi="नमस्ते किसान भाई!"; en="Hello farmer friend!"
+
+    if "weather" in query or "mosam" in query or "mausam" in query or "barish" in query or "मौसम" in query or "बारिश" in query:
+        hi="इंदौर में आज मौसम सुहाना है। तापमान 32°C के आसपास रहेगा। बारिश की संभावना नहीं है।"
+        en="Indore weather is pleasant today. Temperature around 32°C. No rain expected."
+        hl="Indore mein aaj mausam accha hai. Temperature 32°C ke aaspaas rahega. Barish ki sambhavna nahi hai."
+    elif "mandi" in query or "bhav" in query or "rate" in query or "price" in query or "भाव" in query or "रेट" in query or "कीमत" in query or "gehun" in query or "गेहूं" in query or "soyabean" in query:
+        hi="इंदौर मंडी में सोयाबीन ₹4650/क्विंटल और गेहूं ₹2350/क्विंटल चल रहा है।"
+        en="At Indore Mandi: Soyabean ₹4650/quintal, Wheat ₹2350/quintal."
+        hl="Indore Mandi mein Soyabean ka rate ₹4650/quintal aur Gehun ₹2350/quintal chal raha hai."
+    elif "disease" in query or "bimari" in query or "rog" in query or "jhulsa" in query or "dabbe" in query or "रोग" in query or "झुलसा" in query or "पत्ती" in query:
+        hi="पत्तियों पर काले धब्बे हों तो अर्ली ब्लाइट हो सकता है। Mancozeb 2g/लीटर पानी में मिलाकर छिड़काव करें।"
+        en="Black spots on leaves indicate Early Blight. Spray Mancozeb 2g per litre of water immediately."
+        hl="Patto par kale dabbe ho toh Early Blight ho sakta hai. Mancozeb 2g per litre paani mein milakar spray karo."
+    elif "fertilizer" in query or "khad" in query or "urvarak" in query or "खाद" in query or "उर्वरक" in query:
+        hi="गेहूं के लिए DAP और यूरिया का उपयोग करें। सोयाबीन के लिए रायजोबियम कल्चर लगाएं।"
+        en="For wheat use DAP and Urea. For soyabean apply Rhizobium culture for better nitrogen fixation."
+        hl="Gehun ke liye DAP aur Urea use karo. Soyabean ke liye Rhizobium culture lagao better results ke liye."
+    elif "hello" in query or "hi" in query or "namaste" in query or "नमस्ते" in query or "ram ram" in query or "jai" in query:
+        hi="नमस्ते किसान भाई! मैं किसान साथी AI हूँ। फसल रोग, मंडी भाव या मौसम - किसी भी विषय में मदद करूँगा।"
+        en="Hello farmer friend! I am Kisan Saathi AI. I can help you with crop diseases, market prices, and weather updates."
+        hl="Namaste kisan bhai! Main Kisan Saathi AI hun. Fasal rog, mandi bhav ya mausam - kisi bhi cheez mein help karunga."
+    elif "help" in query or "madad" in query or "मदद" in query:
+        hi="मैं इन विषयों में मदद कर सकता हूँ: 1) फसल रोग 2) मंडी भाव 3) मौसम जानकारी 4) खाद सलाह"
+        en="I can help with: 1) Crop diseases 2) Mandi market prices 3) Weather forecast 4) Fertilizer advice"
+        hl="Main in topics mein help kar sakta hun: 1) Fasal ki bimari 2) Mandi ke rates 3) Mausam ki jankari 4) Khad ki salah"
     else:
-        hi="मंडी भाव के लिए 'मंडी', मौसम के लिए 'मौसम' लिखें।"; en="Say 'mandi' for prices, 'weather' for forecast."
-    reply = en if lang=="en" else hi
+        hi="मंडी भाव के लिए 'मंडी', मौसम के लिए 'मौसम', फसल रोग के लिए 'रोग' लिखें।"
+        en="Type 'mandi' for market prices, 'weather' for forecast, 'disease' for crop disease help."
+        hl="'Mandi' likho market rates ke liye, 'mausam' likho weather ke liye, 'bimari' likho fasal rog ke liye."
+
+    if lang == "en":
+        reply = en
+    elif lang == "hi":
+        reply = hi
+    elif lang == "hl":
+        reply = hl
+    else:
+        reply = en
+
     ts=int(time.time())
     afile=f"static/audio/chat_reply_{ts}.mp3"
-    try: gTTS(reply,lang=lang).save(afile); aurl=f"/static/audio/chat_reply_{ts}.mp3"
-    except: aurl=""
+    tts_lang = "hi" if lang == "hl" else lang
+    try:
+        gTTS(reply, lang=tts_lang).save(afile)
+        aurl=f"/static/audio/chat_reply_{ts}.mp3"
+    except:
+        aurl=""
     return jsonify({"success":True,"reply_hi":reply,"reply_en":en,"audio_url":aurl})
 
 @app.route("/api/settings", methods=["POST"])
