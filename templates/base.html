@@ -21,6 +21,25 @@
     {% block styles %}{% endblock %}
 </head>
 <body>
+    <!-- Animated floating particles container -->
+    <div class="particle-container">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
     <!-- Pista green top accent strip -->
     <div style="height: 4px; background: linear-gradient(90deg, #5A8A3C, #93C572, #D4A843, #93C572, #5A8A3C); width: 100%;"></div>
 
@@ -148,6 +167,12 @@
             <p>&copy; 2026 किसान साथी टीम। सर्वाधिकार सुरक्षित। | Kisan Saathi. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <!-- Floating Help Button -->
+    <a href="/chat" class="floating-help-btn" aria-label="Kisan Chat">
+        <span class="pulse-ring"></span>
+        <span class="icon">🌾</span>
+    </a>
 
     <!-- Global Scripts -->
     <script src="{{ url_for('static', filename='js/toast.js') }}"></script>

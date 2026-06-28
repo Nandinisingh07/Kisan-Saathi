@@ -18,8 +18,8 @@
         }
     }
     .chat-sidebar {
-        background: var(--cream-bg);
-        border: 2px solid var(--pista-border);
+        background: var(--cream);
+        border: 2px solid var(--border-soft);
         border-radius: 16px;
         padding: 1.25rem;
         display: flex;
@@ -27,17 +27,21 @@
         justify-content: space-between;
     }
     [data-theme="dark"] .chat-sidebar {
-        background: rgba(26, 46, 16, 0.7);
+        background: var(--dm-surface);
+        border-color: var(--dm-border);
     }
     .chat-window {
         background: var(--card-bg);
-        border: 2px solid var(--pista-border);
+        border: 2px solid var(--border-soft);
         border-radius: 16px;
         display: flex;
         flex-direction: column;
         height: 100%;
         overflow: hidden;
         box-shadow: var(--shadow);
+    }
+    [data-theme="dark"] .chat-window {
+        border-color: var(--dm-border);
     }
     .chat-messages {
         flex-grow: 1;
@@ -46,7 +50,7 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        background: rgba(200, 230, 160, 0.05);
+        background: var(--cream);
     }
     .msg-bubble {
         max-width: 75%;
@@ -56,23 +60,24 @@
         position: relative;
     }
     .msg-user {
-        background: var(--pista-primary);
+        background: var(--forest-mid);
         color: white;
         align-self: flex-end;
-        border-bottom-right-radius: 2px;
-        box-shadow: 0 4px 12px rgba(147, 197, 114, 0.3);
+        border-bottom-right-radius: 4px;
+        box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
     }
     .msg-ai {
-        background: var(--pista-light);
-        color: var(--text-dark);
+        background: white;
+        color: var(--forest-deep);
         align-self: flex-start;
-        border-bottom-left-radius: 2px;
-        border: 1.5px solid var(--pista-border);
+        border-bottom-left-radius: 4px;
+        border: 1px solid var(--sage-pale);
+        box-shadow: 0 4px 15px rgba(27, 67, 50, 0.05);
     }
     [data-theme="dark"] .msg-ai {
-        background: rgba(147, 197, 114, 0.12);
-        color: var(--text);
-        border-color: rgba(147, 197, 114, 0.3);
+        background: var(--dm-card);
+        color: var(--dm-text);
+        border-color: var(--dm-border);
     }
     .msg-audio-play {
         display: inline-flex;
@@ -80,20 +85,27 @@
         gap: 0.5rem;
         margin-top: 0.5rem;
         padding: 0.3rem 0.6rem;
-        background: rgba(147, 197, 114, 0.25);
+        background: rgba(82, 183, 136, 0.2);
         border-radius: 6px;
         font-size: 0.8rem;
         cursor: pointer;
-        color: var(--pista-dark);
+        color: var(--forest-deep);
         font-weight: bold;
+    }
+    [data-theme="dark"] .msg-audio-play {
+        background: rgba(82, 183, 136, 0.1);
+        color: var(--mint-soft);
     }
     .chat-input-area {
         padding: 1rem;
-        border-top: 2px solid var(--pista-border);
+        border-top: 2px solid var(--border-soft);
         display: flex;
         gap: 0.75rem;
         align-items: center;
         background: var(--card-bg);
+    }
+    [data-theme="dark"] .chat-input-area {
+        border-color: var(--dm-border);
     }
     .suggestion-container {
         display: flex;
@@ -103,18 +115,27 @@
     }
     .suggestion-chip {
         padding: 0.5rem 0.8rem;
-        background: var(--cream-bg);
-        border: 1px solid var(--pista-border);
+        background: var(--cream);
+        border: 1px solid var(--border-soft);
         border-radius: 20px;
         font-size: 0.85rem;
         cursor: pointer;
         transition: var(--transition);
-        color: var(--pista-dark);
+        color: var(--forest-deep);
+    }
+    [data-theme="dark"] .suggestion-chip {
+        background: var(--dm-surface);
+        border-color: var(--dm-border);
+        color: var(--dm-text);
     }
     .suggestion-chip:hover {
-        background: var(--pista-primary);
+        background: var(--forest-light);
         color: white;
-        border-color: var(--pista-dark);
+        border-color: var(--forest-deep);
+    }
+    [data-theme="dark"] .suggestion-chip:hover {
+        background: var(--leaf-fresh);
+        color: var(--forest-deep);
     }
     .recording-pulse {
         width: 12px;
@@ -155,9 +176,14 @@
         </div>
 
         <div style="background:var(--bg); padding:0.75rem; border-radius:8px; font-size:0.8rem; border:1px solid var(--border);">
-            <div class="bilingual-text">
-                <span class="hi-text" style="color:var(--primary-dark);"><i class="fas fa-language"></i>  भाषा: हिंदी / English</span>
-                <span class="en-text">Ask in Hindi or English. Speak to translate.</span>
+            <div class="bilingual-text" style="margin-bottom: 0.5rem;">
+                <span class="hi-text" style="color:var(--primary-dark);"><i class="fas fa-language"></i>  भाषा चुनें / Select Language</span>
+                <span class="en-text">Choose your chat language</span>
+            </div>
+            <div class="lang-pills" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <button class="lang-pill active" onclick="document.getElementById('language-selector').value='hi'; document.getElementById('language-selector').dispatchEvent(new Event('change')); document.querySelectorAll('.lang-pill').forEach(el => el.classList.remove('active')); this.classList.add('active');">HI</button>
+                <button class="lang-pill" onclick="document.getElementById('language-selector').value='en'; document.getElementById('language-selector').dispatchEvent(new Event('change')); document.querySelectorAll('.lang-pill').forEach(el => el.classList.remove('active')); this.classList.add('active');">EN</button>
+                <button class="lang-pill" onclick="document.getElementById('language-selector').value='hi'; document.getElementById('language-selector').dispatchEvent(new Event('change')); document.querySelectorAll('.lang-pill').forEach(el => el.classList.remove('active')); this.classList.add('active');">Hinglish</button>
             </div>
         </div>
     </div>

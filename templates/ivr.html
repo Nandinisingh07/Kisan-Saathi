@@ -166,15 +166,19 @@
 <script>
 let callActive = false;
 let callStep = 'welcome';
+let conversationHistory = [];
 
 async function startCall() {
   callActive = true;
   callStep = 'welcome';
+  conversationHistory = [];
   document.getElementById('call-btn').style.display = 'none';
   document.getElementById('end-btn').style.display = 'block';
   document.getElementById('text-input-area').style.display = 'block';
+  clearScreen();
   addToScreen('📞 Call Connected...', '#FFD166');
-  await sendToIVR('welcome', 1);
+  addToScreen('नमस्ते! किसान साथी हेल्पलाइन में आपका स्वागत है।', '#B7E4C7');
+  addToScreen('Press 2: मंडी भाव | Press 3: मौसम | Press 4: रोग | Press 5: योजना', '#74C69D');
 }
 
 function endCall() {
@@ -186,59 +190,125 @@ function endCall() {
   addToScreen('📵 Call Ended. Thank you!', '#BC4749');
 }
 
+function clearScreen() {
+  document.getElementById('ivr-transcript').innerHTML = '<div style="color:#FFD166; font-weight:700; font-size:0.8rem; margin-bottom:0.5rem; font-family:monospace;">🌾 KISAN SAATHI HELPLINE</div>';
+}
+
 async function pressKey(key) {
-  if (!callActive) { addToScreen('Please start a call first', '#BC4749'); return; }
-  addToScreen(`Pressed: ${key}`, '#FFD166');
+  if (!callActive) { 
+    addToScreen('Please start a call first', '#BC4749');
+    return; 
+  }
+  
   const optionMap = {'1':1,'2':2,'3':3,'4':4,'5':5};
   const option = optionMap[key];
-  if (option) {
-    callStep = `option_${key}`;
-    await sendToIVR(callStep, parseInt(key));
+  
+  addToScreen(`📱 You pressed: ${key}`, '#FFD166');
+  
+  if (!option) {
+    addToScreen('Invalid option. Press 2-5.', '#E9C46A');
+    return;
+  }
+
+  callStep = `option_${key}`;
+  await sendToIVR(option);
+}
+
+async function sendToIVR(option) {
+  const lang = document.getElementById('ivr-language').value;
+  const crop = document.getElementById('ivr-crop').value;
+  
+  addToScreen('⏳ Connecting to AI...', '#B7E4C7');
+  
+  try {
+    const response = await fetch('/api/ivr/simulate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        language: lang,
+        option: option,
+        crop: crop,
+        phone: `+91 ${Math.floor(70000+Math.random()*29999)} XXX${Math.floor(10+Math.random()*89)}`
+      })
+    });
+
+    if (!response.ok) {
+      addToScreen('❌ API Error: ' + response.status, '#BC4749');
+      return;
+    }
+
+    const data = await response.json();
+    
+    if (data.success) {
+      addToScreen(`🤖 ${data.transcript}`, '#74C69D');
+      conversationHistory.push({role: 'assistant', content: data.transcript});
+      
+      if (data.audio_url) {
+        playAudio(data.audio_url);
+      }
+      
+      addToScreen('✅ Reply received. Type your question or press another key.', '#52B788');
+      loadLogs();
+    } else {
+      addToScreen('❌ Error: ' + (data.error || 'Unknown error'), '#BC4749');
+    }
+  } catch (error) {
+    console.error('API Error:', error);
+    addToScreen('❌ Connection Error: ' + error.message, '#BC4749');
   }
 }
 
 async function sendTextInput() {
   const input = document.getElementById('ivr-text-input').value.trim();
-  if (!input) return;
+  if (!input || !callActive) return;
+  
   document.getElementById('ivr-text-input').value = '';
-  addToScreen(`You: ${input}`, '#E9C46A');
+  addToScreen(`You: "${input}"`, '#E9C46A');
+  conversationHistory.push({role: 'user', content: input});
   
   const lang = document.getElementById('ivr-language').value;
   const crop = document.getElementById('ivr-crop').value;
   
-  const res = await fetch('/api/ivr/call', {
-    method: 'POST',
-    headers: {'Content-Type':'application/json'},
-    body: JSON.stringify({input, language: lang, step: callStep, crop})
-  });
-  const data = await res.json();
-  if (data.success) {
-    addToScreen(`🤖 ${data.reply}`, '#74C69D');
-    if (data.audio_url) playAudio(data.audio_url);
-  }
-}
-
-async function sendToIVR(step, option) {
-  const lang = document.getElementById('ivr-language').value;
-  const crop = document.getElementById('ivr-crop').value;
-  addToScreen('⏳ Connecting...', '#B7E4C7');
+  addToScreen('⏳ AI thinking...', '#B7E4C7');
   
-  const res = await fetch('/api/ivr/simulate', {
-    method: 'POST',
-    headers: {'Content-Type':'application/json'},
-    body: JSON.stringify({language: lang, option, crop, phone: `+91 ${Math.floor(70000+Math.random()*29999)} XXX${Math.floor(10+Math.random()*89)}`})
-  });
-  const data = await res.json();
-  if (data.success) {
-    addToScreen(`🤖 ${data.transcript}`, '#74C69D');
-    if (data.audio_url) playAudio(data.audio_url);
-    loadLogs();
+  try {
+    const response = await fetch('/api/ivr/call', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        input: input,
+        language: lang,
+        step: callStep,
+        crop: crop
+      })
+    });
+
+    const data = await response.json();
+    if (data.success) {
+      addToScreen(`🤖 ${data.reply}`, '#74C69D');
+      conversationHistory.push({role: 'assistant', content: data.reply});
+      
+      if (data.audio_url) {
+        playAudio(data.audio_url);
+      }
+    } else {
+      addToScreen('❌ Error: ' + (data.error || 'No response'), '#BC4749');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    addToScreen('❌ Connection Error', '#BC4749');
   }
 }
 
-function addToScreen(text, color='#74C69D') {
+function addToScreen(text, color = '#74C69D') {
   const screen = document.getElementById('ivr-transcript');
-  screen.innerHTML += `<div style="color:${color}; margin-top:4px; font-size:0.75rem;">${text}</div>`;
+  const newLine = document.createElement('div');
+  newLine.style.color = color;
+  newLine.style.marginTop = '6px';
+  newLine.style.fontSize = '0.77rem';
+  newLine.style.lineHeight = '1.5';
+  newLine.textContent = text;
+  screen.appendChild(newLine);
   screen.scrollTop = screen.scrollHeight;
 }
 
@@ -246,30 +316,37 @@ function playAudio(url) {
   const audio = document.getElementById('ivr-audio');
   audio.src = url;
   audio.style.display = 'block';
-  audio.play().catch(e => console.log('Audio play error:', e));
+  audio.play().catch(e => console.log('Audio play prevented:', e));
 }
 
 async function loadLogs() {
-  const res = await fetch('/api/ivr/stats');
-  const data = await res.json();
-  const container = document.getElementById('ivr-logs');
-  if (data.success && data.logs.length > 0) {
-    container.innerHTML = data.logs.map(log => `
-      <div class="glass-card" style="border-radius:12px; padding:1rem; border-left:4px solid #52B788; box-shadow:0 2px 8px rgba(0,0,0,0.06); margin-bottom:0.75rem;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-          <span style="font-weight:700; color:var(--forest-deep);">${log.caller}</span>
-          <span style="font-size:0.8rem; color:var(--text-muted);">${log.time} | ${log.duration}</span>
+  try {
+    const res = await fetch('/api/ivr/stats');
+    const data = await res.json();
+    const container = document.getElementById('ivr-logs');
+    
+    if (data.success && data.logs && data.logs.length > 0) {
+      container.innerHTML = data.logs.slice(0, 10).map(log => `
+        <div class="glass-card" style="border-radius:12px; padding:1rem; border-left:4px solid #52B788; box-shadow:0 2px 8px rgba(0,0,0,0.06); margin-bottom:0.75rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+            <span style="font-weight:700; color:var(--forest-deep);">${log.caller || 'Unknown'}</span>
+            <span style="font-size:0.8rem; color:var(--text-muted);">${log.time || '--:--'} | ${log.duration || '--'}</span>
+          </div>
+          <div style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.5rem;">📍 ${log.path || 'N/A'}</div>
+          ${log.transcript ? `<div style="font-size:0.78rem; color:var(--text-body); background:var(--foam-white); padding:8px; border-radius:8px; margin-bottom:0.5rem; max-height:60px; overflow-y:auto;">"${log.transcript.substring(0,150)}${log.transcript.length > 150 ? '...' : ''}"</div>` : ''}
+          ${log.audio_url ? `<audio controls src="${log.audio_url}" style="width:100%; height:28px; border-radius:6px; font-size:0.7rem;"></audio>` : ''}
         </div>
-        <div style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.5rem;">📍 ${log.path}</div>
-        ${log.transcript ? `<div style="font-size:0.8rem; color:var(--text-body); background:var(--foam-white); padding:8px; border-radius:8px; margin-bottom:0.5rem;">"${log.transcript.substring(0,120)}..."</div>` : ''}
-        ${log.audio_url ? `<audio controls src="${log.audio_url}" style="width:100%; height:32px; border-radius:6px;"></audio>` : ''}
-      </div>
-    `).join('');
-    document.getElementById('active-calls').textContent = data.active_calls || 0;
+      `).join('');
+    }
+  } catch (error) {
+    console.error('Load logs error:', error);
   }
 }
 
-loadLogs();
-setInterval(loadLogs, 30000);
+// Load logs on page load and refresh every 30 seconds
+document.addEventListener('DOMContentLoaded', () => {
+  loadLogs();
+  setInterval(loadLogs, 30000);
+});
 </script>
 {% endblock %}
