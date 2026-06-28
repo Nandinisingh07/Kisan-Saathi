@@ -1,0 +1,1001 @@
+state,district,market,commodity,variety,grade,arrival_date,min_price,max_price,modal_price
+Madhya Pradesh,Alirajpur,Alirajpur,Maize,Local,FAQ,04/04/2025,2000,2350,2350
+Madhya Pradesh,Alirajpur,Jobat,Soyabean,Soyabeen,FAQ,04/04/2025,4000,4000,4000
+Madhya Pradesh,Anupur,Anuppur,buttery,Buttery,FAQ,04/04/2025,4200,4300,4300
+Madhya Pradesh,Anupur,Anuppur,Paddy(Dhan)(Common),Dhan,Non-FAQ,04/04/2025,2100,2100,2100
+Madhya Pradesh,Ashoknagar,Ashoknagar,Green Peas,Pea,FAQ,04/04/2025,3350,3496,3496
+Madhya Pradesh,Ashoknagar,Ashoknagar,Mustard,Mustard,FAQ,04/04/2025,5300,5915,5790
+Madhya Pradesh,Ashoknagar,Ashoknagar,Paddy(Dhan)(Common),Dhan,FAQ,04/04/2025,1600,2965,2960
+Madhya Pradesh,Ashoknagar,Ashoknagar,Wheat,Sharbati,FAQ,04/04/2025,2500,4480,3350
+Madhya Pradesh,Ashoknagar,Isagarh,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5285,5615,5615
+Madhya Pradesh,Ashoknagar,Isagarh,Mustard,Mustard,FAQ,04/04/2025,5680,5900,5900
+Madhya Pradesh,Ashoknagar,Mungawali,Soyabean,Soyabeen,Non-FAQ,04/04/2025,3685,3775,3775
+Madhya Pradesh,Ashoknagar,Mungawali,Wheat,Wheat,FAQ,04/04/2025,2475,2475,2475
+Madhya Pradesh,Badwani,Anjad,Cotton,Medium Fiber,FAQ,04/04/2025,6900,6900,6900
+Madhya Pradesh,Badwani,Anjad,Kabuli Chana(Chickpeas-White),Double Dollar Chana,FAQ,04/04/2025,9500,9500,9500
+Madhya Pradesh,Badwani,Anjad,Maize,Yellow,FAQ,04/04/2025,1650,2130,2000
+Madhya Pradesh,Badwani,Badwani(F&V),Cluster beans,Cluster Beans,FAQ,04/04/2025,2800,2800,2800
+Madhya Pradesh,Badwani,Badwani(F&V),Sponge gourd,Sponge gourd,FAQ,04/04/2025,1800,1800,1800
+Madhya Pradesh,Badwani,Sendhwa(F&V),Cauliflower,Local,FAQ,04/04/2025,700,800,800
+Madhya Pradesh,Badwani,Sendhwa(F&V),Green Chilli,Green Chilly,FAQ,04/04/2025,2000,2500,2300
+Madhya Pradesh,Badwani,Sendhwa(F&V),Methi(Leaves),Methi,FAQ,04/04/2025,1500,2000,1800
+Madhya Pradesh,Balaghat,Lalbarra,Paddy(Dhan)(Common),Common,Non-FAQ,04/04/2025,2300,2310,2310
+Madhya Pradesh,Betul,Betul,Wheat,Mill Quality,Non-FAQ,04/04/2025,2420,2445,2445
+Madhya Pradesh,Bhind,Alampur,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,5425,5695,5600
+Madhya Pradesh,Bhind,Alampur,Mustard,Mustard,Non-FAQ,04/04/2025,6015,6070,6070
+Madhya Pradesh,Bhind,Gohad,Wheat,Mill Quality,FAQ,04/04/2025,2350,2350,2350
+Madhya Pradesh,Bhind,Lahar,Barley (Jau),Barley,FAQ,04/04/2025,2073,2100,2100
+Madhya Pradesh,Bhind,Mehgaon,Wheat,Wheat,Non-FAQ,04/04/2025,2345,2355,2350
+Madhya Pradesh,Bhind,Mow,Wheat,Wheat,FAQ,04/04/2025,2295,2355,2355
+Madhya Pradesh,Bhopal,Berasia,Paddy(Dhan)(Common),Paddy,FAQ,04/04/2025,2250,2250,2250
+Madhya Pradesh,Bhopal,Berasia,Wheat,Wheat,FAQ,04/04/2025,2250,2817,2350
+Madhya Pradesh,Bhopal,Bhopal,Garlic,Garlic,FAQ,04/04/2025,500,6650,2500
+Madhya Pradesh,Burhanpur,Burhanpur,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),Non-FAQ,04/04/2025,6250,7366,7366
+Madhya Pradesh,Burhanpur,Burhanpur,Maize,Local,FAQ,04/04/2025,1650,2142,2041
+Madhya Pradesh,Burhanpur,Burhanpur,Maize,Local,Non-FAQ,04/04/2025,1601,2153,2041
+Madhya Pradesh,Burhanpur,Burhanpur,Wheat,Wheat,Non-FAQ,04/04/2025,2336,2551,2551
+Madhya Pradesh,Chhatarpur,Bakswaha,Wheat,Mill Quality,Non-FAQ,04/04/2025,2540,2540,2540
+Madhya Pradesh,Chhatarpur,Chhatarpur,Mustard,Mustard,FAQ,04/04/2025,5800,5935,5800
+Madhya Pradesh,Chhatarpur,Chhatarpur,Mustard,Sarson(Black),FAQ,04/04/2025,5490,5770,5770
+Madhya Pradesh,Chhatarpur,Chhatarpur,Wheat,Wheat,FAQ,04/04/2025,2411,2441,2425
+Madhya Pradesh,Chhatarpur,LavKush Nagar(Laundi),Bengal Gram(Gram)(Whole),Desi (F.A.Q. Split),Non-FAQ,04/04/2025,5300,5655,5400
+Madhya Pradesh,Chhatarpur,Naugaon,Lentil (Masur)(Whole),Masur Dal,Non-FAQ,04/04/2025,5930,6010,5940
+Madhya Pradesh,Chhatarpur,Naugaon,Wheat,Wheat,FAQ,04/04/2025,2440,2490,2470
+Madhya Pradesh,Chhatarpur,Rajnagar,Wheat,Wheat Mix,Non-FAQ,04/04/2025,2400,2420,2410
+Madhya Pradesh,Chhindwara,Amarwda,Maize,Local,Non-FAQ,04/04/2025,2494,2494,2494
+Madhya Pradesh,Chhindwara,Amarwda,Maize,Yellow,FAQ,04/04/2025,2105,2200,2200
+Madhya Pradesh,Chhindwara,Amarwda,Wheat,Wheat,Non-FAQ,04/04/2025,2400,2500,2400
+Madhya Pradesh,Chhindwara,Chaurai,Wheat,Wheat,FAQ,04/04/2025,2460,2480,2480
+Madhya Pradesh,Chhindwara,Chhindwara,Bengal Gram(Gram)(Whole),Desi (F.A.Q. Split),FAQ,04/04/2025,5535,5535,5535
+Madhya Pradesh,Damoh,Damoh,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),FAQ,04/04/2025,6000,6000,6000
+Madhya Pradesh,Damoh,Damoh,buttery,Buttery,FAQ,04/04/2025,3800,3800,3800
+Madhya Pradesh,Damoh,Damoh,Green Peas,Pea,FAQ,04/04/2025,3000,4200,3455
+Madhya Pradesh,Damoh,Damoh,Paddy(Dhan)(Common),Dhan,FAQ,04/04/2025,2070,2100,2100
+Madhya Pradesh,Damoh,Damoh,Soyabean,Soyabeen,FAQ,04/04/2025,3900,4280,4100
+Madhya Pradesh,Damoh,Damoh,Wheat,Mill Quality,Non-FAQ,04/04/2025,2330,2400,2350
+Madhya Pradesh,Damoh,Damoh,Wheat,Wheat,FAQ,04/04/2025,2400,2405,2405
+Madhya Pradesh,Damoh,Javera,Wheat,Mill Quality,Non-FAQ,04/04/2025,2350,2400,2400
+Madhya Pradesh,Damoh,Patharia,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,4800,5725,5700
+Madhya Pradesh,Damoh,Patharia,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5875,6055,6055
+Madhya Pradesh,Datia,Bhander,Barley (Jau),Other,FAQ,04/04/2025,2150,2150,2150
+Madhya Pradesh,Datia,Datia,Barley (Jau),Barley,FAQ,04/04/2025,2100,2195,2100
+Madhya Pradesh,Datia,Datia,Wheat,Wheat,FAQ,04/04/2025,2360,2455,2455
+Madhya Pradesh,Dewas,Bagli,Maize,Yellow,Non-FAQ,04/04/2025,1724,2196,2196
+Madhya Pradesh,Dewas,Dewas,Tamarind Fruit,Tamarind,FAQ,04/04/2025,4091,5101,4971
+Madhya Pradesh,Dewas,Kannod,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,2430,5731,5650
+Madhya Pradesh,Dewas,Kannod,Soyabean,Soyabeen,FAQ,04/04/2025,3940,4525,4525
+Madhya Pradesh,Dewas,Khategaon,Green Gram Dal (Moong Dal),Green gram,FAQ,04/04/2025,5900,7531,7531
+Madhya Pradesh,Dewas,Khategaon,Wheat,Wheat,FAQ,04/04/2025,2000,2627,2470
+Madhya Pradesh,Dewas,Sonkatch,Bengal Gram(Gram)(Whole),Chana Kabuli,FAQ,04/04/2025,4915,4915,4915
+Madhya Pradesh,Dewas,Sonkatch,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5265,5265,5265
+Madhya Pradesh,Dewas,Sonkatch,Onion,Local,Non-FAQ,04/04/2025,503,510,505
+Madhya Pradesh,Dhar,Badnawar,Onion,Onion-Organic,Non-FAQ,04/04/2025,600,600,600
+Madhya Pradesh,Dhar,Dhamnod,Maize,Deshi Red,FAQ,04/04/2025,1566,1867,1867
+Madhya Pradesh,Dhar,Dhamnod,Maize,Local,FAQ,04/04/2025,1451,2275,1652
+Madhya Pradesh,Dhar,Dhar,Bengal Gram(Gram)(Whole),Chana Kabuli,FAQ,04/04/2025,9405,9405,9405
+Madhya Pradesh,Dhar,Kukshi,Wheat,Lokwan,FAQ,04/04/2025,2505,2525,2525
+Madhya Pradesh,Dhar,Manawar(F&V),Brinjal,Brinjal,FAQ,04/04/2025,700,900,800
+Madhya Pradesh,Dhar,Manawar(F&V),Cauliflower,Cauliflower,FAQ,04/04/2025,700,900,800
+Madhya Pradesh,Dhar,Manawar(F&V),Onion,Onion,FAQ,04/04/2025,1700,1900,1800
+Madhya Pradesh,Dhar,Manawar(F&V),Peas Wet,Other,FAQ,04/04/2025,1800,2000,1900
+Madhya Pradesh,Dhar,Manawar(F&V),Potato,Potato,FAQ,04/04/2025,1030,1230,1130
+Madhya Pradesh,Dhar,Rajgarh,Bengal Gram(Gram)(Whole),Desi (F.A.Q. Split),FAQ,04/04/2025,5451,5451,5451
+Madhya Pradesh,Dhar,Rajgarh,Soyabean,Yellow,FAQ,04/04/2025,3810,4353,4300
+Madhya Pradesh,Guna,Aron,Coriander(Leaves),Coriander,FAQ,04/04/2025,5860,7360,7100
+Madhya Pradesh,Guna,Aron,Wheat,Wheat,FAQ,04/04/2025,2271,3075,2500
+Madhya Pradesh,Guna,Binaganj,Coriander(Leaves),Coriander,FAQ,04/04/2025,6000,12800,6800
+Madhya Pradesh,Guna,Guna,Lentil (Masur)(Whole),Masur Dal,Non-FAQ,04/04/2025,5870,6130,6045
+Madhya Pradesh,Guna,Kumbhraj,Wheat,Mill Quality,FAQ,04/04/2025,2220,2355,2290
+Madhya Pradesh,Guna,Kumbhraj,Wheat,Wheat,FAQ,04/04/2025,2100,2380,2320
+Madhya Pradesh,Guna,Raghogarh,Wheat,Wheat,Non-FAQ,04/04/2025,2320,2400,2360
+Madhya Pradesh,Gwalior,Bhitarwar,Wheat,Mill Quality,FAQ,04/04/2025,2400,2460,2440
+Madhya Pradesh,Gwalior,Lashkar,Paddy(Dhan)(Common),Dhan,FAQ,04/04/2025,2725,2800,2750
+Madhya Pradesh,Harda,Harda,Wheat,Mill Quality,FAQ,04/04/2025,2400,2619,2480
+Madhya Pradesh,Harda,Khirakiya,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),Non-FAQ,04/04/2025,6730,6830,6830
+Madhya Pradesh,Harda,Sirali,Wheat,Mill Quality,FAQ,04/04/2025,2350,2539,2459
+Madhya Pradesh,Harda,Timarni,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,3711,6800,5700
+Madhya Pradesh,Harda,Timarni,Maize,Local,FAQ,04/04/2025,1478,2153,1641
+Madhya Pradesh,Hoshangabad,Itarsi,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),FAQ,04/04/2025,7114,7114,7114
+Madhya Pradesh,Hoshangabad,Pipariya,Paddy(Dhan)(Common),Paddy,FAQ,04/04/2025,1560,2954,2880
+Madhya Pradesh,Hoshangabad,Pipariya,Paddy(Dhan)(Common),Paddy,Non-FAQ,04/04/2025,900,2917,2880
+Madhya Pradesh,Hoshangabad,Pipariya,Wheat,Mill Quality,Non-FAQ,04/04/2025,2390,2499,2489
+Madhya Pradesh,Indore,Indore,Gur(Jaggery),Jaggery,FAQ,04/04/2025,3484,3484,3484
+Madhya Pradesh,Indore,Indore,Potato,Local,FAQ,04/04/2025,1531,1531,1531
+Madhya Pradesh,Indore,Indore,Potato,Local,Non-FAQ,04/04/2025,147,1585,1585
+Madhya Pradesh,Indore,Indore,Wheat,Malwa Shakti,FAQ,04/04/2025,2480,2560,2500
+Madhya Pradesh,Indore,Mhow(F&V),Brinjal,Brinjal,FAQ,04/04/2025,1000,2500,1500
+Madhya Pradesh,Indore,Mhow(F&V),Capsicum,Capsicum,FAQ,04/04/2025,3000,5000,4000
+Madhya Pradesh,Indore,Mhow(F&V),Cauliflower,Cauliflower,FAQ,04/04/2025,1200,2500,1500
+Madhya Pradesh,Indore,Mhow(F&V),Cucumbar(Kheera),Cucumbar,FAQ,04/04/2025,1300,2800,1500
+Madhya Pradesh,Indore,Mhow(F&V),Methi(Leaves),Methi,FAQ,04/04/2025,1400,2600,2000
+Madhya Pradesh,Indore,Mhow(F&V),Onion,Onion,FAQ,04/04/2025,1300,3000,2000
+Madhya Pradesh,Indore,Mhow(F&V),Tomato,Tomato,FAQ,04/04/2025,800,1800,1000
+Madhya Pradesh,Indore,Sanwer,Wheat,Wheat,FAQ,04/04/2025,2200,2571,2425
+Madhya Pradesh,Jabalpur,Jabalpur,Mustard,Mustard,FAQ,04/04/2025,5300,6800,5650
+Madhya Pradesh,Jabalpur,Jabalpur,Soyabean,Soyabeen,FAQ,04/04/2025,3795,3980,3980
+Madhya Pradesh,Jabalpur,Paatan,Black Gram (Urd Beans)(Whole),Urda/Urd,FAQ,04/04/2025,6535,7170,7170
+Madhya Pradesh,Jabalpur,Paatan,Paddy(Dhan)(Common),1121,FAQ,04/04/2025,2850,2850,2850
+Madhya Pradesh,Jabalpur,Paatan,Soyabean,Soyabeen,FAQ,04/04/2025,3835,4250,4225
+Madhya Pradesh,Jabalpur,Paatan,Wheat,Wheat,FAQ,04/04/2025,2395,2550,2495
+Madhya Pradesh,Jabalpur,Sehora,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5410,5410,5410
+Madhya Pradesh,Jabalpur,Sehora,Wheat,Mill Quality,FAQ,04/04/2025,2100,2512,2436
+Madhya Pradesh,Jabalpur,Shahpura Bhitoni (F&V),Lentil (Masur)(Whole),Local,FAQ,04/04/2025,5690,5900,5900
+Madhya Pradesh,Jabalpur,Shahpura Bhitoni (F&V),Wheat,Wheat,FAQ,04/04/2025,2395,2405,2405
+Madhya Pradesh,Jhabua,Jhabua,Bengal Gram(Gram)(Whole),Chana Kanta,FAQ,04/04/2025,5400,5400,5400
+Madhya Pradesh,Jhabua,Jhabua,Cotton,Without Ginned Cotton,Non-FAQ,04/04/2025,7475,7550,7500
+Madhya Pradesh,Jhabua,Jhabua,Wheat,Mill Quality,Non-FAQ,04/04/2025,2400,2400,2400
+Madhya Pradesh,Jhabua,Petlawad,Maize,Local,Non-FAQ,04/04/2025,2221,2221,2221
+Madhya Pradesh,Jhabua,Petlawad,Wheat,Lokwan,FAQ,04/04/2025,2421,2690,2490
+Madhya Pradesh,Jhabua,Petlawad,Wheat,Malwa Shakti,Non-FAQ,04/04/2025,2330,2351,2351
+Madhya Pradesh,Jhabua,Petlawad,Wheat,Wheat Mix,FAQ,04/04/2025,2400,2420,2400
+Madhya Pradesh,Jhabua,Petlawad,Wheat,Wheat Mix,Non-FAQ,04/04/2025,2400,2525,2400
+Madhya Pradesh,Jhabua,Petlawad(F&V),Brinjal,Brinjal,FAQ,04/04/2025,700,2000,1583
+Madhya Pradesh,Jhabua,Petlawad(F&V),Cauliflower,Cauliflower,FAQ,04/04/2025,800,1600,1157
+Madhya Pradesh,Jhabua,Petlawad(F&V),Methi(Leaves),Methi,FAQ,04/04/2025,4000,4000,4000
+Madhya Pradesh,Jhabua,Petlawad(F&V),Sponge gourd,Sponge gourd,FAQ,04/04/2025,1000,3000,2523
+Madhya Pradesh,Jhabua,Petlawad(F&V),Tomato,Hybrid,FAQ,04/04/2025,500,1000,810
+Madhya Pradesh,Jhabua,Thandla,Wheat,Mill Quality,FAQ,04/04/2025,2450,2525,2500
+Madhya Pradesh,Katni,Katni,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,4000,5400,5400
+Madhya Pradesh,Katni,Katni,Wheat,Mill Quality,FAQ,04/04/2025,2305,2430,2425
+Madhya Pradesh,Khandwa,Harsood,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),FAQ,04/04/2025,5613,6502,6502
+Madhya Pradesh,Khandwa,Harsood,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5000,5694,5600
+Madhya Pradesh,Khandwa,Harsood,Maize,Local,FAQ,04/04/2025,1726,2082,2065
+Madhya Pradesh,Khandwa,Khandwa,Maize,Local,FAQ,04/04/2025,1675,2160,1900
+Madhya Pradesh,Khandwa,Mundi,Soyabean,Soyabeen,FAQ,04/04/2025,3800,4100,4100
+Madhya Pradesh,Khandwa,Pandhana,Maize,Yellow,FAQ,04/04/2025,1825,2080,2080
+Madhya Pradesh,Khargone,Badwaha,Maize,Local,FAQ,04/04/2025,1545,2155,1985
+Madhya Pradesh,Khargone,Badwaha,Soyabean,Soyabeen,FAQ,04/04/2025,3900,3900,3900
+Madhya Pradesh,Khargone,Badwaha,Wheat,Mill Quality,FAQ,04/04/2025,2200,2200,2200
+Madhya Pradesh,Khargone,Kasrawad,Maize,Local,FAQ,04/04/2025,1740,1900,1750
+Madhya Pradesh,Khargone,Khargone,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),FAQ,04/04/2025,5601,7300,7300
+Madhya Pradesh,Khargone,Khargone,Kabuli Chana(Chickpeas-White),Dollar Gram,FAQ,04/04/2025,7500,10500,8900
+Madhya Pradesh,Khargone,Khargone,Maize,Local,FAQ,04/04/2025,1500,2150,1550
+Madhya Pradesh,Khargone,Segaon,Maize,Local,Non-FAQ,04/04/2025,1650,2100,1950
+Madhya Pradesh,Mandla,Bichhiya,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5510,5515,5515
+Madhya Pradesh,Mandla,Bichhiya,Mustard,Mustard,Non-FAQ,04/04/2025,5400,5400,5400
+Madhya Pradesh,Mandsaur,Daloda,Garlic,Garlic,FAQ,04/04/2025,1601,13699,3300
+Madhya Pradesh,Mandsaur,Daloda,Linseed,Flaxseed,FAQ,04/04/2025,5711,6281,6200
+Madhya Pradesh,Mandsaur,Daloda,Soyabean,Soyabeen,FAQ,04/04/2025,3250,4531,4100
+Madhya Pradesh,Mandsaur,Mandsaur,Asgand,Asafoetida leaf,FAQ,04/04/2025,800,800,800
+Madhya Pradesh,Mandsaur,Mandsaur,Lentil (Masur)(Whole),Masur Dal,Non-FAQ,04/04/2025,5843,6191,6191
+Madhya Pradesh,Mandsaur,Mandsaur,Onion,Onion,Non-FAQ,04/04/2025,100,1450,100
+Madhya Pradesh,Mandsaur,Mandsaur,Soyabean,Soyabeen,Non-FAQ,04/04/2025,3200,4381,4350
+Madhya Pradesh,Mandsaur,Mandsaur,Wheat,Wheat,Non-FAQ,04/04/2025,1500,3120,2436
+Madhya Pradesh,Mandsaur,Piplya,Garlic,Garlic,FAQ,04/04/2025,2200,10500,4300
+Madhya Pradesh,Mandsaur,Piplya,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5701,5891,5891
+Madhya Pradesh,Mandsaur,Piplya,Linseed,Flaxseed,FAQ,04/04/2025,5785,6155,6011
+Madhya Pradesh,Mandsaur,Piplya,Soyabean,Soyabeen,FAQ,04/04/2025,2505,4412,2701
+Madhya Pradesh,Mandsaur,Shamgarh,Mustard,Mustard,Non-FAQ,04/04/2025,5600,5791,5700
+Madhya Pradesh,Mandsaur,Shamgarh,Soyabean,Soyabeen,Non-FAQ,04/04/2025,3900,4200,4200
+Madhya Pradesh,Mandsaur,Shamgarh,Wheat,Wheat,Non-FAQ,04/04/2025,2000,2521,2441
+Madhya Pradesh,Mandsaur,Sitmau,Garlic,Garlic,FAQ,04/04/2025,710,4700,1800
+Madhya Pradesh,Morena,Morena,Wheat,Mill Quality,FAQ,04/04/2025,2375,2400,2390
+Madhya Pradesh,Morena,Porsa,Wheat,Wheat,FAQ,04/04/2025,2320,2325,2325
+Madhya Pradesh,Morena,Sabalgarh,Mustard,Mustard,Non-FAQ,04/04/2025,5875,5875,5875
+Madhya Pradesh,Narsinghpur,Gadarwada,Paddy(Dhan)(Common),Puspa (MR 301),FAQ,04/04/2025,2301,2851,2851
+Madhya Pradesh,Narsinghpur,Gotegaon,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5400,5761,5570
+Madhya Pradesh,Narsinghpur,Gotegaon,Wheat,Wheat,FAQ,04/04/2025,2401,2501,2481
+Madhya Pradesh,Narsinghpur,Narsinghpur,Wheat,Local,FAQ,04/04/2025,2438,2438,2438
+Madhya Pradesh,Neemuch,Manasa,Wheat,Lokwan,FAQ,04/04/2025,2200,2580,2460
+Madhya Pradesh,Neemuch,Neemuch,Ashwagandha,Ashwagandha,FAQ,04/04/2025,15000,21900,21900
+Madhya Pradesh,Neemuch,Neemuch,Bengal Gram(Gram)(Whole),Desi (F.A.Q. Split),FAQ,04/04/2025,5623,5642,5642
+Madhya Pradesh,Neemuch,Neemuch,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5800,6186,6186
+Madhya Pradesh,Neemuch,Neemuch,Linseed,Flaxseed,FAQ,04/04/2025,6100,6370,6370
+Madhya Pradesh,Neemuch,Neemuch,Maize,Deshi Red,FAQ,04/04/2025,2160,2311,2270
+Madhya Pradesh,Neemuch,Neemuch,Methi Seeds,Methiseeds,FAQ,04/04/2025,4201,6565,4800
+Madhya Pradesh,Panna,Panna,Wheat,Mill Quality,Non-FAQ,04/04/2025,2465,2615,2605
+Madhya Pradesh,Panna,Simariya,Green Peas,Pea,FAQ,04/04/2025,3350,3500,3400
+Madhya Pradesh,Panna,Simariya,Wheat,Wheat,FAQ,04/04/2025,2210,2375,2300
+Madhya Pradesh,Raisen,Bareli,buttery,Buttery,FAQ,04/04/2025,4800,4800,4800
+Madhya Pradesh,Raisen,Bareli,Paddy(Dhan)(Common),Basumathi,FAQ,04/04/2025,2750,2750,2750
+Madhya Pradesh,Raisen,Begamganj,Soyabean,Soyabeen,FAQ,04/04/2025,4290,4290,4290
+Madhya Pradesh,Raisen,Begamganj,Soyabean,Soyabeen,Non-FAQ,04/04/2025,3650,4100,4100
+Madhya Pradesh,Raisen,Gairatganj,Mustard,Mustard,Non-FAQ,04/04/2025,5810,6000,6000
+Madhya Pradesh,Raisen,Gairatganj,Wheat,Mill Quality,Non-FAQ,04/04/2025,2470,2470,2470
+Madhya Pradesh,Raisen,Gairatganj,Wheat,Wheat,FAQ,04/04/2025,2450,2540,2500
+Madhya Pradesh,Raisen,Obedullaganj,Soyabean,Soyabeen,FAQ,04/04/2025,2990,3800,3800
+Madhya Pradesh,Raisen,Obedullaganj,Wheat,Local,FAQ,04/04/2025,2201,2651,2584
+Madhya Pradesh,Raisen,Obedullaganj,Wheat,Lokwan,FAQ,04/04/2025,2445,2445,2445
+Madhya Pradesh,Raisen,Raisen,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5100,5670,5300
+Madhya Pradesh,Raisen,Raisen,Mustard,Mustard,FAQ,04/04/2025,5200,5200,5200
+Madhya Pradesh,Raisen,Raisen,Wheat,Malwa Shakti,FAQ,04/04/2025,2501,2501,2501
+Madhya Pradesh,Raisen,Raisen,Wheat,Wheat,FAQ,04/04/2025,2430,2631,2570
+Madhya Pradesh,Raisen,Silvani,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5430,5750,5660
+Madhya Pradesh,Raisen,Silvani,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5880,5880,5880
+Madhya Pradesh,Rajgarh,Jeerapur,Lentil (Masur)(Whole),Masur Dal,Non-FAQ,04/04/2025,5900,5900,5900
+Madhya Pradesh,Rajgarh,Jeerapur,Soyabean,Soyabeen,FAQ,04/04/2025,3865,4220,4220
+Madhya Pradesh,Rajgarh,Khilchipur,Mustard,Mustard,FAQ,04/04/2025,5495,5555,5530
+Madhya Pradesh,Rajgarh,Khujner,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5285,5485,5485
+Madhya Pradesh,Rajgarh,Khujner,Mustard,Mustard,FAQ,04/04/2025,5600,5840,5840
+Madhya Pradesh,Rajgarh,Kurawar,Bengal Gram(Gram)(Whole),Chana Kanta,FAQ,04/04/2025,5360,5360,5360
+Madhya Pradesh,Rajgarh,Kurawar,Bengal Gram(Gram)(Whole),Organic,FAQ,04/04/2025,5365,6450,6450
+Madhya Pradesh,Rajgarh,Kurawar,Mustard,Mustard-Organic,FAQ,04/04/2025,5200,5820,5820
+Madhya Pradesh,Rajgarh,Kurawar,Soyabean,Soyabeen,FAQ,04/04/2025,1000,4455,4390
+Madhya Pradesh,Rajgarh,Kurawar,Soyabean,Soybean-Organic,FAQ,04/04/2025,2000,4425,4390
+Madhya Pradesh,Rajgarh,Kurawar,Wheat,Mill Quality,FAQ,04/04/2025,2275,2695,2440
+Madhya Pradesh,Rajgarh,Kurawar,Wheat,Wheat-Organic,FAQ,04/04/2025,2250,2710,2395
+Madhya Pradesh,Rajgarh,Narsinghgarh,Coriander(Leaves),Coriander,FAQ,04/04/2025,1100,11100,6400
+Madhya Pradesh,Rajgarh,Pachaur,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5475,6255,5950
+Madhya Pradesh,Rajgarh,Pachaur,Soyabean,Soyabeen,FAQ,04/04/2025,2340,4320,4300
+Madhya Pradesh,Rajgarh,Pachaur,Wheat,Lokwan,FAQ,04/04/2025,2325,2471,2471
+Madhya Pradesh,Rajgarh,Pachaur,Wheat,Wheat,Non-FAQ,04/04/2025,1537,2581,2320
+Madhya Pradesh,Rajgarh,Sarangpur,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5700,6000,6000
+Madhya Pradesh,Rajgarh,Sarangpur,Soyabean,Soyabeen,Non-FAQ,04/04/2025,2800,4376,4150
+Madhya Pradesh,Rajgarh,Sarangpur(F&V),Bhindi(Ladies Finger),Bhindi,FAQ,04/04/2025,300,700,500
+Madhya Pradesh,Ratlam,A lot,Wheat,Malwa Shakti,FAQ,04/04/2025,2326,2459,2459
+Madhya Pradesh,Ratlam,A lot,Wheat,Wheat,FAQ,04/04/2025,2200,2541,2385
+Madhya Pradesh,Ratlam,Jaora,Garlic,Garlic,FAQ,04/04/2025,200,12800,3000
+Madhya Pradesh,Ratlam,Jaora,Methi Seeds,Methiseeds,FAQ,04/04/2025,4225,7651,5400
+Madhya Pradesh,Ratlam,Jawra(F&V),Peas Wet,Peas Wet,FAQ,04/04/2025,5000,6000,5500
+Madhya Pradesh,Ratlam,Jawra(F&V),Spinach,Spinach,FAQ,04/04/2025,800,1000,900
+Madhya Pradesh,Ratlam,Ratlam,Garlic,Desi,FAQ,04/04/2025,1000,5831,2500
+Madhya Pradesh,Ratlam,Ratlam,Green Peas,Organic,FAQ,04/04/2025,3750,3960,3960
+Madhya Pradesh,Ratlam,Ratlam,Green Peas,Pea,FAQ,04/04/2025,2399,3950,3950
+Madhya Pradesh,Ratlam,Ratlam,Onion,Onion,Non-FAQ,04/04/2025,515,1277,1000
+Madhya Pradesh,Ratlam,Ratlam,Onion,Onion-Organic,FAQ,04/04/2025,850,1141,1141
+Madhya Pradesh,Ratlam,Ratlam,Onion,Red,Non-FAQ,04/04/2025,522,880,880
+Madhya Pradesh,Ratlam,Sailana,Soyabean,Soyabeen,FAQ,04/04/2025,3071,4681,4301
+Madhya Pradesh,Rewa,Baikunthpur,Lentil (Masur)(Whole),Masur Dal,Non-FAQ,04/04/2025,5650,5750,5750
+Madhya Pradesh,Rewa,Baikunthpur,Mustard,Mustard,FAQ,04/04/2025,5650,5650,5650
+Madhya Pradesh,Rewa,Hanumana,Mustard,Mustard,FAQ,04/04/2025,5400,5500,5500
+Madhya Pradesh,Rewa,Hanumana,"Sesamum(Sesame,Gingelly,Til)",Sesame,FAQ,04/04/2025,6000,6000,6000
+Madhya Pradesh,Rewa,Rewa(F&V),Banana,Other,Medium,04/04/2025,1400,1400,1400
+Madhya Pradesh,Sagar,Bina,Mustard,Mustard,FAQ,04/04/2025,3600,7100,5300
+Madhya Pradesh,Sagar,Deori,Wheat,Wheat,FAQ,04/04/2025,2600,2605,2605
+Madhya Pradesh,Sagar,Deori,Wheat,Wheat Mix,FAQ,04/04/2025,2370,2370,2370
+Madhya Pradesh,Sagar,Garhakota,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5705,6000,6000
+Madhya Pradesh,Sagar,Khurai,Soyabean,Soyabeen,FAQ,04/04/2025,3500,3910,3910
+Madhya Pradesh,Sagar,Khurai,Wheat,Wheat,FAQ,04/04/2025,2000,3500,2300
+Madhya Pradesh,Sagar,Khurai(F&V),Brinjal,Brinjal,FAQ,04/04/2025,800,1000,900
+Madhya Pradesh,Sagar,Rahatgarh,Wheat,Wheat,FAQ,04/04/2025,69,2445,2445
+Madhya Pradesh,Sagar,Rehli,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,5510,5804,5651
+Madhya Pradesh,Sagar,Sagar,Mustard,Mustard,FAQ,04/04/2025,4625,7070,5550
+Madhya Pradesh,Sagar,Sagar,Wheat,Wheat,FAQ,04/04/2025,2275,3950,2500
+Madhya Pradesh,Sagar,Shahagarh,Soyabean,Soyabeen,Non-FAQ,04/04/2025,4025,4150,4050
+Madhya Pradesh,Satna,Satna,Black Gram (Urd Beans)(Whole),Urda/Urd,FAQ,04/04/2025,3900,6145,6145
+Madhya Pradesh,Sehore,Ashta,Mustard,Sarson(Black),FAQ,04/04/2025,5600,5701,5701
+Madhya Pradesh,Sehore,Jawar,Wheat,Lokwan,FAQ,04/04/2025,2200,2515,2481
+Madhya Pradesh,Sehore,Nasrullaganj,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),FAQ,04/04/2025,6200,6200,6200
+Madhya Pradesh,Sehore,Nasrullaganj,Bengal Gram(Gram)(Whole),Desi (F.A.Q. Split),Non-FAQ,04/04/2025,5635,5635,5635
+Madhya Pradesh,Sehore,Nasrullaganj,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5301,5785,5699
+Madhya Pradesh,Sehore,Nasrullaganj,Wheat,Wheat,Non-FAQ,04/04/2025,2454,2785,2470
+Madhya Pradesh,Sehore,Rehati,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5351,5521,5501
+Madhya Pradesh,Sehore,Rehati,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,5450,5526,5501
+Madhya Pradesh,Sehore,Rehati,Wheat,Mill Quality,Non-FAQ,04/04/2025,2370,2461,2460
+Madhya Pradesh,Sehore,Sehore,Ashwagandha,Ashwagandha,FAQ,04/04/2025,600,24000,24000
+Madhya Pradesh,Sehore,Sehore,Bengal Gram(Gram)(Whole),Chana Kabuli,FAQ,04/04/2025,5351,6600,6600
+Madhya Pradesh,Sehore,Sehore,Bengal Gram(Gram)(Whole),Desi (F.A.Q. Split),FAQ,04/04/2025,5000,5650,5503
+Madhya Pradesh,Sehore,Sehore,Wheat,Other,FAQ,04/04/2025,2596,2623,2623
+Madhya Pradesh,Sehore,Sehore,Wheat,Wheat,Non-FAQ,04/04/2025,2581,3100,2750
+Madhya Pradesh,Sehore,Sehore(F&V),Carrot,Carrot,FAQ,04/04/2025,1200,2000,1800
+Madhya Pradesh,Sehore,Sehore(F&V),Coriander(Leaves),Coriander,FAQ,04/04/2025,1000,2000,1500
+Madhya Pradesh,Sehore,Sehore(F&V),Green Chilli,Green Chilly,FAQ,04/04/2025,1500,3500,3000
+Madhya Pradesh,Sehore,Sehore(F&V),Tomato,Deshi,Non-FAQ,04/04/2025,400,600,500
+Madhya Pradesh,Sehore,Shyampur,Wheat,Mill Quality,FAQ,04/04/2025,2358,2380,2370
+Madhya Pradesh,Seoni,Chhpara,Wheat,Mill Quality,FAQ,04/04/2025,2380,2425,2400
+Madhya Pradesh,Seoni,Chhpara,Wheat,Mill Quality,Non-FAQ,04/04/2025,2350,2500,2400
+Madhya Pradesh,Seoni,Palari,Maize,Local,Non-FAQ,04/04/2025,2100,2100,2100
+Madhya Pradesh,Seoni,Palari,Wheat,Wheat,Non-FAQ,04/04/2025,2402,2407,2407
+Madhya Pradesh,Seoni,Seoni,Wheat,Wheat-Organic,FAQ,04/04/2025,2135,2410,2410
+Madhya Pradesh,Shajapur,Agar,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5001,9599,5701
+Madhya Pradesh,Shajapur,Agar,Kabuli Chana(Chickpeas-White),Dollar Gram,FAQ,04/04/2025,3801,9899,9500
+Madhya Pradesh,Shajapur,Agar,Soyabean,Soyabeen,FAQ,04/04/2025,3200,4426,4100
+Madhya Pradesh,Shajapur,Agar,Wheat,Wheat,FAQ,04/04/2025,2000,2772,2400
+Madhya Pradesh,Shajapur,Kalapipal,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,4700,7201,5500
+Madhya Pradesh,Shajapur,Kalapipal,Garlic,Garlic,FAQ,04/04/2025,1510,4000,2500
+Madhya Pradesh,Shajapur,Kalapipal(F&V),Onion,Onion,FAQ,04/04/2025,310,1500,940
+Madhya Pradesh,Shajapur,Momanbadodiya,Mustard,Mustard,FAQ,04/04/2025,4500,5655,5655
+Madhya Pradesh,Shajapur,Shajapur,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5250,6450,6450
+Madhya Pradesh,Shajapur,Shajapur,Potato,Potato,FAQ,04/04/2025,400,1386,400
+Madhya Pradesh,Shajapur,Shujalpur,Bengal Gram(Gram)(Whole),Chana Kabuli,FAQ,04/04/2025,2810,8300,8300
+Madhya Pradesh,Shajapur,Shujalpur,Kabuli Chana(Chickpeas-White),Double Dollar Chana,FAQ,04/04/2025,9301,9301,9301
+Madhya Pradesh,Shajapur,Shujalpur,Onion,Onion,FAQ,04/04/2025,1000,1335,1335
+Madhya Pradesh,Shajapur,Susner,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,5520,5520,5520
+Madhya Pradesh,Shehdol,Beohari,Lak(Teora),Tiwada,FAQ,04/04/2025,3500,3500,3500
+Madhya Pradesh,Sheopur,Sheopurkalan,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,4715,5580,5450
+Madhya Pradesh,Sheopur,Vijaypur,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),FAQ,04/04/2025,5200,5200,5200
+Madhya Pradesh,Shivpuri,Badarwas,Soyabean,Soyabeen,Non-FAQ,04/04/2025,4080,4165,4165
+Madhya Pradesh,Shivpuri,Badarwas,Wheat,Sharbati,FAQ,04/04/2025,2210,3425,2750
+Madhya Pradesh,Shivpuri,Badarwas,Wheat,Sharbati,Non-FAQ,04/04/2025,2540,2790,2750
+Madhya Pradesh,Shivpuri,Barad,Mustard,Mustard,FAQ,04/04/2025,5600,6001,5950
+Madhya Pradesh,Shivpuri,Karera,Barley (Jau),Barley,FAQ,04/04/2025,2050,2050,2050
+Madhya Pradesh,Shivpuri,Karera,Wheat,Mill Quality,Non-FAQ,04/04/2025,2249,2370,2350
+Madhya Pradesh,Shivpuri,Karera,Wheat,Other,FAQ,04/04/2025,2330,2350,2340
+Madhya Pradesh,Shivpuri,Khatora,Lentil (Masur)(Whole),Masur Dal,Non-FAQ,04/04/2025,6051,6100,6100
+Madhya Pradesh,Shivpuri,Kolaras,Mustard,Mustard,FAQ,04/04/2025,5715,6050,5940
+Madhya Pradesh,Shivpuri,Pichhour,Wheat,Mill Quality,Non-FAQ,04/04/2025,2400,2461,2450
+Madhya Pradesh,Shivpuri,Pichhour,Wheat,Wheat,Non-FAQ,04/04/2025,2150,2350,2200
+Madhya Pradesh,Shivpuri,Pohari,Soyabean,Soyabeen,Non-FAQ,04/04/2025,3900,4155,4005
+Madhya Pradesh,Tikamgarh,Jatara,Wheat,Local,Non-FAQ,04/04/2025,2455,2485,2480
+Madhya Pradesh,Tikamgarh,Niwadi,Wheat,Mill Quality,Non-FAQ,04/04/2025,2261,2408,2380
+Madhya Pradesh,Tikamgarh,Tikamgarh,Barley (Jau),Barley,FAQ,04/04/2025,2115,2205,2205
+Madhya Pradesh,Ujjain,Badnagar,Wheat,Lokwan,Non-FAQ,04/04/2025,2300,2300,2300
+Madhya Pradesh,Ujjain,Badnagar,Wheat,Wheat,FAQ,04/04/2025,2145,2950,2471
+Madhya Pradesh,Ujjain,Khachrod,Bengal Gram(Gram)(Whole),Desi (F.A.Q. Split),FAQ,04/04/2025,5681,5681,5681
+Madhya Pradesh,Ujjain,Mahidpur,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5501,5501,5501
+Madhya Pradesh,Ujjain,Ujjain,Coriander(Leaves),Coriander,FAQ,04/04/2025,7214,7502,7502
+Madhya Pradesh,Ujjain,Ujjain,Garlic,Garlic,FAQ,04/04/2025,200,6400,1000
+Madhya Pradesh,Ujjain,Ujjain,Methi(Leaves),Methi,FAQ,04/04/2025,4399,4399,4399
+Madhya Pradesh,Ujjain,Ujjain,Potato,Potato,FAQ,04/04/2025,640,1321,1321
+Madhya Pradesh,Ujjain,Ujjain,Soyabean,Yellow,FAQ,04/04/2025,4300,4300,4300
+Madhya Pradesh,Ujjain,Ujjain,Wheat,Wheat,FAQ,04/04/2025,1951,4300,2457
+Madhya Pradesh,Ujjain,Unhel,Wheat,Mill Quality,FAQ,04/04/2025,2200,2200,2200
+Madhya Pradesh,Umariya,Umariya,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,5400,5400,5400
+Madhya Pradesh,Umariya,Umariya,Wheat,Mill Quality,Non-FAQ,04/04/2025,2300,2300,2300
+Madhya Pradesh,Vidisha,Ganjbasoda,Mustard,Mustard,FAQ,04/04/2025,4800,7430,5900
+Madhya Pradesh,Vidisha,Ganjbasoda,Wheat,Malwa Shakti,FAQ,04/04/2025,2342,2530,2530
+Madhya Pradesh,Vidisha,Shamshabad,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,5150,5410,5410
+Madhya Pradesh,Vidisha,Shamshabad,Wheat,Wheat,FAQ,04/04/2025,2305,2695,2350
+Madhya Pradesh,Vidisha,Sironj,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5300,5712,5500
+Madhya Pradesh,Vidisha,Sironj,Soyabean,Soyabeen,FAQ,04/04/2025,3150,4285,4190
+Madhya Pradesh,Vidisha,Sironj,Wheat,Mill Quality,FAQ,04/04/2025,2370,2500,2500
+Madhya Pradesh,Vidisha,Sironj,Wheat,Wheat,FAQ,04/04/2025,2300,2995,2450
+Madhya Pradesh,Vidisha,Vidisha,Paddy(Dhan)(Common),Paddy,FAQ,04/04/2025,2400,2986,2800
+Madhya Pradesh,Alirajpur,Alirajpur,Wheat,Wheat,FAQ,04/04/2025,2411,2450,2450
+Madhya Pradesh,Ashoknagar,Ashoknagar,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5180,5940,5600
+Madhya Pradesh,Ashoknagar,Ashoknagar,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5811,6079,5940
+Madhya Pradesh,Ashoknagar,Ashoknagar,Soyabean,Soyabeen,FAQ,04/04/2025,3590,4475,4200
+Madhya Pradesh,Ashoknagar,Ashoknagar,Wheat,Mill Quality,FAQ,04/04/2025,2295,3200,2440
+Madhya Pradesh,Ashoknagar,Ashoknagar,Wheat,PISSI,FAQ,04/04/2025,2670,2880,2700
+Madhya Pradesh,Ashoknagar,Ashoknagar,Wheat,Sujata,FAQ,04/04/2025,3250,3640,3275
+Madhya Pradesh,Ashoknagar,Ashoknagar,Wheat,Wheat,FAQ,04/04/2025,2255,3415,2400
+Madhya Pradesh,Ashoknagar,Chanderi,Wheat,Wheat,Non-FAQ,04/04/2025,2000,2450,2330
+Madhya Pradesh,Ashoknagar,Mungawali,Mustard,Mustard,Non-FAQ,04/04/2025,5450,5785,5600
+Madhya Pradesh,Ashoknagar,Mungawali,Wheat,Wheat,Non-FAQ,04/04/2025,2285,2590,2475
+Madhya Pradesh,Ashoknagar,Piprai,Wheat,Wheat,FAQ,04/04/2025,2255,2377,2377
+Madhya Pradesh,Ashoknagar,Shadora,Wheat,Other,FAQ,04/04/2025,2335,2505,2505
+Madhya Pradesh,Badwani,Badwani(F&V),Brinjal,Brinjal,FAQ,04/04/2025,1000,1000,1000
+Madhya Pradesh,Badwani,Badwani(F&V),Cabbage,Cabbage,FAQ,04/04/2025,800,800,800
+Madhya Pradesh,Badwani,Khetia,Maize,Local,FAQ,04/04/2025,1610,2120,2100
+Madhya Pradesh,Badwani,Khetia,Maize,Local,Non-FAQ,04/04/2025,1600,1765,1625
+Madhya Pradesh,Badwani,Sendhwa,Cotton,Without Ginned Cotton,FAQ,04/04/2025,5350,6924,6500
+Madhya Pradesh,Badwani,Sendhwa,Kabuli Chana(Chickpeas-White),Double Dollar Chana,FAQ,04/04/2025,9500,9500,9500
+Madhya Pradesh,Balaghat,Balaghat,Paddy(Dhan)(Common),Common,FAQ,04/04/2025,2200,2300,2300
+Madhya Pradesh,Balaghat,Mohgaon,Kutki,Kutki,FAQ,04/04/2025,3000,3000,3000
+Madhya Pradesh,Balaghat,Praswada,Paddy(Dhan)(Common),Dhan,Non-FAQ,04/04/2025,2300,2300,2300
+Madhya Pradesh,Betul,Bhensdehi,Wheat,Mill Quality,Non-FAQ,04/04/2025,2250,2350,2350
+Madhya Pradesh,Betul,Multai,Soyabean,Soyabeen,FAQ,04/04/2025,4131,4131,4131
+Madhya Pradesh,Bhind,Gohad,Barley (Jau),Barley,FAQ,04/04/2025,1935,1935,1935
+Madhya Pradesh,Bhind,Gohad,Mustard,Sarson(Black),FAQ,04/04/2025,5940,5940,5940
+Madhya Pradesh,Bhopal,Berasia,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5085,5795,5460
+Madhya Pradesh,Bhopal,Berasia,Wheat,Mill Quality,FAQ,04/04/2025,2325,2790,2503
+Madhya Pradesh,Bhopal,Berasia,Wheat,PISSI,FAQ,04/04/2025,2350,2350,2350
+Madhya Pradesh,Bhopal,Bhopal,Onion,Onion,FAQ,04/04/2025,1000,1300,1100
+Madhya Pradesh,Burhanpur,Burhanpur,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,5211,6100,5550
+Madhya Pradesh,Burhanpur,Burhanpur,Soyabean,Soyabeen,Non-FAQ,04/04/2025,3300,4225,4225
+Madhya Pradesh,Chhatarpur,Bakswaha,Wheat,Wheat,Non-FAQ,04/04/2025,2490,2510,2510
+Madhya Pradesh,Chhatarpur,Bijawar,Wheat,Mill Quality,Non-FAQ,04/04/2025,2600,2603,2600
+Madhya Pradesh,Chhatarpur,Bijawar,Wheat,Wheat,FAQ,04/04/2025,2600,2625,2610
+Madhya Pradesh,Chhatarpur,Chhatarpur,Barley (Jau),Barley,Non-FAQ,04/04/2025,2100,2125,2125
+Madhya Pradesh,Chhatarpur,Chhatarpur,Barley (Jau),Deshi,FAQ,04/04/2025,2115,2130,2130
+Madhya Pradesh,Chhatarpur,Chhatarpur,Black Gram (Urd Beans)(Whole),Urda/Urd,FAQ,04/04/2025,5100,5100,5100
+Madhya Pradesh,Chhatarpur,Chhatarpur,Mustard,Mustard,Non-FAQ,04/04/2025,5700,5800,5800
+Madhya Pradesh,Chhatarpur,Chhatarpur,Wheat,Wheat,Non-FAQ,04/04/2025,2425,2425,2425
+Madhya Pradesh,Chhatarpur,LavKush Nagar(Laundi),Wheat,Mill Quality,Non-FAQ,04/04/2025,2305,2365,2365
+Madhya Pradesh,Chhatarpur,Rajnagar,Mustard,Sarson(Black),Non-FAQ,04/04/2025,5450,5450,5450
+Madhya Pradesh,Chhindwara,Amarwda,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,4900,5000,5000
+Madhya Pradesh,Chhindwara,Chaurai,Wheat,Mill Quality,FAQ,04/04/2025,2400,2600,2450
+Madhya Pradesh,Chhindwara,Chhindwara,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),FAQ,04/04/2025,4301,7053,6700
+Madhya Pradesh,Chhindwara,Chhindwara,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,4000,5647,5647
+Madhya Pradesh,Chhindwara,Saunsar,Wheat,Local,FAQ,04/04/2025,2450,2460,2460
+Madhya Pradesh,Damoh,Damoh,Mustard,Mustard,FAQ,04/04/2025,5000,5000,5000
+Madhya Pradesh,Damoh,Hata,Green Peas,Pea,FAQ,04/04/2025,3200,3200,3200
+Madhya Pradesh,Damoh,Hata,Wheat,Wheat,Non-FAQ,04/04/2025,2300,2400,2400
+Madhya Pradesh,Damoh,Javera,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,5200,5600,5200
+Madhya Pradesh,Damoh,Patharia,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),FAQ,04/04/2025,5805,6775,6775
+Madhya Pradesh,Damoh,Patharia,Soyabean,Soyabeen,FAQ,04/04/2025,3300,4270,4130
+Madhya Pradesh,Datia,Bhander,Green Peas,Pea,FAQ,04/04/2025,3190,3650,3650
+Madhya Pradesh,Datia,Bhander,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5555,5800,5800
+Madhya Pradesh,Datia,Bhander,Wheat,Mill Quality,FAQ,04/04/2025,2380,2440,2420
+Madhya Pradesh,Datia,Datia,Paddy(Dhan)(Common),Dhan,Non-FAQ,04/04/2025,2100,2600,2550
+Madhya Pradesh,Dewas,Bagli,Bengal Gram(Gram)(Whole),Desi (F.A.Q. Split),Non-FAQ,04/04/2025,5550,5851,5851
+Madhya Pradesh,Dewas,Dewas,Green Gram Dal (Moong Dal),Green gram,FAQ,04/04/2025,3901,6300,6300
+Madhya Pradesh,Dewas,Dewas,Mustard,Mustard,FAQ,04/04/2025,3800,5647,5291
+Madhya Pradesh,Dewas,Dewas,Rayee,Raee,FAQ,04/04/2025,5300,5510,5510
+Madhya Pradesh,Dewas,Dewas,Wheat,Wheat,Non-FAQ,04/04/2025,2300,2500,2400
+Madhya Pradesh,Dewas,Haatpipliya,Soyabean,Soyabeen,Non-FAQ,04/04/2025,2000,4346,4180
+Madhya Pradesh,Dewas,Haatpipliya,Wheat,Wheat,Non-FAQ,04/04/2025,2125,2946,2431
+Madhya Pradesh,Dewas,Kannod,Green Gram Dal (Moong Dal),Green gram,FAQ,04/04/2025,7300,7300,7300
+Madhya Pradesh,Dewas,Kannod,Wheat,Wheat,FAQ,04/04/2025,2200,2631,2430
+Madhya Pradesh,Dewas,Khategaon,Mustard,Mustard,FAQ,04/04/2025,1500,5761,5400
+Madhya Pradesh,Dewas,Khategaon,Soyabean,Soyabeen,FAQ,04/04/2025,2500,4420,4250
+Madhya Pradesh,Dewas,Loharda,Wheat,Wheat,FAQ,04/04/2025,2340,2901,2475
+Madhya Pradesh,Dhar,Badnawar,Bengal Gram(Gram)(Whole),Desi (F.A.Q. Split),FAQ,04/04/2025,4750,5500,5500
+Madhya Pradesh,Dhar,Badnawar,Soyabean,Yellow,FAQ,04/04/2025,2900,4495,4250
+Madhya Pradesh,Dhar,Badnawar,Wheat,Wheat,FAQ,04/04/2025,2090,3000,2480
+Madhya Pradesh,Dhar,Dhamnod,Kabuli Chana(Chickpeas-White),Dollar Gram,FAQ,04/04/2025,8100,10205,9800
+Madhya Pradesh,Dhar,Dhar,Kabuli Chana(Chickpeas-White),Dollar Gram,FAQ,04/04/2025,4700,10000,9800
+Madhya Pradesh,Dhar,Dhar,Wheat,Wheat-Organic,Non-FAQ,04/04/2025,2450,2450,2450
+Madhya Pradesh,Dhar,Gandhwani,Soyabean,Soyabeen,FAQ,04/04/2025,3841,4050,4000
+Madhya Pradesh,Dhar,Kukshi,Tamarind Fruit,Tamarind,FAQ,04/04/2025,3100,3100,3100
+Madhya Pradesh,Dhar,Manawar,Tamarind Fruit,Tamarind,FAQ,04/04/2025,2800,2990,2990
+Madhya Pradesh,Dhar,Manawar(F&V),Coriander(Leaves),Coriander,FAQ,04/04/2025,1100,1300,1200
+Madhya Pradesh,Dhar,Manawar(F&V),Green Chilli,Green Chilly,FAQ,04/04/2025,1825,2025,1925
+Madhya Pradesh,Dhar,Rajgarh,Wheat,Lokwan,Non-FAQ,04/04/2025,23,2450,2450
+Madhya Pradesh,Dindori,Dindori,Wheat,Wheat,Non-FAQ,04/04/2025,2425,2425,2425
+Madhya Pradesh,Guna,Kumbhraj,Wheat,Mill Quality,Non-FAQ,04/04/2025,2100,2320,2290
+Madhya Pradesh,Guna,Maksudangarh,Wheat,Wheat,FAQ,04/04/2025,2251,2671,2350
+Madhya Pradesh,Gwalior,Bhitarwar,Wheat,Other,Non-FAQ,04/04/2025,2430,2460,2450
+Madhya Pradesh,Gwalior,Lashkar,Green Peas,Pea,FAQ,04/04/2025,4100,4280,4280
+Madhya Pradesh,Gwalior,Lashkar,Wheat,Wheat,FAQ,04/04/2025,2000,2450,2380
+Madhya Pradesh,Harda,Harda,Bengal Gram(Gram)(Whole),Desi (F.A.Q. Split),FAQ,04/04/2025,2000,5710,5600
+Madhya Pradesh,Harda,Harda,Soyabean,Yellow,FAQ,04/04/2025,3749,4400,4051
+Madhya Pradesh,Harda,Harda,Wheat,Mill Quality,Non-FAQ,04/04/2025,1302,2500,2480
+Madhya Pradesh,Harda,Harda,Wheat,Wheat,FAQ,04/04/2025,2400,2450,2400
+Madhya Pradesh,Harda,Khirakiya,Green Gram Dal (Moong Dal),Green gram,FAQ,04/04/2025,6800,7340,7340
+Madhya Pradesh,Harda,Khirakiya,Maize,Local,FAQ,04/04/2025,1500,2155,2141
+Madhya Pradesh,Harda,Khirakiya,Mustard,Mustard,FAQ,04/04/2025,5000,5330,5330
+Madhya Pradesh,Harda,Khirakiya,Soyabean,Soyabeen,FAQ,04/04/2025,2750,4105,4105
+Madhya Pradesh,Harda,Sirali,Green Gram Dal (Moong Dal),Green gram,FAQ,04/04/2025,5650,5801,5801
+Madhya Pradesh,Harda,Timarni,Soyabean,Soyabeen,FAQ,04/04/2025,3201,4176,4176
+Madhya Pradesh,Harda,Timarni(F&V),Brinjal,Other,FAQ,04/04/2025,1000,1000,1000
+Madhya Pradesh,Harda,Timarni(F&V),Pumpkin,Other,FAQ,04/04/2025,1000,1000,1000
+Madhya Pradesh,Hoshangabad,Banapura,Wheat,Local,FAQ,04/04/2025,2440,3400,2490
+Madhya Pradesh,Hoshangabad,Bankhedi,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5427,5681,5427
+Madhya Pradesh,Hoshangabad,Itarsi,Mustard,Mustard-Organic,Non-FAQ,04/04/2025,5506,5506,5506
+Madhya Pradesh,Hoshangabad,Itarsi,Paddy(Dhan)(Common),1121,FAQ,04/04/2025,2930,2930,2930
+Madhya Pradesh,Hoshangabad,Itarsi,Paddy(Dhan)(Common),Dhan,FAQ,04/04/2025,2000,3075,3050
+Madhya Pradesh,Hoshangabad,Pipariya,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5201,6011,5470
+Madhya Pradesh,Hoshangabad,Pipariya,Green Gram Dal (Moong Dal),Green gram,FAQ,04/04/2025,6111,6890,6700
+Madhya Pradesh,Hoshangabad,Pipariya(F&V),Bhindi(Ladies Finger),Bhindi,FAQ,04/04/2025,1450,2500,2000
+Madhya Pradesh,Hoshangabad,Pipariya(F&V),Potato,Potato,FAQ,04/04/2025,950,1700,1300
+Madhya Pradesh,Hoshangabad,Pipariya(F&V),Sponge gourd,Sponge gourd,FAQ,04/04/2025,1400,2400,2000
+Madhya Pradesh,Hoshangabad,Semriharchand,Wheat,Mill Quality,FAQ,04/04/2025,2414,2494,2446
+Madhya Pradesh,Indore,Gautampura,Garlic,Garlic,FAQ,04/04/2025,700,2200,2000
+Madhya Pradesh,Indore,Gautampura,Wheat,Mill Quality,FAQ,04/04/2025,2382,2480,2480
+Madhya Pradesh,Indore,Indore,Chili Red,Bold,FAQ,04/04/2025,4200,4200,4200
+Madhya Pradesh,Indore,Indore,Wheat,Wheat,FAQ,04/04/2025,2000,2640,2500
+Madhya Pradesh,Indore,Indore,Wheat,Wheat,Non-FAQ,04/04/2025,2438,2598,2500
+Madhya Pradesh,Indore,Mhow(F&V),Bitter gourd,Bitter Gourd,FAQ,04/04/2025,2500,4000,3500
+Madhya Pradesh,Indore,Mhow(F&V),Bottle gourd,Bottle Gourd,FAQ,04/04/2025,800,1400,1000
+Madhya Pradesh,Indore,Mhow(F&V),Sponge gourd,Sponge gourd,FAQ,04/04/2025,2500,4500,3000
+Madhya Pradesh,Jabalpur,Jabalpur,Maize,Local,FAQ,04/04/2025,2000,2190,2190
+Madhya Pradesh,Jabalpur,Paatan,Bengal Gram(Gram)(Whole),Desi (F.A.Q. Split),FAQ,04/04/2025,5385,5780,5650
+Madhya Pradesh,Jabalpur,Paatan,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5215,5880,5580
+Madhya Pradesh,Jabalpur,Sehora,buttery,Buttery,FAQ,04/04/2025,4200,5253,5253
+Madhya Pradesh,Jabalpur,Shahpura Bhitoni (F&V),Bengal Gram(Gram)(Whole),Desi (F.A.Q. Split),FAQ,04/04/2025,5590,5680,5680
+Madhya Pradesh,Jabalpur,Shahpura Bhitoni (F&V),Wheat,Mill Quality,FAQ,04/04/2025,2245,2468,2460
+Madhya Pradesh,Jhabua,Petlawad,Wheat,Malwa Shakti,FAQ,04/04/2025,2395,2395,2395
+Madhya Pradesh,Jhabua,Petlawad,Wheat,Wheat,FAQ,04/04/2025,2100,2700,2300
+Madhya Pradesh,Jhabua,Petlawad,Wheat,Wheat,Non-FAQ,04/04/2025,2300,2489,2300
+Madhya Pradesh,Jhabua,Petlawad(F&V),Bottle gourd,Bottle Gourd,FAQ,04/04/2025,500,1500,879
+Madhya Pradesh,Jhabua,Petlawad(F&V),Cluster beans,Cluster Beans,FAQ,04/04/2025,1200,1200,1200
+Madhya Pradesh,Jhabua,Petlawad(F&V),Coriander(Leaves),Coriander,FAQ,04/04/2025,1000,1500,1186
+Madhya Pradesh,Jhabua,Petlawad(F&V),Raddish,Raddish,FAQ,04/04/2025,600,600,600
+Madhya Pradesh,Jhabua,Thandla,Wheat,Wheat Mix,FAQ,04/04/2025,2480,2510,2510
+Madhya Pradesh,Katni,Katni,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),Non-FAQ,04/04/2025,4100,7050,6600
+Madhya Pradesh,Katni,Katni,Barley (Jau),Barley,Non-FAQ,04/04/2025,1901,2207,2181
+Madhya Pradesh,Khandwa,Harsood,Kabuli Chana(Chickpeas-White),Dollar Gram,FAQ,04/04/2025,5901,5901,5901
+Madhya Pradesh,Khandwa,Harsood,Maize,Yellow,FAQ,04/04/2025,1800,2000,1950
+Madhya Pradesh,Khandwa,Harsood,Maize,Yellow,Non-FAQ,04/04/2025,1875,2075,1950
+Madhya Pradesh,Khandwa,Harsood,Soyabean,Soyabeen,FAQ,04/04/2025,3450,4326,3800
+Madhya Pradesh,Khandwa,Mundi,Cotton,Without Ginned Cotton,FAQ,04/04/2025,6248,6300,6300
+Madhya Pradesh,Khandwa,Pandhana,Wheat,Mill Quality,FAQ,04/04/2025,2475,2500,2500
+Madhya Pradesh,Khargone,Badwaha,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),FAQ,04/04/2025,5910,6460,6460
+Madhya Pradesh,Khargone,Badwaha,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5410,5895,5665
+Madhya Pradesh,Khargone,Badwaha,Kabuli Chana(Chickpeas-White),Dollar Gram,FAQ,04/04/2025,5375,9605,9605
+Madhya Pradesh,Khargone,Bhikangaon,Cotton,Without Ginned Cotton,FAQ,04/04/2025,6600,7640,7640
+Madhya Pradesh,Khargone,Bhikangaon,Maize,Local,FAQ,04/04/2025,1500,2285,1900
+Madhya Pradesh,Khargone,Bhikangaon,Wheat,Wheat,FAQ,04/04/2025,2473,2900,2550
+Madhya Pradesh,Khargone,Karhi,Bengal Gram(Gram)(Whole),Desi (F.A.Q. Split),FAQ,04/04/2025,5500,6335,6335
+Madhya Pradesh,Khargone,Khargone,Soyabean,Soyabeen,FAQ,04/04/2025,3800,4300,3815
+Madhya Pradesh,Khargone,Sanawad,Kabuli Chana(Chickpeas-White),Bitkey,FAQ,04/04/2025,5600,5800,5800
+Madhya Pradesh,Khargone,Sanawad,Maize,Local,FAQ,04/04/2025,1500,1500,1500
+Madhya Pradesh,Khargone,Sanawad,Wheat,Wheat,FAQ,04/04/2025,2380,5650,2400
+Madhya Pradesh,Khargone,Segaon,Wheat,Wheat,FAQ,04/04/2025,2561,2600,2600
+Madhya Pradesh,Mandla,Nainpur,Paddy(Dhan)(Common),Common,Non-FAQ,04/04/2025,2105,2110,2110
+Madhya Pradesh,Mandsaur,Bhanpura,Wheat,Mill Quality,Non-FAQ,04/04/2025,2311,2350,2350
+Madhya Pradesh,Mandsaur,Mandsaur,Garlic,Garlic,FAQ,04/04/2025,1000,12810,3300
+Madhya Pradesh,Mandsaur,Mandsaur,Mustard,Mustard,Non-FAQ,04/04/2025,5100,7601,5920
+Madhya Pradesh,Mandsaur,Mandsaur,Wheat,Wheat,FAQ,04/04/2025,2400,2617,2436
+Madhya Pradesh,Mandsaur,Piplya,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5360,5712,5712
+Madhya Pradesh,Mandsaur,Piplya,Methi Seeds,Methiseeds,FAQ,04/04/2025,3800,4900,4900
+Madhya Pradesh,Mandsaur,Shamgarh,Garlic,Garlic,FAQ,04/04/2025,3026,5001,3420
+Madhya Pradesh,Mandsaur,Shamgarh,Onion,Onion,Non-FAQ,04/04/2025,520,950,520
+Madhya Pradesh,Morena,Ambaha,Bajra(Pearl Millet/Cumbu),Millet,Non-FAQ,04/04/2025,2160,2160,2160
+Madhya Pradesh,Morena,Jora,Wheat,Mill Quality,Non-FAQ,04/04/2025,2300,2305,2305
+Madhya Pradesh,Morena,Morena,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,5495,5555,5555
+Madhya Pradesh,Morena,Morena,Wheat,Local,Non-FAQ,04/04/2025,2396,2396,2396
+Madhya Pradesh,Morena,Morena,Wheat,Wheat,FAQ,04/04/2025,2400,2410,2406
+Madhya Pradesh,Morena,Porsa,Potato,Local,FAQ,04/04/2025,800,800,800
+Madhya Pradesh,Morena,Sabalgarh,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),Non-FAQ,04/04/2025,5200,6065,5600
+Madhya Pradesh,Morena,Sabalgarh,Wheat,Mill Quality,FAQ,04/04/2025,2370,2383,2378
+Madhya Pradesh,Narsinghpur,Gadarwada,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),Non-FAQ,04/04/2025,4800,6925,6500
+Madhya Pradesh,Narsinghpur,Gadarwada,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5311,5852,5700
+Madhya Pradesh,Narsinghpur,Gadarwada,Wheat,Wheat Mix,FAQ,04/04/2025,2450,2450,2450
+Madhya Pradesh,Narsinghpur,Gotegaon,Green Gram Dal (Moong Dal),Green gram,FAQ,04/04/2025,6900,6900,6900
+Madhya Pradesh,Narsinghpur,Kareli,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),FAQ,04/04/2025,5250,7090,7000
+Madhya Pradesh,Narsinghpur,Narsinghpur,Green Peas,Pea,FAQ,04/04/2025,2151,2705,2705
+Madhya Pradesh,Narsinghpur,Narsinghpur,Wheat,Mill Quality,Non-FAQ,04/04/2025,2395,2420,2400
+Madhya Pradesh,Narsinghpur,Tendukheda,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5051,5651,5500
+Madhya Pradesh,Neemuch,Javad,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5301,5321,5321
+Madhya Pradesh,Neemuch,Javad,Garlic,Garlic,FAQ,04/04/2025,500,13500,2500
+Madhya Pradesh,Neemuch,Manasa,Garlic,Garlic,FAQ,04/04/2025,500,6812,2000
+Madhya Pradesh,Neemuch,Manasa,Mustard,Mustard,FAQ,04/04/2025,5763,5981,5797
+Madhya Pradesh,Neemuch,Manasa,Soyabean,Soyabeen,FAQ,04/04/2025,3831,4420,4420
+Madhya Pradesh,Neemuch,Manasa,Wheat,Wheat,Non-FAQ,04/04/2025,2432,2442,2442
+Madhya Pradesh,Neemuch,Neemuch,Barley (Jau),Barley,FAQ,04/04/2025,2250,2318,2318
+Madhya Pradesh,Neemuch,Neemuch,Bengal Gram(Gram)(Whole),Chana Kanta,Non-FAQ,04/04/2025,5650,5735,5660
+Madhya Pradesh,Neemuch,Neemuch,Black Gram (Urd Beans)(Whole),Urda/Urd,FAQ,04/04/2025,5000,7050,7050
+Madhya Pradesh,Neemuch,Neemuch,Groundnut,Big (With Shell),FAQ,04/04/2025,3100,5361,4900
+Madhya Pradesh,Neemuch,Neemuch,Soyabean,Soyabeen,FAQ,04/04/2025,200,4452,3900
+Madhya Pradesh,Panna,Devandranagar,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5820,5820,5820
+Madhya Pradesh,Panna,Panna,Green Peas,Pea,FAQ,04/04/2025,3300,3535,3500
+Madhya Pradesh,Panna,Pawai,Wheat,Mill Quality,FAQ,04/04/2025,2300,2300,2300
+Madhya Pradesh,Panna,Simariya,Wheat,Wheat,Non-FAQ,04/04/2025,2250,2325,2300
+Madhya Pradesh,Raisen,Bareli,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5230,5785,5701
+Madhya Pradesh,Raisen,Bareli,Paddy(Dhan)(Common),Dhan,FAQ,04/04/2025,2750,2750,2750
+Madhya Pradesh,Raisen,Bareli,Wheat,Mill Quality,FAQ,04/04/2025,2300,2513,2421
+Madhya Pradesh,Raisen,Begamganj,Lentil (Masur)(Whole),Masur Dal,Non-FAQ,04/04/2025,5260,6210,5900
+Madhya Pradesh,Raisen,Gairatganj,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,5300,5734,5570
+Madhya Pradesh,Raisen,Obedullaganj,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5300,5700,5520
+Madhya Pradesh,Raisen,Raisen,Wheat,Mill Quality,FAQ,04/04/2025,2400,2708,2570
+Madhya Pradesh,Raisen,Silvani,Paddy(Dhan)(Common),Basumathi,FAQ,04/04/2025,2190,2386,2345
+Madhya Pradesh,Raisen,Udaipura,buttery,Buttery,FAQ,04/04/2025,4900,5705,5705
+Madhya Pradesh,Raisen,Udaipura,Lak(Teora),Tiwada,FAQ,04/04/2025,3500,3870,3845
+Madhya Pradesh,Raisen,Udaipura,Paddy(Dhan)(Common),Basumathi,FAQ,04/04/2025,2600,2975,2975
+Madhya Pradesh,Rajgarh,Biaora,Soyabean,Soyabeen,FAQ,04/04/2025,3455,4195,4180
+Madhya Pradesh,Rajgarh,Biaora,Wheat,Wheat Mix,FAQ,04/04/2025,2345,2345,2345
+Madhya Pradesh,Rajgarh,Jeerapur,Wheat,Mill Quality,FAQ,04/04/2025,2250,2350,2340
+Madhya Pradesh,Rajgarh,Jeerapur,Wheat,Wheat,FAQ,04/04/2025,2045,2425,2340
+Madhya Pradesh,Rajgarh,Khilchipur,Wheat,Mohan Mondal,FAQ,04/04/2025,2290,2290,2290
+Madhya Pradesh,Rajgarh,Khujner,Soyabean,Soyabeen,FAQ,04/04/2025,3825,4200,4005
+Madhya Pradesh,Rajgarh,Kurawar,Lentil (Masur)(Whole),Organic,FAQ,04/04/2025,4600,5890,5750
+Madhya Pradesh,Rajgarh,Kurawar,Mustard,Mustard,FAQ,04/04/2025,2000,5830,5700
+Madhya Pradesh,Rajgarh,Kurawar,Wheat,Mohan Mondal,FAQ,04/04/2025,2430,2605,2430
+Madhya Pradesh,Rajgarh,Machalpur,Wheat,Wheat,Non-FAQ,04/04/2025,2320,2350,2350
+Madhya Pradesh,Rajgarh,Narsinghgarh,Mustard,Mustard,FAQ,04/04/2025,4900,5825,5675
+Madhya Pradesh,Rajgarh,Narsinghgarh,Wheat,Wheat,FAQ,04/04/2025,2230,2540,2370
+Madhya Pradesh,Rajgarh,Pachaur,Wheat,Local,Non-FAQ,04/04/2025,2324,2324,2324
+Madhya Pradesh,Rajgarh,Sarangpur,Mustard,Mustard,Non-FAQ,04/04/2025,5100,5427,5427
+Madhya Pradesh,Rajgarh,Sarangpur(F&V),Bitter gourd,Bitter Gourd,FAQ,04/04/2025,400,800,600
+Madhya Pradesh,Rajgarh,Sarangpur(F&V),Bottle gourd,Bottle Gourd,FAQ,04/04/2025,300,700,500
+Madhya Pradesh,Ratlam,A lot,Soyabean,Soyabeen,FAQ,04/04/2025,4170,4290,4290
+Madhya Pradesh,Ratlam,Jaora,Green Peas,Pea,FAQ,04/04/2025,1495,1495,1495
+Madhya Pradesh,Ratlam,Jaora,Soyabean,Soyabeen,FAQ,04/04/2025,2900,4440,4200
+Madhya Pradesh,Ratlam,Jaora,Wheat,Lokwan,FAQ,04/04/2025,2525,2783,2783
+Madhya Pradesh,Ratlam,Jawra(F&V),Bottle gourd,Bottle Gourd,FAQ,04/04/2025,1000,1500,1200
+Madhya Pradesh,Ratlam,Jawra(F&V),Green Chilli,Green Chilly,FAQ,04/04/2025,3000,4000,3500
+Madhya Pradesh,Ratlam,Jawra(F&V),Methi(Leaves),Methi,FAQ,04/04/2025,1500,2500,2000
+Madhya Pradesh,Ratlam,Jawra(F&V),Tomato,Tomato,FAQ,04/04/2025,800,1200,1000
+Madhya Pradesh,Ratlam,Sailana,Mustard,Mustard,FAQ,04/04/2025,5926,5950,5950
+Madhya Pradesh,Ratlam,Taal,Wheat,Wheat,FAQ,04/04/2025,2271,2720,2384
+Madhya Pradesh,Rewa,Baikunthpur,Lak(Teora),Tiwada,FAQ,04/04/2025,3300,3300,3300
+Madhya Pradesh,Sagar,Bamora,Bengal Gram(Gram)(Whole),Desi (F.A.Q. Split),FAQ,04/04/2025,5200,5870,5600
+Madhya Pradesh,Sagar,Bamora,Mustard,Mustard,FAQ,04/04/2025,5290,5865,5800
+Madhya Pradesh,Sagar,Bamora,Wheat,Mill Quality,FAQ,04/04/2025,2300,2540,2480
+Madhya Pradesh,Sagar,Banda,Wheat,Wheat,FAQ,04/04/2025,2416,2430,2430
+Madhya Pradesh,Sagar,Bina,Wheat,Sharbati,FAQ,04/04/2025,2404,2902,2902
+Madhya Pradesh,Sagar,Bina,Wheat,Wheat,FAQ,04/04/2025,2080,3200,2300
+Madhya Pradesh,Sagar,Garhakota,Mustard,Mustard,FAQ,04/04/2025,5215,5325,5325
+Madhya Pradesh,Sagar,Khurai,Lak(Teora),Tiwada,FAQ,04/04/2025,3660,3898,3825
+Madhya Pradesh,Sagar,Khurai,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5000,6122,6000
+Madhya Pradesh,Sagar,Khurai(F&V),Bhindi(Ladies Finger),Bhindi,FAQ,04/04/2025,2600,4000,3300
+Madhya Pradesh,Sagar,Khurai(F&V),Bottle gourd,Bottle Gourd,FAQ,04/04/2025,800,1200,1000
+Madhya Pradesh,Sagar,Khurai(F&V),Cucumbar(Kheera),Cucumbar,FAQ,04/04/2025,1200,1800,1500
+Madhya Pradesh,Sagar,Khurai(F&V),Karbuja(Musk Melon),Karbhuja,Medium,04/04/2025,1400,2000,1700
+Madhya Pradesh,Sagar,Rahatgarh,Bengal Gram(Gram)(Whole),Desi (F.A.Q. Split),Non-FAQ,04/04/2025,4875,5502,5502
+Madhya Pradesh,Sagar,Rahatgarh,Lentil (Masur)(Whole),Local,Non-FAQ,04/04/2025,5750,6150,6150
+Madhya Pradesh,Sagar,Sagar,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),FAQ,04/04/2025,5500,6900,6900
+Madhya Pradesh,Sagar,Sagar,Green Peas,Pea,FAQ,04/04/2025,3240,4200,3500
+Madhya Pradesh,Sagar,Sagar,Lak(Teora),Tivra-Organic,FAQ,04/04/2025,3875,3875,3875
+Madhya Pradesh,Sagar,Sagar,Linseed,Flaxseed,FAQ,04/04/2025,6130,6235,6235
+Madhya Pradesh,Sagar,Sagar,Onion,Onion,FAQ,04/04/2025,900,1050,1000
+Madhya Pradesh,Satna,Nagod,Wheat,Wheat,FAQ,04/04/2025,2400,2470,2425
+Madhya Pradesh,Satna,Satna,Barley (Jau),Barley,FAQ,04/04/2025,2182,2182,2182
+Madhya Pradesh,Sehore,Ashta,Wheat,Wheat,FAQ,04/04/2025,2280,3671,2400
+Madhya Pradesh,Sehore,Ichhawar,Mustard,Mustard,Non-FAQ,04/04/2025,5700,5821,5821
+Madhya Pradesh,Sehore,Jawar,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5400,7999,7999
+Madhya Pradesh,Sehore,Jawar,Soyabean,Soybean-Organic,Non-FAQ,04/04/2025,3940,3940,3940
+Madhya Pradesh,Sehore,Nasrullaganj,Maize,Local,FAQ,04/04/2025,1438,1840,1438
+Madhya Pradesh,Sehore,Nasrullaganj,Soyabean,Soyabeen,FAQ,04/04/2025,4030,4160,4160
+Madhya Pradesh,Sehore,Sehore,Coriander(Leaves),Coriander,FAQ,04/04/2025,5600,6000,5700
+Madhya Pradesh,Sehore,Sehore,Onion,Onion,Non-FAQ,04/04/2025,150,772,680
+Madhya Pradesh,Sehore,Sehore,Soyabean,Yellow,FAQ,04/04/2025,3300,4403,4380
+Madhya Pradesh,Sehore,Sehore(F&V),Bhindi(Ladies Finger),Bhindi,FAQ,04/04/2025,2500,3000,2800
+Madhya Pradesh,Seoni,Chhpara,Wheat,Wheat-Organic,FAQ,04/04/2025,2400,2480,2450
+Madhya Pradesh,Seoni,Keolari,Wheat,Mill Quality,Non-FAQ,04/04/2025,2400,2400,2400
+Madhya Pradesh,Seoni,Keolari,Wheat,Wheat,FAQ,04/04/2025,2430,2475,2460
+Madhya Pradesh,Seoni,Lakhnadon,Maize,Local,FAQ,04/04/2025,2400,2400,2400
+Madhya Pradesh,Seoni,Lakhnadon,Wheat,Local,FAQ,04/04/2025,2450,2450,2450
+Madhya Pradesh,Seoni,Seoni,Soyabean,Soyabeen,FAQ,04/04/2025,3040,3040,3040
+Madhya Pradesh,Seoni,Seoni,Wheat,Wheat,FAQ,04/04/2025,2400,2538,2450
+Madhya Pradesh,Shajapur,Agar,Linseed,Flaxseed,FAQ,04/04/2025,5200,6180,6160
+Madhya Pradesh,Shajapur,Badod,Wheat,Wheat,Non-FAQ,04/04/2025,1861,2489,2380
+Madhya Pradesh,Shajapur,Kalapipal,Mustard,Mustard,FAQ,04/04/2025,4550,5791,5741
+Madhya Pradesh,Shajapur,Kalapipal,Soyabean,Soyabeen,FAQ,04/04/2025,3726,4371,4266
+Madhya Pradesh,Shajapur,Kalapipal,Wheat,Wheat,FAQ,04/04/2025,2240,3100,2371
+Madhya Pradesh,Shajapur,Momanbadodiya,Soyabean,Soyabeen,FAQ,04/04/2025,3600,4091,4000
+Madhya Pradesh,Shajapur,Nalkehda,Wheat,Wheat,FAQ,04/04/2025,2100,2440,2380
+Madhya Pradesh,Shajapur,Shajapur,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5600,6105,6105
+Madhya Pradesh,Shajapur,Shajapur,Soyabean,Soyabeen,FAQ,04/04/2025,1500,4306,4200
+Madhya Pradesh,Shehdol,Shahdol,Soyabean,Soyabeen,Non-FAQ,04/04/2025,3600,4000,3600
+Madhya Pradesh,Sheopur,Sheopurbadod,Wheat,Wheat,FAQ,04/04/2025,2341,2396,2381
+Madhya Pradesh,Sheopur,Sheopurkalan,Paddy(Dhan)(Common),Dhan,FAQ,04/04/2025,2376,3010,2850
+Madhya Pradesh,Sheopur,Sheopurkalan,Paddy(Dhan)(Common),Paddy,FAQ,04/04/2025,2150,3100,3005
+Madhya Pradesh,Sheopur,Sheopurkalan,Wheat,Mill Quality,FAQ,04/04/2025,2188,2304,2300
+Madhya Pradesh,Sheopur,Sheopurkalan,Wheat,Wheat,Non-FAQ,04/04/2025,2261,2497,2480
+Madhya Pradesh,Sheopur,Vijaypur,Wheat,Wheat,Non-FAQ,04/04/2025,2310,2525,2350
+Madhya Pradesh,Shivpuri,Badarwas,Maize,Local,Non-FAQ,04/04/2025,2170,2170,2170
+Madhya Pradesh,Shivpuri,Badarwas,Mustard,Mustard,Non-FAQ,04/04/2025,5500,5995,5850
+Madhya Pradesh,Shivpuri,Barad,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5125,5971,5550
+Madhya Pradesh,Shivpuri,Kolaras,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5345,5940,5655
+Madhya Pradesh,Shivpuri,Kolaras,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,5010,5775,5655
+Madhya Pradesh,Shivpuri,Kolaras,Groundnut,Big (With Shell),Non-FAQ,04/04/2025,3400,3400,3400
+Madhya Pradesh,Shivpuri,Kolaras,Maize,Local,Non-FAQ,04/04/2025,1955,2250,2250
+Madhya Pradesh,Shivpuri,Kolaras,Soyabean,Soyabeen,Non-FAQ,04/04/2025,3610,4280,4050
+Madhya Pradesh,Shivpuri,Pichhour,Groundnut,Big (With Shell),Non-FAQ,04/04/2025,4580,4580,4580
+Madhya Pradesh,Shivpuri,Pichhour,Wheat,Mill Quality,FAQ,04/04/2025,2200,2300,2250
+Madhya Pradesh,Shivpuri,Pohari,Soyabean,Soyabeen,FAQ,04/04/2025,3995,4010,4005
+Madhya Pradesh,Shivpuri,Rannod,Wheat,Wheat,FAQ,04/04/2025,2257,2331,2310
+Madhya Pradesh,Shivpuri,Shivpuri,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5600,5600,5600
+Madhya Pradesh,Shivpuri,Shivpuri,Mustard,Mustard,FAQ,04/04/2025,5700,6055,6000
+Madhya Pradesh,Shivpuri,Shivpuri,Soyabean,Soyabeen,FAQ,04/04/2025,3850,4155,4040
+Madhya Pradesh,Tikamgarh,Niwadi,Barley (Jau),Barley,Non-FAQ,04/04/2025,2112,2112,2112
+Madhya Pradesh,Tikamgarh,Prithvipur,Wheat,Mill Quality,Non-FAQ,04/04/2025,2355,2420,2365
+Madhya Pradesh,Tikamgarh,Tikamgarh,Green Peas,Pea,FAQ,04/04/2025,3415,3511,3511
+Madhya Pradesh,Tikamgarh,Tikamgarh,Mustard,Mustard,FAQ,04/04/2025,5250,5325,5325
+Madhya Pradesh,Tikamgarh,Tikamgarh,Soyabean,Soyabeen,FAQ,04/04/2025,3750,3750,3750
+Madhya Pradesh,Ujjain,Badnagar,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,4510,6251,6200
+Madhya Pradesh,Ujjain,Badnagar,Garlic,Average,FAQ,04/04/2025,5600,5600,5600
+Madhya Pradesh,Ujjain,Khachrod,Wheat,Wheat,FAQ,04/04/2025,2000,2651,2500
+Madhya Pradesh,Ujjain,Mahidpur,Mustard,Mustard,FAQ,04/04/2025,5601,5621,5621
+Madhya Pradesh,Ujjain,Nagda,Soyabean,Soyabeen,Non-FAQ,04/04/2025,4245,4245,4245
+Madhya Pradesh,Ujjain,Nagda,Wheat,Wheat,Non-FAQ,04/04/2025,2357,2626,2470
+Madhya Pradesh,Ujjain,Tarana,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5000,5826,5600
+Madhya Pradesh,Ujjain,Tarana,Kabuli Chana(Chickpeas-White),Dollar Gram,FAQ,04/04/2025,5101,9611,9000
+Madhya Pradesh,Ujjain,Tarana,Kabuli Chana(Chickpeas-White),Double Dollar Chana,FAQ,04/04/2025,6825,6825,6825
+Madhya Pradesh,Ujjain,Tarana,Soyabean,Soyabeen,FAQ,04/04/2025,1500,4350,4325
+Madhya Pradesh,Ujjain,Tarana,Wheat,Malwa Shakti,FAQ,04/04/2025,2377,2451,2441
+Madhya Pradesh,Ujjain,Ujjain,Paddy(Dhan)(Common),Paddy,FAQ,04/04/2025,2875,2975,2975
+Madhya Pradesh,Ujjain,Ujjain,Soyabean,Soyabeen,FAQ,04/04/2025,1900,4660,4100
+Madhya Pradesh,Ujjain,Unhel,Soyabean,Soyabeen,FAQ,04/04/2025,2800,4384,4384
+Madhya Pradesh,Vidisha,Ganjbasoda,buttery,Buttery,FAQ,04/04/2025,3230,3230,3230
+Madhya Pradesh,Vidisha,Ganjbasoda,Coriander(Leaves),Coriander,FAQ,04/04/2025,6000,6000,6000
+Madhya Pradesh,Vidisha,Ganjbasoda,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,4600,6140,6050
+Madhya Pradesh,Vidisha,Ganjbasoda,Mustard,Sarson(Black),FAQ,04/04/2025,5750,5903,5903
+Madhya Pradesh,Vidisha,Ganjbasoda,Wheat,Lokwan,FAQ,04/04/2025,2500,2735,2735
+Madhya Pradesh,Vidisha,Ganjbasoda,Wheat,Mill Quality,FAQ,04/04/2025,2300,5550,2400
+Madhya Pradesh,Vidisha,Ganjbasoda,Wheat,Sujata,FAQ,04/04/2025,2300,3450,2525
+Madhya Pradesh,Vidisha,Ganjbasoda,Wheat,Wheat,Non-FAQ,04/04/2025,2450,2560,2500
+Madhya Pradesh,Vidisha,Gulabganj,Wheat,Wheat,FAQ,04/04/2025,2400,2400,2400
+Madhya Pradesh,Vidisha,Kurwai,Wheat,Malwa Shakti,Non-FAQ,04/04/2025,2421,2421,2421
+Madhya Pradesh,Vidisha,Sironj,Mustard,Mustard,FAQ,04/04/2025,5300,5805,5665
+Madhya Pradesh,Vidisha,Vidisha,Wheat,Mill Quality,Non-FAQ,04/04/2025,2315,2350,2350
+Madhya Pradesh,Alirajpur,Alirajpur,Bengal Gram(Gram)(Whole),Chana Kanta,FAQ,04/04/2025,5200,5400,5400
+Madhya Pradesh,Alirajpur,Jobat,Wheat,Wheat,FAQ,04/04/2025,2425,2500,2425
+Madhya Pradesh,Ashoknagar,Ashoknagar,Coriander(Leaves),Coriander,FAQ,04/04/2025,6000,6750,6750
+Madhya Pradesh,Ashoknagar,Chanderi,Mustard,Mustard,Non-FAQ,04/04/2025,5605,5840,5785
+Madhya Pradesh,Ashoknagar,Mungawali,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,5340,5340,5340
+Madhya Pradesh,Ashoknagar,Mungawali,Lentil (Masur)(Whole),Masur Dal,Non-FAQ,04/04/2025,5935,5995,5995
+Madhya Pradesh,Ashoknagar,Shadora,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,5460,5585,5585
+Madhya Pradesh,Ashoknagar,Shadora,Coriander(Leaves),Coriander,FAQ,04/04/2025,6690,6690,6690
+Madhya Pradesh,Ashoknagar,Shadora,Wheat,Sharbati,FAQ,04/04/2025,2730,2730,2730
+Madhya Pradesh,Ashoknagar,Shadora,Wheat,Sharbati,Non-FAQ,04/04/2025,2755,2755,2755
+Madhya Pradesh,Badwani,Anjad,Kabuli Chana(Chickpeas-White),Dollar Gram,FAQ,04/04/2025,7800,91000,9500
+Madhya Pradesh,Badwani,Badwani,Wheat,Lokwan,FAQ,04/04/2025,2600,2625,2625
+Madhya Pradesh,Badwani,Badwani(F&V),Bitter gourd,Bitter Gourd,FAQ,04/04/2025,1800,1800,1800
+Madhya Pradesh,Badwani,Badwani(F&V),Carrot,Carrot,FAQ,04/04/2025,1100,1100,1100
+Madhya Pradesh,Badwani,Badwani(F&V),Tomato,Tomato,Non-FAQ,04/04/2025,600,600,600
+Madhya Pradesh,Badwani,Balwadi,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),FAQ,04/04/2025,6400,6500,6450
+Madhya Pradesh,Badwani,Balwadi,Maize,Yellow,FAQ,04/04/2025,2050,2200,2050
+Madhya Pradesh,Badwani,Khetia,Maize,Yellow,FAQ,04/04/2025,1800,1925,1900
+Madhya Pradesh,Badwani,Sendhwa,Maize,Deshi Red,FAQ,04/04/2025,2175,2205,2175
+Madhya Pradesh,Badwani,Sendhwa(F&V),Tomato,Hybrid,Non-FAQ,04/04/2025,500,700,600
+Madhya Pradesh,Balaghat,Mohgaon,Wheat,Wheat,FAQ,04/04/2025,2425,2426,2426
+Madhya Pradesh,Betul,Betul,Maize,Local,Non-FAQ,04/04/2025,1885,1900,1900
+Madhya Pradesh,Betul,Betul,Maize,Yellow,FAQ,04/04/2025,2100,2157,2150
+Madhya Pradesh,Betul,Betul,Soyabean,Soyabeen,FAQ,04/04/2025,4201,4261,4261
+Madhya Pradesh,Betul,Betul,Wheat,Wheat Mix,Non-FAQ,04/04/2025,2425,2425,2425
+Madhya Pradesh,Bhind,Gohad,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,4530,4530,4530
+Madhya Pradesh,Bhind,Gohad,Wheat,Wheat,Non-FAQ,04/04/2025,2300,2300,2300
+Madhya Pradesh,Bhind,Lahar,Mustard,Mustard,FAQ,04/04/2025,5800,5980,5980
+Madhya Pradesh,Bhopal,Berasia,Soyabean,Soyabeen,FAQ,04/04/2025,3910,4220,4220
+Madhya Pradesh,Bhopal,Berasia,Soyabean,Yellow,FAQ,04/04/2025,3500,4365,4100
+Madhya Pradesh,Bhopal,Bhopal,Mustard,Mustard,FAQ,04/04/2025,5500,5615,5615
+Madhya Pradesh,Chhatarpur,Bakswaha,Soyabean,Yellow,FAQ,04/04/2025,3770,4000,3800
+Madhya Pradesh,Chhatarpur,Chhatarpur,Barley (Jau),Deshi,Non-FAQ,04/04/2025,2125,2125,2125
+Madhya Pradesh,Chhatarpur,Rajnagar,Mustard,Mustard,Non-FAQ,04/04/2025,5400,5410,5410
+Madhya Pradesh,Chhindwara,Amarwda,Wheat,Mohan Mondal,Non-FAQ,04/04/2025,2400,2400,2400
+Madhya Pradesh,Chhindwara,Chaurai,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5750,6036,6021
+Madhya Pradesh,Chhindwara,Chaurai,Green Peas,Pea,FAQ,04/04/2025,2400,2400,2400
+Madhya Pradesh,Chhindwara,Chaurai,Maize,Yellow,FAQ,04/04/2025,2147,2260,2260
+Madhya Pradesh,Chhindwara,Chaurai,Mustard,Mustard,FAQ,04/04/2025,5080,5240,5240
+Madhya Pradesh,Chhindwara,Chhindwara,Paddy(Dhan)(Common),Paddy,Non-FAQ,04/04/2025,1980,1992,1987
+Madhya Pradesh,Chhindwara,Chhindwara,Wheat,Mill Quality,FAQ,04/04/2025,2300,2700,2662
+Madhya Pradesh,Chhindwara,Saunsar,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),FAQ,04/04/2025,6900,7000,7000
+Madhya Pradesh,Damoh,Damoh,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5100,5815,5665
+Madhya Pradesh,Damoh,Damoh,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5100,6390,6080
+Madhya Pradesh,Damoh,Hata,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,5505,5625,5565
+Madhya Pradesh,Damoh,Hata,Lentil (Masur)(Whole),Masur Dal,Non-FAQ,04/04/2025,5908,5908,5908
+Madhya Pradesh,Datia,Bhander,Wheat,Other,FAQ,04/04/2025,2395,2460,2425
+Madhya Pradesh,Datia,Sevda,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,5500,5510,5510
+Madhya Pradesh,Dewas,Dewas,Wheat,Mill Quality,Non-FAQ,04/04/2025,2350,2350,2350
+Madhya Pradesh,Dewas,Haatpipliya,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,4000,7600,5381
+Madhya Pradesh,Dewas,Haatpipliya,Mustard,Mustard,Non-FAQ,04/04/2025,4810,5400,5375
+Madhya Pradesh,Dewas,Haatpipliya,Tamarind Fruit,Tamarind,FAQ,04/04/2025,4000,4000,4000
+Madhya Pradesh,Dewas,Khategaon,Kabuli Chana(Chickpeas-White),Dollar Gram,FAQ,04/04/2025,3450,10250,10250
+Madhya Pradesh,Dewas,Loharda,Kabuli Chana(Chickpeas-White),Dollar Gram,FAQ,04/04/2025,8050,8970,8970
+Madhya Pradesh,Dewas,Sonkatch,Mustard,Mustard,FAQ,04/04/2025,5376,5631,5500
+Madhya Pradesh,Dewas,Sonkatch,Soyabean,Soyabeen,FAQ,04/04/2025,3400,4385,4385
+Madhya Pradesh,Dewas,Sonkatch,Wheat,Wheat,Non-FAQ,04/04/2025,2300,2450,2380
+Madhya Pradesh,Dhar,Badnawar,Garlic,Desi,FAQ,04/04/2025,2600,2750,2750
+Madhya Pradesh,Dhar,Badnawar,Green Peas,Pea,FAQ,04/04/2025,3560,4180,4180
+Madhya Pradesh,Dhar,Badnawar,Kabuli Chana(Chickpeas-White),Dollar Gram,FAQ,04/04/2025,5320,9100,9100
+Madhya Pradesh,Dhar,Badnawar,Onion,Onion,FAQ,04/04/2025,500,1105,800
+Madhya Pradesh,Dhar,Dhar,Maize,Local,FAQ,04/04/2025,1832,2055,2055
+Madhya Pradesh,Dhar,Dhar,Wheat,Lokwan,FAQ,04/04/2025,2600,2625,2600
+Madhya Pradesh,Dhar,Dhar,Wheat,Wheat,FAQ,04/04/2025,2166,3318,2572
+Madhya Pradesh,Dhar,Gandhwani,Cotton,Without Ginned Cotton,FAQ,04/04/2025,6000,7500,7400
+Madhya Pradesh,Dhar,Gandhwani,Maize,Local,FAQ,04/04/2025,1500,2300,1700
+Madhya Pradesh,Dhar,Gandhwani,Wheat,Wheat,FAQ,04/04/2025,1725,2600,2470
+Madhya Pradesh,Dhar,Kukshi,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5300,5625,5525
+Madhya Pradesh,Dhar,Kukshi,Maize,Local,FAQ,04/04/2025,1510,2030,1885
+Madhya Pradesh,Dhar,Manawar(F&V),Bhindi(Ladies Finger),Bhindi,FAQ,04/04/2025,1600,1800,1700
+Madhya Pradesh,Dhar,Rajgarh,Wheat,Wheat,FAQ,04/04/2025,2131,2831,2425
+Madhya Pradesh,Dindori,Dindori,Paddy(Dhan)(Common),Other,Non-FAQ,04/04/2025,1850,2110,2100
+Madhya Pradesh,Dindori,Gorakhpur,Soyabean,Yellow,Non-FAQ,04/04/2025,3900,3915,3915
+Madhya Pradesh,Guna,Aron,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5450,5810,5800
+Madhya Pradesh,Guna,Aron,Lak(Teora),Tiwada,FAQ,04/04/2025,3570,3570,3570
+Madhya Pradesh,Guna,Aron,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,6171,6171,6171
+Madhya Pradesh,Guna,Aron,Mustard,Mustard,FAQ,04/04/2025,5395,5825,5825
+Madhya Pradesh,Guna,Aron,Soyabean,Soyabeen,FAQ,04/04/2025,4100,4186,4186
+Madhya Pradesh,Guna,Guna,Coriander(Leaves),Coriander,FAQ,04/04/2025,5700,9425,7000
+Madhya Pradesh,Guna,Guna,Mustard,Mustard,FAQ,04/04/2025,5700,5820,5755
+Madhya Pradesh,Guna,Guna,Wheat,Wheat,FAQ,04/04/2025,2050,4100,2430
+Madhya Pradesh,Guna,Kumbhraj,Coriander(Leaves),Coriander,FAQ,04/04/2025,6900,12050,12050
+Madhya Pradesh,Guna,Kumbhraj,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5900,6190,6190
+Madhya Pradesh,Guna,Maksudangarh,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5440,5990,5990
+Madhya Pradesh,Guna,Maksudangarh,Coriander(Leaves),Coriander,FAQ,04/04/2025,6505,7885,7885
+Madhya Pradesh,Gwalior,Dabra,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5610,5830,5612
+Madhya Pradesh,Gwalior,Dabra,Green Peas,Pea,FAQ,04/04/2025,4475,4690,4690
+Madhya Pradesh,Gwalior,Dabra,Paddy(Dhan)(Common),Basmati 1509,FAQ,04/04/2025,2300,2535,2500
+Madhya Pradesh,Harda,Harda,Green Gram Dal (Moong Dal),Green gram,FAQ,04/04/2025,5600,7795,7500
+Madhya Pradesh,Harda,Khirakiya,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),FAQ,04/04/2025,5000,6830,6830
+Madhya Pradesh,Harda,Khirakiya,Wheat,Wheat Mix,FAQ,04/04/2025,2390,2497,2492
+Madhya Pradesh,Harda,Sirali,Maize,Local,FAQ,04/04/2025,1450,2113,1999
+Madhya Pradesh,Harda,Sirali,Soyabean,Soyabeen,FAQ,04/04/2025,4080,4201,4201
+Madhya Pradesh,Harda,Timarni,Bengal Gram(Gram)(Whole),Chana Kabuli,FAQ,04/04/2025,6601,6781,6701
+Madhya Pradesh,Harda,Timarni,Wheat,Wheat,FAQ,04/04/2025,1700,2556,2500
+Madhya Pradesh,Harda,Timarni(F&V),Bottle gourd,Bottle Gourd,FAQ,04/04/2025,1000,1000,1000
+Madhya Pradesh,Harda,Timarni(F&V),Cucumbar(Kheera),Cucumbar,FAQ,04/04/2025,1000,1500,1250
+Madhya Pradesh,Harda,Timarni(F&V),Spinach,Other,FAQ,04/04/2025,1000,1000,1000
+Madhya Pradesh,Harda,Timarni(F&V),Tomato,Deshi,Non-FAQ,04/04/2025,500,500,500
+Madhya Pradesh,Hoshangabad,Banapura,Kabuli Chana(Chickpeas-White),Russian,FAQ,04/04/2025,6399,6399,6399
+Madhya Pradesh,Hoshangabad,Banapura,Soyabean,Yellow,FAQ,04/04/2025,4040,4391,4250
+Madhya Pradesh,Hoshangabad,Banapura,Wheat,Mill Quality,Non-FAQ,04/04/2025,2500,2500,2500
+Madhya Pradesh,Hoshangabad,Bankhedi,Wheat,Mill Quality,FAQ,04/04/2025,2426,2490,2475
+Madhya Pradesh,Hoshangabad,Pipariya,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),Non-FAQ,04/04/2025,5500,7470,7215
+Madhya Pradesh,Hoshangabad,Pipariya(F&V),Bottle gourd,Bottle Gourd,FAQ,04/04/2025,300,950,600
+Madhya Pradesh,Hoshangabad,Pipariya(F&V),Cabbage,Cabbage,FAQ,04/04/2025,350,1000,700
+Madhya Pradesh,Hoshangabad,Pipariya(F&V),Cauliflower,Cauliflower,FAQ,04/04/2025,400,1600,1000
+Madhya Pradesh,Indore,Gautampura,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,5210,5550,5550
+Madhya Pradesh,Indore,Gautampura,Onion,Onion,FAQ,04/04/2025,400,800,800
+Madhya Pradesh,Indore,Gautampura,Wheat,Wheat,Non-FAQ,04/04/2025,2310,2610,2450
+Madhya Pradesh,Indore,Indore,Kabuli Chana(Chickpeas-White),Dollar Gram,FAQ,04/04/2025,6975,10760,9400
+Madhya Pradesh,Indore,Indore,Kabuli Chana(Chickpeas-White),Double Dollar Chana,FAQ,04/04/2025,8250,10390,9200
+Madhya Pradesh,Indore,Indore,Mustard,Mustard,FAQ,04/04/2025,5650,5650,5650
+Madhya Pradesh,Indore,Indore,Onion,Onion,FAQ,04/04/2025,430,1445,998
+Madhya Pradesh,Indore,Indore,Turmeric,Turmeric,FAQ,04/04/2025,20350,23400,23400
+Madhya Pradesh,Indore,Mhow,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5191,5699,5699
+Madhya Pradesh,Indore,Mhow,Soyabean,Soyabeen,FAQ,04/04/2025,3201,4451,3900
+Madhya Pradesh,Indore,Mhow,Soyabean,Soyabeen,Non-FAQ,04/04/2025,1151,4000,3900
+Madhya Pradesh,Indore,Mhow(F&V),Cabbage,Cabbage,FAQ,04/04/2025,800,1500,1000
+Madhya Pradesh,Indore,Mhow(F&V),Carrot,Carrot,FAQ,04/04/2025,1700,3000,2000
+Madhya Pradesh,Indore,Mhow(F&V),Raddish,Raddish,FAQ,04/04/2025,1000,1800,1500
+Madhya Pradesh,Jabalpur,Jabalpur,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,4505,5760,5700
+Madhya Pradesh,Jabalpur,Jabalpur,Paddy(Dhan)(Common),Dhan,FAQ,04/04/2025,1550,2415,2300
+Madhya Pradesh,Jabalpur,Jabalpur,Wheat,Mill Quality,FAQ,04/04/2025,2300,2400,2400
+Madhya Pradesh,Jabalpur,Jabalpur,Wheat,Wheat,Non-FAQ,04/04/2025,2320,2600,2600
+Madhya Pradesh,Jabalpur,Paatan,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),FAQ,04/04/2025,6000,7165,7100
+Madhya Pradesh,Jabalpur,Paatan,Green Peas,Pea,FAQ,04/04/2025,3660,6800,6800
+Madhya Pradesh,Jabalpur,Sehora,Wheat,Mill Quality,Non-FAQ,04/04/2025,2566,2595,2595
+Madhya Pradesh,Jabalpur,Shahpura(Jabalpur),Paddy(Dhan)(Common),Dhan,Non-FAQ,04/04/2025,1985,2015,2015
+Madhya Pradesh,Jhabua,Petlawad,Wheat,Mill Quality,FAQ,04/04/2025,2275,2275,2275
+Madhya Pradesh,Jhabua,Petlawad(F&V),Carrot,Carrot,FAQ,04/04/2025,1500,1500,1500
+Madhya Pradesh,Jhabua,Petlawad(F&V),Potato,Desi,Non-FAQ,04/04/2025,1000,1600,1406
+Madhya Pradesh,Jhabua,Petlawad(F&V),Spinach,Spinach,FAQ,04/04/2025,1000,1500,1299
+Madhya Pradesh,Jhabua,Thandla,Wheat,Local,FAQ,04/04/2025,2475,2475,2475
+Madhya Pradesh,Jhabua,Thandla,Wheat,Lokwan,FAQ,04/04/2025,2430,2510,2510
+Madhya Pradesh,Khandwa,Harsood,Mustard,Mustard,FAQ,04/04/2025,5001,5400,5400
+Madhya Pradesh,Khandwa,Khandwa,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),FAQ,04/04/2025,4400,6861,6801
+Madhya Pradesh,Khandwa,Khandwa,Onion,Local,FAQ,04/04/2025,600,850,600
+Madhya Pradesh,Khandwa,Khandwa,Wheat,Wheat,FAQ,04/04/2025,2390,2462,2460
+Madhya Pradesh,Khandwa,Mundi,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5100,5450,5445
+Madhya Pradesh,Khandwa,Mundi,Wheat,Wheat,FAQ,04/04/2025,2375,2500,2400
+Madhya Pradesh,Khargone,Badwaha,Cotton,Without Ginned Cotton,FAQ,04/04/2025,6530,7160,7160
+Madhya Pradesh,Khargone,Bhikangaon,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5390,6376,5545
+Madhya Pradesh,Khargone,Karhi,Maize,Deshi Red,FAQ,04/04/2025,1755,1755,1755
+Madhya Pradesh,Khargone,Khargone,Cotton,Without Ginned Cotton,FAQ,04/04/2025,5800,7500,7500
+Madhya Pradesh,Khargone,Khargone,Maize,Local,Non-FAQ,04/04/2025,1600,2100,1725
+Madhya Pradesh,Khargone,Khargone,Soyabean,Soyabeen,Non-FAQ,04/04/2025,3500,3500,3500
+Madhya Pradesh,Khargone,Sanawad,Cotton,Without Ginned Cotton,FAQ,04/04/2025,5235,16535,6535
+Madhya Pradesh,Khargone,Sanawad,Kabuli Chana(Chickpeas-White),Dollar Gram,FAQ,04/04/2025,8200,9000,9000
+Madhya Pradesh,Khargone,Segaon,Maize,Local,FAQ,04/04/2025,1650,2100,1950
+Madhya Pradesh,Mandla,Bichhiya,Tamarind Fruit,Tamarind,FAQ,04/04/2025,3015,3015,3015
+Madhya Pradesh,Mandla,Mandla,Linseed,Flaxseed,FAQ,04/04/2025,5600,5600,5600
+Madhya Pradesh,Mandla,Nainpur,Maize,Local,FAQ,04/04/2025,2000,2010,2010
+Madhya Pradesh,Mandla,Nainpur,Wheat,Mill Quality,FAQ,04/04/2025,2425,2435,2435
+Madhya Pradesh,Mandla,Nainpur,Wheat,Mill Quality,Non-FAQ,04/04/2025,2400,2405,2405
+Madhya Pradesh,Mandsaur,Daloda,Wheat,Wheat,FAQ,04/04/2025,2201,2982,2500
+Madhya Pradesh,Mandsaur,Garoth,Wheat,Wheat,Non-FAQ,04/04/2025,2320,2333,2325
+Madhya Pradesh,Mandsaur,Mandsaur,Ashwagandha,Ashwagandha,FAQ,04/04/2025,20900,21100,21100
+Madhya Pradesh,Mandsaur,Mandsaur,Groundnut,Big (With Shell),FAQ,04/04/2025,3000,4880,4880
+Madhya Pradesh,Mandsaur,Mandsaur,nigella seeds,Kalonji/Nigella,FAQ,04/04/2025,13551,18870,18870
+Madhya Pradesh,Mandsaur,Piplya,Soyabean,Soyabeen,Non-FAQ,04/04/2025,2628,2701,2701
+Madhya Pradesh,Mandsaur,Shamgarh,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,5400,5475,5450
+Madhya Pradesh,Mandsaur,Shamgarh,Wheat,Wheat,FAQ,04/04/2025,2370,2370,2370
+Madhya Pradesh,Mandsaur,Sitmau,Soyabean,Soyabeen,FAQ,04/04/2025,4010,4010,4010
+Madhya Pradesh,Mandsaur,Sitmau,Wheat,Wheat,FAQ,04/04/2025,2342,2393,2393
+Madhya Pradesh,Morena,Kailaras,Mustard,Mustard,FAQ,04/04/2025,5739,6000,5893
+Madhya Pradesh,Morena,Morena,Bajra(Pearl Millet/Cumbu),Millet,Non-FAQ,04/04/2025,2207,2255,2255
+Madhya Pradesh,Morena,Morena,Potato,Potato,Non-FAQ,04/04/2025,600,1000,800
+Madhya Pradesh,Morena,Porsa,Bajra(Pearl Millet/Cumbu),Millet,Non-FAQ,04/04/2025,2220,2229,2221
+Madhya Pradesh,Morena,Porsa,Cabbage,Cabbage,FAQ,04/04/2025,500,500,500
+Madhya Pradesh,Morena,Porsa,Mustard,Mustard,FAQ,04/04/2025,5925,5960,5940
+Madhya Pradesh,Morena,Porsa,Wheat,Wheat,Non-FAQ,04/04/2025,2320,2325,2325
+Madhya Pradesh,Morena,Sabalgarh,Bajra(Pearl Millet/Cumbu),Millet,Non-FAQ,04/04/2025,2205,2215,2205
+Madhya Pradesh,Morena,Sabalgarh,Wheat,Mill Quality,Non-FAQ,04/04/2025,2356,2385,2378
+Madhya Pradesh,Narsinghpur,Gadarwada,Soyabean,Soyabeen,FAQ,04/04/2025,4050,4300,4300
+Madhya Pradesh,Narsinghpur,Kareli,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),Non-FAQ,04/04/2025,5200,5200,5200
+Madhya Pradesh,Narsinghpur,Kareli,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,4411,5920,5500
+Madhya Pradesh,Narsinghpur,Kareli,Black Gram (Urd Beans)(Whole),Urda/Urd,FAQ,04/04/2025,5500,6300,6300
+Madhya Pradesh,Narsinghpur,Kareli,Gur(Jaggery),Jaggery,FAQ,04/04/2025,3300,3400,3300
+Madhya Pradesh,Narsinghpur,Kareli,Soyabean,Soyabeen,FAQ,04/04/2025,3333,5100,4200
+Madhya Pradesh,Narsinghpur,Kareli,Wheat,Wheat,FAQ,04/04/2025,2403,2471,2424
+Madhya Pradesh,Narsinghpur,Tendukheda,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),FAQ,04/04/2025,6565,7080,7080
+Madhya Pradesh,Narsinghpur,Tendukheda,buttery,Buttery,FAQ,04/04/2025,5300,5310,5310
+Madhya Pradesh,Narsinghpur,Tendukheda,Wheat,Wheat,FAQ,04/04/2025,2340,2381,2381
+Madhya Pradesh,Neemuch,Javad,Barley (Jau),Barley,FAQ,04/04/2025,1908,1908,1908
+Madhya Pradesh,Neemuch,Manasa,Onion,Onion,FAQ,04/04/2025,421,830,830
+Madhya Pradesh,Neemuch,Neemuch,Ajwan,Other,FAQ,04/04/2025,4400,4400,4400
+Madhya Pradesh,Neemuch,Neemuch,Garlic,Average,FAQ,04/04/2025,2300,4900,3500
+Madhya Pradesh,Neemuch,Neemuch,Maize,Local,FAQ,04/04/2025,2200,2261,2261
+Madhya Pradesh,Neemuch,Neemuch,Onion,Red,FAQ,04/04/2025,100,331,331
+Madhya Pradesh,Neemuch,Neemuch,poppy seeds,Poppy seed,FAQ,04/04/2025,60000,130000,97000
+Madhya Pradesh,Panna,Ajaygarh,Wheat,Mill Quality,FAQ,04/04/2025,2430,2450,2450
+Madhya Pradesh,Raisen,Bareli,Arhar (Tur/Red Gram)(Whole),Arhar Dal(Tur),FAQ,04/04/2025,4200,7441,6830
+Madhya Pradesh,Raisen,Bareli,Lak(Teora),Tiwada,FAQ,04/04/2025,3703,3871,3850
+Madhya Pradesh,Raisen,Begamganj,Mustard,Mustard,Non-FAQ,04/04/2025,5440,5485,5485
+Madhya Pradesh,Raisen,Obedullaganj,Mustard,Mustard,FAQ,04/04/2025,5505,5505,5505
+Madhya Pradesh,Raisen,Obedullaganj,Wheat,Wheat,FAQ,04/04/2025,2415,2565,2530
+Madhya Pradesh,Raisen,Raisen,Maize,Local,FAQ,04/04/2025,2375,2375,2375
+Madhya Pradesh,Raisen,Silvani,Wheat,Mill Quality,FAQ,04/04/2025,2401,2401,2401
+Madhya Pradesh,Raisen,Udaipura,Paddy(Dhan)(Common),Paddy,FAQ,04/04/2025,2300,2940,2940
+Madhya Pradesh,Rajgarh,Biaora,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5400,6045,6045
+Madhya Pradesh,Rajgarh,Biaora,Wheat,Wheat,FAQ,04/04/2025,2100,2590,2350
+Madhya Pradesh,Rajgarh,Biaora,Wheat,Wheat,Non-FAQ,04/04/2025,2150,2400,2350
+Madhya Pradesh,Rajgarh,Jeerapur,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5440,5600,5600
+Madhya Pradesh,Rajgarh,Jeerapur,Coriander(Leaves),Coriander,FAQ,04/04/2025,7125,7750,7750
+Madhya Pradesh,Rajgarh,Jeerapur,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5700,6150,5900
+Madhya Pradesh,Rajgarh,Jeerapur,Mustard,Mustard,FAQ,04/04/2025,5575,5820,5675
+Madhya Pradesh,Rajgarh,Jeerapur,Wheat,Wheat,Non-FAQ,04/04/2025,2325,2365,2340
+Madhya Pradesh,Rajgarh,Khilchipur,Bengal Gram(Gram)(Whole),Chana Kanta,FAQ,04/04/2025,5510,5510,5510
+Madhya Pradesh,Rajgarh,Khujner,Wheat,Mill Quality,Non-FAQ,04/04/2025,2155,2372,2345
+Madhya Pradesh,Rajgarh,Kurawar,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5370,5830,5830
+Madhya Pradesh,Rajgarh,Kurawar,Wheat,Local,FAQ,04/04/2025,2345,2665,2440
+Madhya Pradesh,Rajgarh,Kurawar,Wheat,Sharbati,FAQ,04/04/2025,2535,2535,2535
+Madhya Pradesh,Rajgarh,Kurawar,Wheat,Sujata,FAQ,04/04/2025,2535,2535,2535
+Madhya Pradesh,Rajgarh,Narsinghgarh,Onion,Onion,FAQ,04/04/2025,100,1340,1190
+Madhya Pradesh,Rajgarh,Pachaur,Bengal Gram(Gram)(Whole),Chana Kanta,FAQ,04/04/2025,5535,5550,5550
+Madhya Pradesh,Rajgarh,Pachaur,Lentil (Masur)(Whole),Masur Dal,Non-FAQ,04/04/2025,5000,6270,5950
+Madhya Pradesh,Rajgarh,Pachaur,Mustard,Mustard,FAQ,04/04/2025,5000,5775,5730
+Madhya Pradesh,Rajgarh,Pachaur,Wheat,Wheat,FAQ,04/04/2025,2045,2581,2320
+Madhya Pradesh,Rajgarh,Sarangpur(F&V),Cabbage,Cabbage,FAQ,04/04/2025,300,700,450
+Madhya Pradesh,Ratlam,A lot,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,5653,5690,5690
+Madhya Pradesh,Ratlam,A lot,Wheat,Mill Quality,FAQ,04/04/2025,2301,2415,2380
+Madhya Pradesh,Ratlam,Jaora,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,3400,6201,5790
+Madhya Pradesh,Ratlam,Jaora,Garlic,New Gola,FAQ,04/04/2025,2600,2600,2600
+Madhya Pradesh,Ratlam,Jaora,Mustard,Mustard,FAQ,04/04/2025,3856,6225,6225
+Madhya Pradesh,Ratlam,Jawra(F&V),Brinjal,Brinjal,FAQ,04/04/2025,2000,3000,2500
+Madhya Pradesh,Ratlam,Ratlam,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,4500,5771,5771
+Madhya Pradesh,Ratlam,Ratlam,Soyabean,Soyabeen,FAQ,04/04/2025,2151,4430,4325
+Madhya Pradesh,Ratlam,Ratlam,Wheat,Lokwan,FAQ,04/04/2025,2376,3200,2451
+Madhya Pradesh,Ratlam,Ratlam,Wheat,Wheat Mix,FAQ,04/04/2025,2615,2615,2615
+Madhya Pradesh,Ratlam,Sailana,Garlic,Garlic,FAQ,04/04/2025,100,9901,2000
+Madhya Pradesh,Ratlam,Sailana,Wheat,Lokwan,FAQ,04/04/2025,2400,2500,2450
+Madhya Pradesh,Ratlam,Sailana,Wheat,Wheat,FAQ,04/04/2025,2200,2899,2500
+Madhya Pradesh,Rewa,Baikunthpur,Mustard,Sarson(Black),Non-FAQ,04/04/2025,5200,5200,5200
+Madhya Pradesh,Rewa,Baikunthpur,Wheat,Wheat,Non-FAQ,04/04/2025,2400,2430,2430
+Madhya Pradesh,Rewa,Hanumana,Lak(Teora),Tiwada,FAQ,04/04/2025,3500,3500,3500
+Madhya Pradesh,Sagar,Bamora,Lak(Teora),Tiwada,FAQ,04/04/2025,3800,3901,3901
+Madhya Pradesh,Sagar,Bina,buttery,Buttery,FAQ,04/04/2025,3361,5730,5300
+Madhya Pradesh,Sagar,Bina,Green Peas,Pea,FAQ,04/04/2025,2001,8680,3350
+Madhya Pradesh,Sagar,Bina,Lak(Teora),Tiwada,FAQ,04/04/2025,3151,3880,3700
+Madhya Pradesh,Sagar,Bina,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5550,6190,5900
+Madhya Pradesh,Sagar,Bina,Wheat,Mill Quality,FAQ,04/04/2025,2261,2378,2340
+Madhya Pradesh,Sagar,Deori,Wheat,Wheat-Organic,FAQ,04/04/2025,2600,2600,2600
+Madhya Pradesh,Sagar,Jaisinagar,Wheat,Wheat Mix,FAQ,04/04/2025,2310,2320,2320
+Madhya Pradesh,Sagar,Khurai,Green Peas,Pea,FAQ,04/04/2025,3100,3526,3500
+Madhya Pradesh,Sagar,Khurai,Mustard,Mustard,FAQ,04/04/2025,4000,5515,5515
+Madhya Pradesh,Sagar,Khurai(F&V),Cabbage,Cabbage,FAQ,04/04/2025,600,800,700
+Madhya Pradesh,Sagar,Khurai(F&V),Potato,Potato,FAQ,04/04/2025,1000,1400,1200
+Madhya Pradesh,Sagar,Khurai(F&V),Spinach,Organic,FAQ,04/04/2025,500,900,700
+Madhya Pradesh,Sagar,Khurai(F&V),Water Melon,Water Melon,Medium,04/04/2025,600,1000,800
+Madhya Pradesh,Sagar,Malthone,Wheat,Mill Quality,FAQ,04/04/2025,2290,2355,2325
+Madhya Pradesh,Sagar,Rahatgarh,Wheat,Mill Quality,Non-FAQ,04/04/2025,2255,2435,2365
+Madhya Pradesh,Sagar,Sagar,buttery,Buttery,FAQ,04/04/2025,3300,5300,4875
+Madhya Pradesh,Sagar,Sagar,Lak(Teora),Tiwada,FAQ,04/04/2025,3405,4015,3980
+Madhya Pradesh,Sagar,Sagar,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5200,6570,6070
+Madhya Pradesh,Sagar,Shahagarh,Soyabean,Yellow,Non-FAQ,04/04/2025,4000,4200,4200
+Madhya Pradesh,Satna,Mehar,Gur(Jaggery),Jaggery,FAQ,04/04/2025,3900,3900,3900
+Madhya Pradesh,Satna,Nagod,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5855,6244,6150
+Madhya Pradesh,Satna,Nagod,Lentil (Masur)(Whole),Masur Dal,Non-FAQ,04/04/2025,5855,6250,6150
+Madhya Pradesh,Satna,Satna,Bengal Gram(Gram)(Whole),Gram,FAQ,04/04/2025,4605,6000,5875
+Madhya Pradesh,Satna,Satna,buttery,Buttery,FAQ,04/04/2025,3200,4530,4475
+Madhya Pradesh,Satna,Satna,Green Peas,Pea,FAQ,04/04/2025,3560,3570,3560
+Madhya Pradesh,Satna,Satna,Mustard,Mustard,FAQ,04/04/2025,5105,6100,6000
+Madhya Pradesh,Satna,Satna,Wheat,Wheat,FAQ,04/04/2025,2200,2589,2469
+Madhya Pradesh,Sehore,Ashta,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5260,5954,5880
+Madhya Pradesh,Sehore,Ashta,Maize,Local,FAQ,04/04/2025,1747,1747,1747
+Madhya Pradesh,Sehore,Ashta,Soyabean,Soyabeen,FAQ,04/04/2025,2500,4482,3800
+Madhya Pradesh,Sehore,Ashta,Wheat,Sharbati,FAQ,04/04/2025,2504,2826,2680
+Madhya Pradesh,Sehore,Baktara,Paddy(Dhan)(Common),Basumathi,FAQ,04/04/2025,2451,3051,2461
+Madhya Pradesh,Sehore,Jawar,Mustard,Mustard,FAQ,04/04/2025,5385,5454,5454
+Madhya Pradesh,Sehore,Nasrullaganj,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,5450,5764,5699
+Madhya Pradesh,Sehore,Nasrullaganj,Green Gram Dal (Moong Dal),Green gram,FAQ,04/04/2025,6651,6875,6875
+Madhya Pradesh,Sehore,Sehore,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,5252,5730,5730
+Madhya Pradesh,Sehore,Sehore,Mustard,Sarson(Black),FAQ,04/04/2025,2300,5800,5800
+Madhya Pradesh,Sehore,Sehore,Wheat,Malwa Shakti,FAQ,04/04/2025,2369,2428,2428
+Madhya Pradesh,Sehore,Sehore,Wheat,Sharbati,FAQ,04/04/2025,2400,3965,3965
+Madhya Pradesh,Sehore,Sehore(F&V),Cabbage,Cabbage,FAQ,04/04/2025,300,600,500
+Madhya Pradesh,Sehore,Sehore(F&V),Cauliflower,African Sarson,FAQ,04/04/2025,800,1200,1000
+Madhya Pradesh,Sehore,Sehore(F&V),Ginger(Green),Green Ginger,FAQ,04/04/2025,2500,3500,3000
+Madhya Pradesh,Seoni,Chhpara,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,5300,5300,5300
+Madhya Pradesh,Seoni,Ghansour,Wheat,Mill Quality,FAQ,04/04/2025,2100,2430,2300
+Madhya Pradesh,Seoni,Lakhnadon,Wheat,Local,Non-FAQ,04/04/2025,2300,2370,2360
+Madhya Pradesh,Seoni,Palari,Wheat,Local,Non-FAQ,04/04/2025,2450,2475,2475
+Madhya Pradesh,Seoni,Seoni,Maize,Maize/Corn-Organic,FAQ,04/04/2025,2050,2130,2130
+Madhya Pradesh,Seoni,Seoni,Paddy(Dhan)(Common),Dhan,FAQ,04/04/2025,1930,1930,1930
+Madhya Pradesh,Shajapur,Agar,Coriander(Leaves),Coriander,FAQ,04/04/2025,2500,8360,7101
+Madhya Pradesh,Shajapur,Agar,Methi Seeds,Methiseeds,FAQ,04/04/2025,3551,4551,4100
+Madhya Pradesh,Shajapur,Badod,Lentil (Masur)(Whole),Masur Dal,Non-FAQ,04/04/2025,5781,5781,5781
+Madhya Pradesh,Shajapur,Badod,Mustard,Mustard,Non-FAQ,04/04/2025,5400,5400,5400
+Madhya Pradesh,Shajapur,Badod,Soyabean,Soyabeen,Non-FAQ,04/04/2025,2601,4090,4090
+Madhya Pradesh,Shajapur,Badod,Wheat,Mill Quality,FAQ,04/04/2025,2311,2442,2411
+Madhya Pradesh,Shajapur,Badod,Wheat,Mill Quality,Non-FAQ,04/04/2025,2300,2451,2411
+Madhya Pradesh,Shajapur,Kalapipal,Coriander(Leaves),Coriander,FAQ,04/04/2025,5599,6401,6401
+Madhya Pradesh,Shajapur,Kalapipal,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,2001,6265,6000
+Madhya Pradesh,Shajapur,Kalapipal(F&V),Garlic,Garlic,FAQ,04/04/2025,1775,6510,3570
+Madhya Pradesh,Shajapur,Momanbadodiya,Wheat,Wheat,FAQ,04/04/2025,2180,2440,2414
+Madhya Pradesh,Shajapur,Nalkehda,Coriander(Leaves),Coriander,FAQ,04/04/2025,5900,6870,5900
+Madhya Pradesh,Shajapur,Shajapur,Coriander(Leaves),Coriander,FAQ,04/04/2025,7850,8100,8100
+Madhya Pradesh,Shajapur,Shajapur,Garlic,Garlic,FAQ,04/04/2025,1100,5425,4500
+Madhya Pradesh,Shajapur,Shajapur,Onion,Onion,FAQ,04/04/2025,1040,1217,1217
+Madhya Pradesh,Shajapur,Shujalpur,Garlic,Desi,FAQ,04/04/2025,500,6412,2600
+Madhya Pradesh,Shajapur,Shujalpur,Lentil (Masur)(Whole),Masur Dal,FAQ,04/04/2025,3156,6099,6051
+Madhya Pradesh,Shajapur,Shujalpur,Soyabean,Soyabeen,FAQ,04/04/2025,2060,4356,4331
+Madhya Pradesh,Shajapur,Susner,Wheat,Wheat,FAQ,04/04/2025,2265,2360,2300
+Madhya Pradesh,Shehdol,Beohari,Paddy(Dhan)(Common),Common,FAQ,04/04/2025,1950,1970,1950
+Madhya Pradesh,Sheopur,Sheopurbadod,Wheat,Wheat,Non-FAQ,04/04/2025,2350,2400,2381
+Madhya Pradesh,Sheopur,Sheopurkalan,Mustard,Mustard,FAQ,04/04/2025,5800,6035,5995
+Madhya Pradesh,Sheopur,Sheopurkalan,Wheat,Wheat,FAQ,04/04/2025,2275,2499,2480
+Madhya Pradesh,Shivpuri,Badarwas,Mustard,Mustard,FAQ,04/04/2025,5780,6000,5850
+Madhya Pradesh,Shivpuri,Badarwas,Wheat,Wheat,Non-FAQ,04/04/2025,2330,2490,2350
+Madhya Pradesh,Shivpuri,Barad,Mustard,Mustard,Non-FAQ,04/04/2025,5900,5986,5950
+Madhya Pradesh,Shivpuri,Karera,Groundnut,Big (With Shell),FAQ,04/04/2025,4213,4550,4500
+Madhya Pradesh,Shivpuri,Karera,Wheat,Wheat,FAQ,04/04/2025,2325,2425,2400
+Madhya Pradesh,Shivpuri,Khanyadhana,Wheat,Mill Quality,FAQ,04/04/2025,2250,2350,2250
+Madhya Pradesh,Shivpuri,Khatora,Bengal Gram(Gram)(Whole),Gram,Non-FAQ,04/04/2025,5375,5576,5550
+Madhya Pradesh,Shivpuri,Khatora,Wheat,Wheat,FAQ,04/04/2025,2300,2526,2526
+Madhya Pradesh,Shivpuri,Kolaras,Wheat,Wheat,FAQ,04/04/2025,2350,2515,2390
+Madhya Pradesh,Shivpuri,Magroni,Paddy(Dhan)(Common),Paddy,FAQ,04/04/2025,2199,2500,2500
+Madhya Pradesh,Shivpuri,Magroni,Wheat,Wheat,FAQ,04/04/2025,2355,2411,2395
+Madhya Pradesh,Shivpuri,Pichhour,Barley (Jau),Barley,Non-FAQ,04/04/2025,1950,1985,1985
+Madhya Pradesh,Shivpuri,Pohari,Mustard,Sarson(Black),Non-FAQ,04/04/2025,5750,5750,5750
+Madhya Pradesh,Shivpuri,Pohari,Wheat,Wheat,Non-FAQ,04/04/2025,2140,2350,2330
+Madhya Pradesh,Tikamgarh,Jatara,Wheat,Wheat,Non-FAQ,04/04/2025,2450,2774,2470
+Madhya Pradesh,Tikamgarh,Khargapur,Wheat,Mill Quality,FAQ,04/04/2025,2425,2429,2425
+Madhya Pradesh,Tikamgarh,Khargapur,Wheat,Mill Quality,Non-FAQ,04/04/2025,2423,2427,2425
+Madhya Pradesh,Tikamgarh,Tikamgarh,Wheat,Mill Quality,FAQ,04/04/2025,2425,2500,2500
+Madhya Pradesh,Ujjain,Khachrod,Soyabean,Soyabeen,FAQ,04/04/2025,3152,4275,4260
+Madhya Pradesh,Ujjain,Mahidpur,Soyabean,Soyabeen,FAQ,04/04/2025,3550,4346,4276
+Madhya Pradesh,Ujjain,Mahidpur,Wheat,Mill Quality,FAQ,04/04/2025,2253,2626,2501
+Madhya Pradesh,Ujjain,Mahidpur,Wheat,Wheat,FAQ,04/04/2025,2101,3033,2450
+Madhya Pradesh,Ujjain,Nagda,Mustard,Sarson(Black),Non-FAQ,04/04/2025,5651,5651,5651
+Madhya Pradesh,Ujjain,Nagda,Wheat,Mill Quality,Non-FAQ,04/04/2025,2351,2481,2444
+Madhya Pradesh,Ujjain,Tarana,Mustard,Mustard,Non-FAQ,04/04/2025,5650,5650,5650
+Madhya Pradesh,Ujjain,Tarana,Wheat,Local,FAQ,04/04/2025,2570,2570,2570
+Madhya Pradesh,Ujjain,Tarana,Wheat,Mill Quality,FAQ,04/04/2025,2253,2481,2481
+Madhya Pradesh,Ujjain,Tarana,Wheat,Wheat,FAQ,04/04/2025,2125,2920,2400
+Madhya Pradesh,Ujjain,Tarana,Wheat,Wheat,Non-FAQ,04/04/2025,2330,2670,2400
