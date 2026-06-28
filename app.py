@@ -1,13 +1,15 @@
 ﻿from dotenv import load_dotenv
 load_dotenv()
+import os, time, glob, base64, io, requests, numpy as np, pandas as pd, datetime, json, random
 from flask import Flask, request, jsonify, render_template, send_from_directory, session
 from flask_session import Session
-import os, time, glob, base64, io, requests, numpy as np, pandas as pd, datetime, json, random
 from PIL import Image
 import cv2
 from gtts import gTTS
 import firebase_admin
 from firebase_admin import credentials, firestore
+import google.generativeai as genai
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 app = Flask(__name__)
 app.config['SESSION_TYPE'] = 'filesystem'
@@ -91,9 +93,9 @@ weather_translations = {
 }
 
 ivr_logs = [
-    {"caller":"+91 99999 XXX99","path":"Hindi -> Mandi (Press 2)","duration":"1m 24s","time":"15:10","audio_url":"/static/audio/mandi_hi.mp3"},
-    {"caller":"+91 94250 XXX41","path":"Hindi -> Weather (Press 3)","duration":"0m 45s","time":"14:42","audio_url":"/static/audio/weather_hi.mp3"},
-    {"caller":"+91 88710 XXX12","path":"English -> Crop Input (Press 4)","duration":"2m 10s","time":"12:15","audio_url":"/static/audio/crop_en.mp3"}
+    {"caller":"+91 99999 XXX99","path":"Hindi -> Mandi (Press 2)","duration":"1m 24s","time":"15:10","audio_url":"/static/audio/mandi_hi.mp3","transcript":"इंदौर मंडी में गेहूं का भाव आज 2350 रुपये प्रति क्विंटल है।"},
+    {"caller":"+91 94250 XXX41","path":"Hindi -> Weather (Press 3)","duration":"0m 45s","time":"14:42","audio_url":"/static/audio/weather_hi.mp3","transcript":"आज मौसम साफ रहेगा, तापमान 32 डिग्री रहेगा।"},
+    {"caller":"+91 88710 XXX12","path":"English -> Crop Help (Press 4)","duration":"2m 10s","time":"12:15","audio_url":"/static/audio/crop_en.mp3","transcript":"For wheat Early Blight, spray Mancozeb 2g per litre water."}
 ]
 
 def build_ivr_mock_audio():
@@ -103,7 +105,7 @@ def build_ivr_mock_audio():
         if not os.path.exists("static/audio/weather_hi.mp3"):
             gTTS("आज मौसम साफ रहेगा।", lang='hi').save("static/audio/weather_hi.mp3")
         if not os.path.exists("static/audio/crop_en.mp3"):
-            gTTS("You selected Potato.", lang='en').save("static/audio/crop_en.mp3")
+            gTTS("For crop disease help, spray Mancozeb.", lang='en').save("static/audio/crop_en.mp3")
     except Exception as e:
         print("Audio build warning:", e)
 
@@ -112,8 +114,8 @@ build_ivr_mock_audio()
 def clean_old_audio():
     try:
         now = time.time()
-        for f in glob.glob("static/audio/chat_reply_*.mp3"):
-            if os.stat(f).st_mtime < now - 300:
+        for f in glob.glob("static/audio/chat_reply_*.mp3") + glob.glob("static/audio/ivr_*.mp3"):
+            if os.stat(f).st_mtime < now - 600:
                 os.remove(f)
     except: pass
 
@@ -157,8 +159,7 @@ def get_market_data():
     try:
         csv_path = os.path.join(os.path.dirname(__file__), "mandi_prices.csv")
         df = pd.read_csv(csv_path)
-        filtered = df[(df["state"].str.lower()==state.lower())&(df["district"].str.lower()==district.lower())]
-        filtered = filtered.copy()
+        filtered = df[(df["state"].str.lower()==state.lower())&(df["district"].str.lower()==district.lower())].copy()
         filtered["modal_price"] = pd.to_numeric(filtered["modal_price"],errors="coerce")
         avg_prices = filtered.groupby("commodity")["modal_price"].mean().to_dict()
         profitable = filtered.groupby("commodity")["modal_price"].mean().sort_values(ascending=False)
@@ -211,12 +212,117 @@ def get_ivr_stats():
 
 @app.route("/api/ivr/simulate", methods=["POST"])
 def simulate_ivr():
-    paths=["Hindi -> Mandi (Press 2)","Hindi -> Weather (Press 3)","Hindi -> Crop Selection (Press 4)","English -> Weather (Press 3)","English -> Mandi (Press 2)"]
-    path=random.choice(paths)
-    audio="/static/audio/weather_hi.mp3" if "Weather" in path else "/static/audio/crop_en.mp3" if "English" in path else "/static/audio/mandi_hi.mp3"
-    ivr_logs.insert(0,{"caller":f"+91 {random.randint(70000,99999)} XXX{random.randint(10,99)}","path":path,"duration":f"{random.randint(0,2)}m {random.randint(10,59)}s","time":datetime.datetime.now().strftime("%H:%M"),"audio_url":audio})
-    if len(ivr_logs)>20: ivr_logs.pop()
-    return jsonify({"success":True,"audio_url":audio})
+    req_data = request.get_json() or {}
+    phone = req_data.get("phone", f"+91 {random.randint(70000,99999)} XXX{random.randint(10,99)}")
+    language = req_data.get("language", "hi")
+    option = req_data.get("option", random.randint(1,5))
+    crop = req_data.get("crop", "wheat")
+
+    path_map = {
+        1: f"{'Hindi' if language=='hi' else 'English'} -> Welcome & Help",
+        2: f"{'Hindi' if language=='hi' else 'English'} -> Mandi Prices (Press 2)",
+        3: f"{'Hindi' if language=='hi' else 'English'} -> Weather Advisory (Press 3)",
+        4: f"{'Hindi' if language=='hi' else 'English'} -> Crop Disease Help (Press 4)",
+        5: f"{'Hindi' if language=='hi' else 'English'} -> Government Schemes (Press 5)",
+    }
+    selected_path = path_map.get(option, path_map[1])
+
+    try:
+        if language == "hi":
+            lang_note = "Reply in Hindi (Devanagari script only). Spoken helpline style. Max 3 sentences."
+        else:
+            lang_note = "Reply in English only. Spoken helpline style. Max 3 sentences."
+
+        if option == 2:
+            prompt = f"You are Kisan Saathi helpline operator. Give realistic current mandi prices for {crop} and top 2 other crops in Madhya Pradesh with specific rupee amounts per quintal. {lang_note}"
+        elif option == 3:
+            prompt = f"You are Kisan Saathi helpline operator. Give specific weather advisory for farmers in Madhya Pradesh today including temperature, rain chances and farming activity advice. {lang_note}"
+        elif option == 4:
+            prompt = f"You are Kisan Saathi helpline operator. Give disease prevention and treatment advice for {crop} crop with exact pesticide name and dosage. {lang_note}"
+        elif option == 5:
+            prompt = f"You are Kisan Saathi helpline operator. Explain PM-KISAN scheme - eligibility, benefit amount and how to apply. {lang_note}"
+        else:
+            prompt = f"You are Kisan Saathi helpline operator greeting a farmer. Welcome them and say: press 2 for mandi prices, press 3 for weather, press 4 for crop disease help, press 5 for government schemes. {lang_note}"
+
+        model_g = genai.GenerativeModel("gemini-1.5-flash")
+        response = model_g.generate_content(prompt)
+        ivr_text = response.text.strip()
+    except Exception as e:
+        print("IVR Gemini error:", e)
+        ivr_text = "नमस्ते! किसान साथी हेल्पलाइन में आपका स्वागत है। मंडी भाव के लिए 2, मौसम के लिए 3 दबाएं।" if language == "hi" else "Welcome to Kisan Saathi Helpline. Press 2 for mandi, 3 for weather, 4 for crop help."
+
+    ts = int(time.time())
+    audio_filename = f"ivr_call_{ts}.mp3"
+    try:
+        tts_lang = "hi" if language == "hi" else "en"
+        gTTS(ivr_text, lang=tts_lang).save(f"static/audio/{audio_filename}")
+        audio_url = f"/static/audio/{audio_filename}"
+    except Exception as e:
+        print("IVR TTS error:", e)
+        audio_url = "/static/audio/mandi_hi.mp3"
+
+    duration_secs = random.randint(30, 180)
+    new_log = {
+        "caller": phone,
+        "path": selected_path,
+        "duration": f"{duration_secs//60}m {duration_secs%60}s",
+        "time": datetime.datetime.now().strftime("%H:%M"),
+        "audio_url": audio_url,
+        "transcript": ivr_text,
+        "language": language,
+        "option": option
+    }
+    ivr_logs.insert(0, new_log)
+    if len(ivr_logs) > 20: ivr_logs.pop()
+
+    return jsonify({
+        "success": True,
+        "audio_url": audio_url,
+        "transcript": ivr_text,
+        "path": selected_path,
+        "duration": f"{duration_secs//60}m {duration_secs%60}s",
+        "caller": phone
+    })
+
+@app.route("/api/ivr/call", methods=["POST"])
+def ivr_interactive_call():
+    req_data = request.get_json() or {}
+    user_input = req_data.get("input", "")
+    language = req_data.get("language", "hi")
+    step = req_data.get("step", "welcome")
+    crop = req_data.get("crop", "wheat")
+
+    lang_note = "Reply in Hindi (Devanagari). Helpline operator style. Max 3 sentences." if language == "hi" else "Reply in English. Helpline operator style. Max 3 sentences."
+
+    try:
+        prompt = f"""You are Kisan Saathi IVR helpline operator for farmers in Madhya Pradesh India.
+Current step: {step}
+Farmer input: {user_input}
+Crop context: {crop}
+{lang_note}
+If user pressed 2 give mandi prices with rupee amounts.
+If user pressed 3 give weather advisory with temperature.
+If user pressed 4 give crop disease advice with pesticide names and dosages.
+If user pressed 5 give PM-KISAN scheme info.
+If user typed a question give specific expert farming advice."""
+
+        model_g = genai.GenerativeModel("gemini-1.5-flash")
+        response = model_g.generate_content(prompt)
+        reply_text = response.text.strip()
+    except Exception as e:
+        print("IVR call error:", e)
+        reply_text = "नमस्ते किसान भाई। कृपया पुनः प्रयास करें।" if language == "hi" else "Please try again shortly."
+
+    ts = int(time.time())
+    audio_filename = f"ivr_interactive_{ts}.mp3"
+    try:
+        tts_lang = "hi" if language == "hi" else "en"
+        gTTS(reply_text, lang=tts_lang).save(f"static/audio/{audio_filename}")
+        audio_url = f"/static/audio/{audio_filename}"
+    except:
+        audio_url = ""
+
+    return jsonify({"success":True,"reply":reply_text,"audio_url":audio_url})
 
 @app.route("/api/chat", methods=["POST"])
 def chat_api():
@@ -224,63 +330,64 @@ def chat_api():
     req_data = request.get_json()
     if not req_data or "message" not in req_data:
         return jsonify({"success":False,"error":"No message"})
-    query=req_data["message"].lower()
-    lang=req_data.get("lang","hi")
+    query = req_data["message"]
+    lang = req_data.get("lang", "hi")
+    history = req_data.get("history", [])
 
-    if "weather" in query or "mosam" in query or "mausam" in query or "barish" in query or "मौसम" in query or "बारिश" in query:
-        hi="इंदौर में आज मौसम सुहाना है। तापमान 32°C के आसपास रहेगा। बारिश की संभावना नहीं है।"
-        en="Indore weather is pleasant today. Temperature around 32°C. No rain expected."
-        hl="Indore mein aaj mausam accha hai. Temperature 32°C ke aaspaas rahega. Barish ki sambhavna nahi hai."
-    elif "mandi" in query or "bhav" in query or "rate" in query or "price" in query or "भाव" in query or "रेट" in query or "कीमत" in query or "gehun" in query or "गेहूं" in query or "soyabean" in query:
-        hi="इंदौर मंडी में सोयाबीन ₹4650/क्विंटल और गेहूं ₹2350/क्विंटल चल रहा है।"
-        en="At Indore Mandi: Soyabean ₹4650/quintal, Wheat ₹2350/quintal."
-        hl="Indore Mandi mein Soyabean ka rate ₹4650/quintal aur Gehun ₹2350/quintal chal raha hai."
-    elif "disease" in query or "bimari" in query or "rog" in query or "jhulsa" in query or "dabbe" in query or "रोग" in query or "झुलसा" in query or "पत्ती" in query:
-        hi="पत्तियों पर काले धब्बे हों तो अर्ली ब्लाइट हो सकता है। Mancozeb 2g/लीटर पानी में मिलाकर छिड़काव करें।"
-        en="Black spots on leaves indicate Early Blight. Spray Mancozeb 2g per litre of water immediately."
-        hl="Patto par kale dabbe ho toh Early Blight ho sakta hai. Mancozeb 2g per litre paani mein milakar spray karo."
-    elif "fertilizer" in query or "khad" in query or "urvarak" in query or "खाद" in query or "उर्वरक" in query:
-        hi="गेहूं के लिए DAP और यूरिया का उपयोग करें। सोयाबीन के लिए रायजोबियम कल्चर लगाएं।"
-        en="For wheat use DAP and Urea. For soyabean apply Rhizobium culture for better nitrogen fixation."
-        hl="Gehun ke liye DAP aur Urea use karo. Soyabean ke liye Rhizobium culture lagao better results ke liye."
-    elif "hello" in query or "hi" in query or "namaste" in query or "नमस्ते" in query or "ram ram" in query or "jai" in query:
-        hi="नमस्ते किसान भाई! मैं किसान साथी AI हूँ। फसल रोग, मंडी भाव या मौसम - किसी भी विषय में मदद करूँगा।"
-        en="Hello farmer friend! I am Kisan Saathi AI. I can help you with crop diseases, market prices, and weather updates."
-        hl="Namaste kisan bhai! Main Kisan Saathi AI hun. Fasal rog, mandi bhav ya mausam - kisi bhi cheez mein help karunga."
-    elif "help" in query or "madad" in query or "मदद" in query:
-        hi="मैं इन विषयों में मदद कर सकता हूँ: 1) फसल रोग 2) मंडी भाव 3) मौसम जानकारी 4) खाद सलाह"
-        en="I can help with: 1) Crop diseases 2) Mandi market prices 3) Weather forecast 4) Fertilizer advice"
-        hl="Main in topics mein help kar sakta hun: 1) Fasal ki bimari 2) Mandi ke rates 3) Mausam ki jankari 4) Khad ki salah"
-    else:
-        hi="मंडी भाव के लिए 'मंडी', मौसम के लिए 'मौसम', फसल रोग के लिए 'रोग' लिखें।"
-        en="Type 'mandi' for market prices, 'weather' for forecast, 'disease' for crop disease help."
-        hl="'Mandi' likho market rates ke liye, 'mausam' likho weather ke liye, 'bimari' likho fasal rog ke liye."
-
-    if lang == "en":
-        reply = en
-    elif lang == "hi":
-        reply = hi
+    if lang == "hi":
+        lang_instruction = "Reply ONLY in Hindi (Devanagari script). Do not use English words except pesticide names."
+    elif lang == "en":
+        lang_instruction = "Reply ONLY in English."
     elif lang == "hl":
-        reply = hl
+        lang_instruction = "Reply in Hinglish (Hindi words in Roman English script mixed with English). Example: 'Aapki fasal mein Early Blight ho sakti hai. Mancozeb spray karo 2g per litre paani mein.'"
     else:
-        reply = en
+        lang_instruction = "Reply in English."
 
-    ts=int(time.time())
-    afile=f"static/audio/chat_reply_{ts}.mp3"
-    tts_lang = "hi" if lang == "hl" else lang
+    system_prompt = f"""You are Kisan Saathi, an expert AI agricultural assistant for farmers in Madhya Pradesh, India.
+You have deep knowledge of all Indian crops, diseases, treatments, mandi prices, weather impact, fertilizers, pest management, soil health, crop rotation and government schemes.
+{lang_instruction}
+Keep answers concise (3-5 sentences), practical and actionable.
+Always give specific pesticide dosages when recommending treatments.
+Be warm and respectful."""
+
+    try:
+        gemini_history = []
+        for msg in history[-6:]:
+            if msg.get("role") == "user":
+                gemini_history.append({"role":"user","parts":[msg["content"]]})
+            elif msg.get("role") == "assistant":
+                gemini_history.append({"role":"model","parts":[msg["content"]]})
+
+        model_gemini = genai.GenerativeModel(model_name="gemini-1.5-flash", system_instruction=system_prompt)
+        chat = model_gemini.start_chat(history=gemini_history)
+        response = chat.send_message(query)
+        reply = response.text.strip()
+    except Exception as e:
+        print("Gemini error:", e)
+        if lang == "hi":
+            reply = "क्षमा करें, अभी AI सेवा उपलब्ध नहीं है।"
+        elif lang == "hl":
+            reply = "Sorry bhai, abhi AI service available nahi hai."
+        else:
+            reply = "Sorry, AI service is temporarily unavailable."
+
+    ts = int(time.time())
+    afile = f"static/audio/chat_reply_{ts}.mp3"
+    tts_lang = "hi" if lang in ["hi","hl"] else "en"
     try:
         gTTS(reply, lang=tts_lang).save(afile)
-        aurl=f"/static/audio/chat_reply_{ts}.mp3"
+        aurl = f"/static/audio/chat_reply_{ts}.mp3"
     except:
-        aurl=""
-    return jsonify({"success":True,"reply_hi":reply,"reply_en":en,"audio_url":aurl})
+        aurl = ""
+
+    return jsonify({"success":True,"reply_hi":reply,"reply_en":reply,"audio_url":aurl})
 
 @app.route("/api/settings", methods=["POST"])
 def save_settings():
-    data=request.get_json()
+    data = request.get_json()
     if data:
-        session["farmer_name"]=data.get("name")
-        session["farmer_city"]=data.get("city")
+        session["farmer_name"] = data.get("name")
+        session["farmer_city"] = data.get("city")
     return jsonify({"success":True})
 
 if __name__ == "__main__":

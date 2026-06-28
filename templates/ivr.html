@@ -1,173 +1,275 @@
-{% extends 'base.html' %}
-
-{% block styles %}
-<style>
-    .ivr-tree-card {
-        padding: 1.5rem;
-        background: var(--cream-bg);
-        border: 2px solid var(--pista-border);
-        border-radius: 16px;
-        margin-bottom: 1.5rem;
-    }
-    /* Simple CSS diagram flow styling */
-    .tree-diagram {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
-        padding: 1rem;
-        overflow-x: auto;
-    }
-    .tree-node {
-        background: var(--cream-bg);
-        border: 2px solid var(--pista-primary);
-        border-radius: 8px;
-        padding: 0.6rem 1rem;
-        text-align: center;
-        min-width: 180px;
-        box-shadow: var(--shadow);
-        font-family: var(--font-body);
-        position: relative;
-    }
-    .tree-node::after {
-        content: '';
-        position: absolute;
-        bottom: -1.5rem;
-        left: 50%;
-        width: 2px;
-        height: 1.5rem;
-        background: var(--pista-primary);
-        z-index: -1;
-    }
-    .tree-node.leaf::after {
-        display: none;
-    }
-    .tree-branches {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        width: 100%;
-        position: relative;
-    }
-    .tree-branch-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .call-logs-container {
-        max-height: 400px;
-        overflow-y: auto;
-    }
-    .call-log-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.85rem 1rem;
-        border-bottom: 1px solid var(--pista-border);
-        transition: var(--transition);
-        border-left: 4px solid transparent;
-        border-radius: 0 8px 8px 0;
-    }
-    .call-log-row:hover {
-        background: var(--pista-light);
-        border-left-color: var(--pista-primary);
-    }
-    .call-log-row:not(:hover) {
-        border-left-color: rgba(147, 197, 114, 0.4);
-    }
-</style>
-{% endblock %}
-
+{% extends "base.html" %}
 {% block content %}
-<div class="bilingual-text" style="margin-bottom: 1.5rem;" data-i18n="ivr_title">
-    <h2 class="hi-text" style="font-size: 2rem;">📞 कॉल सेंटर व आई.वी.आर. डैशबोर्ड | Helpline & IVR Logs</h2>
-    <span class="en-text" style="font-size: 1.05rem;">Helpline performance dashboard, interactive menu diagram, and simulated client calls</span>
-</div>
+<div style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
 
-<!-- Key Performance Indicators -->
-<div class="dashboard-grid" style="margin-bottom: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
-    <div class="glass-card" style="padding: 1.25rem;">
-        <span style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="kpi_total">कुल प्राप्त कॉल / Total Calls</span>
-        <div class="stat-value" id="kpi-total-calls" style="color:var(--primary);">1,420</div>
-        <span style="font-size: 0.75rem; color: var(--accent);"><i class="fas fa-arrow-up"></i> +12% इस सप्ताह</span>
+  <!-- Stats Row -->
+  <div style="display:grid; grid-template-columns: repeat(4,1fr); gap:1rem; margin-bottom:2rem;">
+    <div class="glass-card" style="text-align:center; padding:1.5rem;">
+      <div style="font-size:2.5rem; font-weight:800; color:var(--forest-deep);" id="total-calls">1,420</div>
+      <div style="color:var(--text-muted); font-size:0.85rem;">Total Calls</div>
+      <div style="color:#52B788; font-size:0.8rem;">+12% this week</div>
     </div>
-    <div class="glass-card" style="padding: 1.25rem;">
-        <span style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="kpi_active">सक्रिय कॉलर्स / Active Callers</span>
-        <div class="stat-value" id="kpi-active-calls" style="color:#e63946;">--</div>
-        <span style="font-size: 0.75rem; color: var(--text-muted);">Real-time Twilio triggers</span>
+    <div class="glass-card" style="text-align:center; padding:1.5rem;">
+      <div style="font-size:2.5rem; font-weight:800; color:var(--forest-deep); display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <span class="active-dot"></span>
+        <span id="active-calls">0</span>
+      </div>
+      <div style="color:var(--text-muted); font-size:0.85rem;">Active Callers</div>
     </div>
-    <div class="glass-card" style="padding: 1.25rem;">
-        <span style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="kpi_menu">लोकप्रिय मेनू / Top Selected Option</span>
-        <div class="stat-value" style="font-size: 1.35rem; margin-top: 0.4rem; color:var(--primary-dark);">मंडी भाव (42%)</div>
-        <span style="font-size: 0.75rem; color: var(--text-muted);">Press 2 for Mandi info</span>
+    <div class="glass-card" style="text-align:center; padding:1.5rem;">
+      <div style="font-size:2.5rem; font-weight:800; color:var(--forest-deep);">मंडी</div>
+      <div style="color:var(--text-muted); font-size:0.85rem;">Top Option (42%)</div>
     </div>
-    <div class="glass-card" style="padding: 1.25rem;">
-        <span style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="kpi_lang">सिस्टम भाषा / Primary Language</span>
-        <div class="stat-value" style="font-size: 1.35rem; margin-top: 0.4rem; color:var(--primary-dark);">हिंदी Devanagari (85%)</div>
-        <span style="font-size: 0.75rem; color: var(--text-muted);">Preferred by local farmers</span>
+    <div class="glass-card" style="text-align:center; padding:1.5rem;">
+      <div style="font-size:2.5rem; font-weight:800; color:var(--forest-deep);">हिंदी</div>
+      <div style="color:var(--text-muted); font-size:0.85rem;">Primary Language (85%)</div>
     </div>
-</div>
+  </div>
 
-<div class="dashboard-grid" style="grid-template-columns: 1.2fr 0.8fr; margin-top: 0;">
-    <!-- Live Call Simulation logs -->
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+
+    <!-- LEFT: Interactive Phone Simulator -->
     <div class="glass-card">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
-            <div class="bilingual-text" data-i18n="logs_header">
-                <h3 class="hi-text" style="font-size: 1.3rem;"><i class="fas fa-clipboard-list"></i> लाइव हेल्पलाइन कॉल लॉग</h3>
-                <span class="en-text" style="font-size: 0.85rem;">Recent Twilio & Helpline caller registers</span>
-            </div>
-            <button class="btn btn-secondary" id="btn-simulate-call" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">
-                <i class="fas fa-phone-slash"></i> <span data-i18n="btn_simulate">कॉल सिम्युलेट करें / Simulate</span>
-            </button>
+      <h3 style="color:var(--forest-deep); margin-bottom:1.5rem;">📞 Interactive IVR Simulator</h3>
+      
+      <!-- Phone Mockup -->
+      <div style="background:#0d1f12; border-radius:28px; padding:1.5rem; max-width:300px; margin:0 auto; box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);">
+        
+        <!-- Speaker -->
+        <div style="width:60px; height:6px; background:#1a3a1f; border-radius:3px; margin:0 auto 1rem;"></div>
+        
+        <!-- Screen -->
+        <div id="ivr-screen" style="background:#071a0b; border-radius:16px; padding:1rem; min-height:200px; margin-bottom:1rem; border:1px solid #1a3a1f; position:relative; overflow:hidden;">
+          <div style="color:#FFD166; font-weight:700; font-size:0.8rem; margin-bottom:0.5rem; font-family:monospace;">🌾 KISAN SAATHI HELPLINE</div>
+          <div id="ivr-transcript" style="color:#74C69D; font-size:0.78rem; font-family:monospace; line-height:1.6; max-height:140px; overflow-y:auto;">
+            किसान साथी हेल्पलाइन में आपका स्वागत है।<br>
+            Press 2: मंडी भाव<br>
+            Press 3: मौसम जानकारी<br>
+            Press 4: फसल रोग<br>
+            Press 5: सरकारी योजनाएं
+          </div>
+          <!-- Blinking cursor -->
+          <span style="color:#52B788; animation: blink 1s infinite;">▋</span>
         </div>
 
-        <div class="call-logs-container" id="logs-container">
-            <!-- Simulated Logs here -->
-            <p style="text-align: center; padding: 2rem; color: var(--text-muted);">कॉल लॉग लोड हो रहे हैं... / Loading logs...</p>
+        <!-- Audio Player -->
+        <audio id="ivr-audio" controls style="width:100%; margin-bottom:1rem; border-radius:8px; display:none;"></audio>
+
+        <!-- Settings Row -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-bottom:1rem;">
+          <select id="ivr-language" style="background:#1a3a1f; color:#B7E4C7; border:1px solid #2D6A4F; border-radius:8px; padding:6px; font-size:0.8rem;">
+            <option value="hi">हिंदी</option>
+            <option value="en">English</option>
+          </select>
+          <select id="ivr-crop" style="background:#1a3a1f; color:#B7E4C7; border:1px solid #2D6A4F; border-radius:8px; padding:6px; font-size:0.8rem;">
+            <option value="wheat">Wheat (गेहूं)</option>
+            <option value="soyabean">Soyabean (सोयाबीन)</option>
+            <option value="rice">Rice (धान)</option>
+            <option value="cotton">Cotton (कपास)</option>
+            <option value="maize">Maize (मक्का)</option>
+            <option value="tomato">Tomato (टमाटर)</option>
+            <option value="potato">Potato (आलू)</option>
+            <option value="onion">Onion (प्याज)</option>
+          </select>
         </div>
+
+        <!-- Keypad -->
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:0.4rem; margin-bottom:1rem;">
+          <button onclick="pressKey('1')" class="ivr-key">1</button>
+          <button onclick="pressKey('2')" class="ivr-key" title="Mandi Prices">2<span style="font-size:0.5rem; display:block;">मंडी</span></button>
+          <button onclick="pressKey('3')" class="ivr-key" title="Weather">3<span style="font-size:0.5rem; display:block;">मौसम</span></button>
+          <button onclick="pressKey('4')" class="ivr-key" title="Disease">4<span style="font-size:0.5rem; display:block;">रोग</span></button>
+          <button onclick="pressKey('5')" class="ivr-key" title="Schemes">5<span style="font-size:0.5rem; display:block;">योजना</span></button>
+          <button onclick="pressKey('6')" class="ivr-key">6</button>
+          <button onclick="pressKey('7')" class="ivr-key">7</button>
+          <button onclick="pressKey('8')" class="ivr-key">8</button>
+          <button onclick="pressKey('9')" class="ivr-key">9</button>
+          <button onclick="pressKey('*')" class="ivr-key" style="color:#E9C46A;">*</button>
+          <button onclick="pressKey('0')" class="ivr-key">0</button>
+          <button onclick="pressKey('#')" class="ivr-key" style="color:#E9C46A;">#</button>
+        </div>
+
+        <!-- Call Button -->
+        <button id="call-btn" onclick="startCall()" style="width:100%; background:linear-gradient(135deg,#40916C,#2D6A4F); color:white; border:none; border-radius:14px; padding:12px; font-size:1rem; cursor:pointer; font-weight:600;">
+          📞 Start Call
+        </button>
+        <button id="end-btn" onclick="endCall()" style="width:100%; background:#BC4749; color:white; border:none; border-radius:14px; padding:12px; font-size:1rem; cursor:pointer; font-weight:600; display:none; margin-top:0.5rem;">
+          📵 End Call
+        </button>
+      </div>
+
+      <!-- Text Input for typing questions -->
+      <div id="text-input-area" style="display:none; margin-top:1rem;">
+        <div style="display:flex; gap:0.5rem;">
+          <input type="text" id="ivr-text-input" placeholder="Type your question or crop name..." 
+            style="flex:1; border:1.5px solid var(--border-soft); border-radius:10px; padding:10px; font-size:0.9rem;"
+            onkeypress="if(event.key==='Enter') sendTextInput()">
+          <button onclick="sendTextInput()" style="background:var(--forest-light); color:white; border:none; border-radius:10px; padding:10px 16px; cursor:pointer;">Send</button>
+        </div>
+      </div>
     </div>
 
-    <!-- IVR flow diagram tree -->
+    <!-- RIGHT: Call Logs -->
     <div class="glass-card">
-        <div class="bilingual-text" style="border-bottom: 1px solid var(--border); padding-bottom: 0.75rem; margin-bottom: 1rem;" data-i18n="diagram_header">
-            <h3 class="hi-text" style="font-size: 1.3rem;"><i class="fas fa-sitemap"></i> आई.वी.आर. मेनू आर्किटेक्चर</h3>
-            <span class="en-text" style="font-size: 0.85rem;">Interactive Voice Response menu layout</span>
-        </div>
-
-        <div class="tree-diagram">
-            <div class="tree-node">
-                <strong>हेल्पलाइन कॉल प्रारंभ</strong><br>
-                <span style="font-size:0.75rem; color:var(--text-muted);">Welcome Center</span>
-            </div>
-            <div class="tree-node" style="background: var(--pista-primary); color: white; border-color: var(--pista-dark);">
-                <strong>भाषा चुनें (Select Lang)</strong><br>
-                <span style="font-size:0.75rem;">Press 1 (Hi) / 2 (En)</span>
-            </div>
-            <div class="tree-branches">
-                <div class="tree-branch-container">
-                    <div class="tree-node leaf" style="min-width: 120px; font-size: 0.85rem;">
-                        <strong>दबाएं 2: मंडी भाव</strong><br>
-                        <span style="font-size:0.7rem; color:var(--text-muted);">Press 2: Mandi Info</span>
-                    </div>
-                </div>
-                <div class="tree-branch-container">
-                    <div class="tree-node leaf" style="min-width: 120px; font-size: 0.85rem;">
-                        <strong>दबाएं 3: मौसम जानकारी</strong><br>
-                        <span style="font-size:0.7rem; color:var(--text-muted);">Press 3: Weather</span>
-                    </div>
-                </div>
-                <div class="tree-branch-container">
-                    <div class="tree-node leaf" style="min-width: 120px; font-size: 0.85rem;">
-                        <strong>दबाएं 4: फसल चयन</strong><br>
-                        <span style="font-size:0.7rem; color:var(--text-muted);">Press 4: Crop selection</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <h3 style="color:var(--forest-deep); margin-bottom:1rem;">📋 Live Call Log</h3>
+      <div id="ivr-logs" style="display:flex; flex-direction:column; gap:0.75rem; max-height:600px; overflow-y:auto;">
+        <div style="text-align:center; color:var(--text-muted); padding:2rem;">Loading logs...</div>
+      </div>
     </div>
-</div>
-{% endblock %}
+  </div>
 
-{% block scripts %}
-<script src="{{ url_for('static', filename='js/ivr.js') }}"></script>
+  <!-- IVR Architecture -->
+  <div class="glass-card" style="margin-top:2rem;">
+    <h3 style="color:var(--forest-deep); margin-bottom:1.5rem;">🗺️ IVR Menu Architecture</h3>
+    <div style="display:flex; gap:1rem; align-items:flex-start; overflow-x:auto; padding-bottom:1rem;">
+      <div class="ivr-node" style="background:var(--forest-deep); color:white;">📞 Welcome</div>
+      <div style="color:var(--forest-light); font-size:1.5rem; margin-top:1rem;">→</div>
+      <div style="display:flex; flex-direction:column; gap:0.5rem;">
+        <div class="ivr-node" style="background:var(--foam-white); border:2px solid var(--leaf-fresh); color: var(--forest-deep);">2️⃣ Mandi Prices</div>
+        <div class="ivr-node" style="background:var(--foam-white); border:2px solid var(--leaf-fresh); color: var(--forest-deep);">3️⃣ Weather Info</div>
+        <div class="ivr-node" style="background:var(--foam-white); border:2px solid var(--leaf-fresh); color: var(--forest-deep);">4️⃣ Crop Disease</div>
+        <div class="ivr-node" style="background:var(--foam-white); border:2px solid var(--leaf-fresh); color: var(--forest-deep);">5️⃣ Govt Schemes</div>
+      </div>
+      <div style="color:var(--forest-light); font-size:1.5rem; margin-top:1rem;">→</div>
+      <div class="ivr-node" style="background:var(--gold-warm); color:var(--ink-dark);">🤖 AI Response + Audio</div>
+    </div>
+  </div>
+</div>
+
+<style>
+.ivr-key {
+  background: #1a3a1f;
+  color: #B7E4C7;
+  border: 1px solid #2D6A4F;
+  border-radius: 10px;
+  padding: 10px 5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+.ivr-key:hover { background: #2D6A4F; transform: scale(0.97); }
+.ivr-key:active { transform: scale(0.93); background: #40916C; }
+.ivr-node {
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes pulse-dot { 0%,100%{transform:scale(1); opacity:1} 50%{transform:scale(1.3); opacity:0.7} }
+</style>
+
+<script>
+let callActive = false;
+let callStep = 'welcome';
+
+async function startCall() {
+  callActive = true;
+  callStep = 'welcome';
+  document.getElementById('call-btn').style.display = 'none';
+  document.getElementById('end-btn').style.display = 'block';
+  document.getElementById('text-input-area').style.display = 'block';
+  addToScreen('📞 Call Connected...', '#FFD166');
+  await sendToIVR('welcome', 1);
+}
+
+function endCall() {
+  callActive = false;
+  callStep = 'ended';
+  document.getElementById('call-btn').style.display = 'block';
+  document.getElementById('end-btn').style.display = 'none';
+  document.getElementById('text-input-area').style.display = 'none';
+  addToScreen('📵 Call Ended. Thank you!', '#BC4749');
+}
+
+async function pressKey(key) {
+  if (!callActive) { addToScreen('Please start a call first', '#BC4749'); return; }
+  addToScreen(`Pressed: ${key}`, '#FFD166');
+  const optionMap = {'1':1,'2':2,'3':3,'4':4,'5':5};
+  const option = optionMap[key];
+  if (option) {
+    callStep = `option_${key}`;
+    await sendToIVR(callStep, parseInt(key));
+  }
+}
+
+async function sendTextInput() {
+  const input = document.getElementById('ivr-text-input').value.trim();
+  if (!input) return;
+  document.getElementById('ivr-text-input').value = '';
+  addToScreen(`You: ${input}`, '#E9C46A');
+  
+  const lang = document.getElementById('ivr-language').value;
+  const crop = document.getElementById('ivr-crop').value;
+  
+  const res = await fetch('/api/ivr/call', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({input, language: lang, step: callStep, crop})
+  });
+  const data = await res.json();
+  if (data.success) {
+    addToScreen(`🤖 ${data.reply}`, '#74C69D');
+    if (data.audio_url) playAudio(data.audio_url);
+  }
+}
+
+async function sendToIVR(step, option) {
+  const lang = document.getElementById('ivr-language').value;
+  const crop = document.getElementById('ivr-crop').value;
+  addToScreen('⏳ Connecting...', '#B7E4C7');
+  
+  const res = await fetch('/api/ivr/simulate', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({language: lang, option, crop, phone: `+91 ${Math.floor(70000+Math.random()*29999)} XXX${Math.floor(10+Math.random()*89)}`})
+  });
+  const data = await res.json();
+  if (data.success) {
+    addToScreen(`🤖 ${data.transcript}`, '#74C69D');
+    if (data.audio_url) playAudio(data.audio_url);
+    loadLogs();
+  }
+}
+
+function addToScreen(text, color='#74C69D') {
+  const screen = document.getElementById('ivr-transcript');
+  screen.innerHTML += `<div style="color:${color}; margin-top:4px; font-size:0.75rem;">${text}</div>`;
+  screen.scrollTop = screen.scrollHeight;
+}
+
+function playAudio(url) {
+  const audio = document.getElementById('ivr-audio');
+  audio.src = url;
+  audio.style.display = 'block';
+  audio.play().catch(e => console.log('Audio play error:', e));
+}
+
+async function loadLogs() {
+  const res = await fetch('/api/ivr/stats');
+  const data = await res.json();
+  const container = document.getElementById('ivr-logs');
+  if (data.success && data.logs.length > 0) {
+    container.innerHTML = data.logs.map(log => `
+      <div class="glass-card" style="border-radius:12px; padding:1rem; border-left:4px solid #52B788; box-shadow:0 2px 8px rgba(0,0,0,0.06); margin-bottom:0.75rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+          <span style="font-weight:700; color:var(--forest-deep);">${log.caller}</span>
+          <span style="font-size:0.8rem; color:var(--text-muted);">${log.time} | ${log.duration}</span>
+        </div>
+        <div style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.5rem;">📍 ${log.path}</div>
+        ${log.transcript ? `<div style="font-size:0.8rem; color:var(--text-body); background:var(--foam-white); padding:8px; border-radius:8px; margin-bottom:0.5rem;">"${log.transcript.substring(0,120)}..."</div>` : ''}
+        ${log.audio_url ? `<audio controls src="${log.audio_url}" style="width:100%; height:32px; border-radius:6px;"></audio>` : ''}
+      </div>
+    `).join('');
+    document.getElementById('active-calls').textContent = data.active_calls || 0;
+  }
+}
+
+loadLogs();
+setInterval(loadLogs, 30000);
+</script>
 {% endblock %}
