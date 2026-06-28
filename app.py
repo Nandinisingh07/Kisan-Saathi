@@ -1,4 +1,4 @@
-﻿from dotenv import load_dotenv
+from dotenv import load_dotenv
 load_dotenv()
 import os, time, glob, base64, io, requests, numpy as np, pandas as pd, datetime, json, random
 from flask import Flask, request, jsonify, render_template, send_from_directory, session
@@ -215,70 +215,83 @@ def simulate_ivr():
     req_data = request.get_json() or {}
     phone = req_data.get("phone", f"+91 {random.randint(70000,99999)} XXX{random.randint(10,99)}")
     language = req_data.get("language", "hi")
-    option = req_data.get("option", random.randint(1,5))
+    option = int(req_data.get("option", 1))
     crop = req_data.get("crop", "wheat")
 
+    # Complete responses dictionary
+    responses = {
+        1: {
+            "hi": "नमस्ते! किसान साथी हेल्पलाइन में आपका स्वागत है। कृपया चुनें: मंडी भाव के लिए 2 दबाएं, मौसम जानकारी के लिए 3, फसल रोग सलाह के लिए 4, सरकारी योजनाओं के लिए 5।",
+            "en": "Welcome to Kisan Saathi Helpline! Press 2 for mandi prices, 3 for weather, 4 for crop disease help, 5 for government schemes."
+        },
+        2: {
+            "hi": "आपके क्षेत्र इंदौर में वर्तमान मंडी दरें: गेहूं ₹2350 प्रति क्विंटल, सोयाबीन ₹4650 प्रति क्विंटल, दाल ₹5200 प्रति क्विंटल, मक्का ₹1950 प्रति क्विंटल। यह दरें आज की ताजा जानकारी है।",
+            "en": "Current mandi rates at Indore: Wheat ₹2350/quintal, Soyabean ₹4650/quintal, Lentils ₹5200/quintal, Maize ₹1950/quintal. Today's fresh prices."
+        },
+        3: {
+            "hi": "मध्य प्रदेश के लिए आज का मौसम पूर्वानुमान: तापमान 32 डिग्री सेल्सियस, आर्द्रता 65 प्रतिशत, हल्की हवा चल रही है। अगले 48 घंटों में बारिश की 20 प्रतिशत संभावना है। खेत की सिंचाई आवश्यकतानुसार करें।",
+            "en": "Today's weather for Madhya Pradesh: Temperature 32°C, humidity 65%, light breeze. 20% chance of rain in next 48 hours. Irrigate as needed."
+        },
+        4: {
+            "hi": f"आपकी {crop} फसल में अगेती झुलसा या पत्ती धब्बा रोग हो सकता है। पत्तियों पर भूरे-काले धब्बे दिखें तो तुरंत Mancozeb 2 ग्राम को 1 लीटर पानी में मिलाकर पूरी फसल पर छिड़काव करें। 10 से 15 दिन के अंतराल पर दोबारा छिड़काव अवश्य करें।",
+            "en": f"Your {crop} may have Early Blight or leaf spot disease. If brown spots appear on leaves, immediately spray Mancozeb: 2g per litre of water. Repeat every 10-15 days."
+        },
+        5: {
+            "hi": "प्रधानमंत्री किसान सम्मान निधि योजना: हर साल ₹6000 की आर्थिक सहायता। यह राशि तीन किस्तों में ₹2000 हर चार महीने में मिलती है। सभी किसान परिवार पात्र हैं जिनके पास कृषि योग्य भूमि है। आवेदन के लिए अपने ब्लॉक कार्यालय से संपर्क करें।",
+            "en": "PM-KISAN Scheme: ₹6000 yearly support in 3 installments of ₹2000 every 4 months. All farmer families with cultivable land eligible. Register at your block office."
+        }
+    }
+    
+    # Get complete response
+    resp_data = responses.get(option, responses[1])
+    ivr_text = resp_data.get(language, resp_data.get("en"))
+    
+    # Ensure no truncation
+    if not ivr_text or len(ivr_text) < 20:
+        ivr_text = resp_data.get("hi") if language == "hi" else resp_data.get("en")
+
+    # Map to path
     path_map = {
-        1: f"{'Hindi' if language=='hi' else 'English'} -> Welcome & Help",
-        2: f"{'Hindi' if language=='hi' else 'English'} -> Mandi Prices (Press 2)",
-        3: f"{'Hindi' if language=='hi' else 'English'} -> Weather Advisory (Press 3)",
-        4: f"{'Hindi' if language=='hi' else 'English'} -> Crop Disease Help (Press 4)",
-        5: f"{'Hindi' if language=='hi' else 'English'} -> Government Schemes (Press 5)",
+        1: f"{'हिंदी' if language=='hi' else 'English'} -> स्वागत",
+        2: f"{'हिंदी' if language=='hi' else 'English'} -> मंडी दरें",
+        3: f"{'हिंदी' if language=='hi' else 'English'} -> मौसम सलाह",
+        4: f"{'हिंदी' if language=='hi' else 'English'} -> {crop} रोग सलाह",
+        5: f"{'हिंदी' if language=='hi' else 'English'} -> सरकारी योजना",
     }
     selected_path = path_map.get(option, path_map[1])
 
-    try:
-        if language == "hi":
-            lang_note = "Reply in Hindi (Devanagari script only). Spoken helpline style. Max 3 sentences."
-        else:
-            lang_note = "Reply in English only. Spoken helpline style. Max 3 sentences."
-
-        if option == 2:
-            prompt = f"You are Kisan Saathi helpline operator. Give realistic current mandi prices for {crop} and top 2 other crops in Madhya Pradesh with specific rupee amounts per quintal. {lang_note}"
-        elif option == 3:
-            prompt = f"You are Kisan Saathi helpline operator. Give specific weather advisory for farmers in Madhya Pradesh today including temperature, rain chances and farming activity advice. {lang_note}"
-        elif option == 4:
-            prompt = f"You are Kisan Saathi helpline operator. Give disease prevention and treatment advice for {crop} crop with exact pesticide name and dosage. {lang_note}"
-        elif option == 5:
-            prompt = f"You are Kisan Saathi helpline operator. Explain PM-KISAN scheme - eligibility, benefit amount and how to apply. {lang_note}"
-        else:
-            prompt = f"You are Kisan Saathi helpline operator greeting a farmer. Welcome them and say: press 2 for mandi prices, press 3 for weather, press 4 for crop disease help, press 5 for government schemes. {lang_note}"
-
-        model_g = genai.GenerativeModel("gemini-1.5-flash")
-        response = model_g.generate_content(prompt)
-        ivr_text = response.text.strip()
-    except Exception as e:
-        print("IVR Gemini error:", e)
-        ivr_text = "नमस्ते! किसान साथी हेल्पलाइन में आपका स्वागत है। मंडी भाव के लिए 2, मौसम के लिए 3 दबाएं।" if language == "hi" else "Welcome to Kisan Saathi Helpline. Press 2 for mandi, 3 for weather, 4 for crop help."
-
+    # Generate audio from COMPLETE text
     ts = int(time.time())
     audio_filename = f"ivr_call_{ts}.mp3"
+    audio_url = f"/static/audio/{audio_filename}"
     try:
         tts_lang = "hi" if language == "hi" else "en"
-        gTTS(ivr_text, lang=tts_lang).save(f"static/audio/{audio_filename}")
-        audio_url = f"/static/audio/{audio_filename}"
+        gTTS(ivr_text, lang=tts_lang, slow=False).save(f"static/audio/{audio_filename}")
     except Exception as e:
         print("IVR TTS error:", e)
         audio_url = "/static/audio/mandi_hi.mp3"
 
-    duration_secs = random.randint(30, 180)
+    # Save COMPLETE transcript to logs
+    duration_secs = random.randint(45, 180)
     new_log = {
         "caller": phone,
         "path": selected_path,
         "duration": f"{duration_secs//60}m {duration_secs%60}s",
         "time": datetime.datetime.now().strftime("%H:%M"),
         "audio_url": audio_url,
-        "transcript": ivr_text,
+        "transcript": ivr_text,  # FULL TEXT, NOT TRUNCATED
         "language": language,
         "option": option
     }
     ivr_logs.insert(0, new_log)
-    if len(ivr_logs) > 20: ivr_logs.pop()
+    if len(ivr_logs) > 20:
+        ivr_logs.pop()
 
+    # Return COMPLETE response
     return jsonify({
         "success": True,
         "audio_url": audio_url,
-        "transcript": ivr_text,
+        "transcript": ivr_text,  # COMPLETE TEXT
         "path": selected_path,
         "duration": f"{duration_secs//60}m {duration_secs%60}s",
         "caller": phone
@@ -306,7 +319,7 @@ If user pressed 4 give crop disease advice with pesticide names and dosages.
 If user pressed 5 give PM-KISAN scheme info.
 If user typed a question give specific expert farming advice."""
 
-        model_g = genai.GenerativeModel("gemini-1.5-flash")
+        model_g = genai.GenerativeModel("gemini-2.5-flash")
         response = model_g.generate_content(prompt)
         reply_text = response.text.strip()
     except Exception as e:
@@ -358,7 +371,7 @@ Be warm and respectful."""
             elif msg.get("role") == "assistant":
                 gemini_history.append({"role":"model","parts":[msg["content"]]})
 
-        model_gemini = genai.GenerativeModel(model_name="gemini-1.5-flash", system_instruction=system_prompt)
+        model_gemini = genai.GenerativeModel(model_name="gemini-2.5-flash", system_instruction=system_prompt)
         chat = model_gemini.start_chat(history=gemini_history)
         response = chat.send_message(query)
         reply = response.text.strip()
