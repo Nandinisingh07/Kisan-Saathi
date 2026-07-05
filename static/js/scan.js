@@ -91,8 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => laser.style.animation = 'scanAnim 1s ease-in-out', 50);
 
         const ctx = canvas.getContext('2d');
-        canvas.width = 300;
-        canvas.height = 300;
+        canvas.width = 640;
+        canvas.height = 640;
         // Crop a square from the center of the video
         const minDim = Math.min(video.videoWidth, video.videoHeight);
         const sx = (video.videoWidth - minDim) / 2;
@@ -114,8 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const tempImg = new Image();
             tempImg.onload = function() {
                 const ctx = canvas.getContext('2d');
-                canvas.width = 300;
-                canvas.height = 300;
+                canvas.width = 640;
+                canvas.height = 640;
                 ctx.drawImage(tempImg, 0, 0, canvas.width, canvas.height);
                 const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
                 sendImageToBackend(dataUrl);
