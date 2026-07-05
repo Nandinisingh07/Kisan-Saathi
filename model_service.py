@@ -4,7 +4,6 @@ import logging
 import numpy as np
 from PIL import Image
 import io
-import tensorflow as tf
 from flask import Blueprint, jsonify, request
 
 logger = logging.getLogger("kisan_saathi")
@@ -13,16 +12,23 @@ model_bp = Blueprint("model", __name__)
 
 MODEL_PATH = "crop_disease_model.h5"
 
-# Load TensorFlow/Keras model once globally
-model = None
-try:
-    if os.path.exists(MODEL_PATH):
-        model = tf.keras.models.load_model(MODEL_PATH)
-        logger.info(f"Crop disease model loaded successfully from {MODEL_PATH}.")
-    else:
-        logger.warning(f"Model file not found at {MODEL_PATH}. Leaf diagnosis will run in mock/fallback mode.")
-except Exception as e:
-    logger.error(f"Error loading crop disease model: {e}")
+# Lazy-loaded model global
+_model = None
+
+def get_model():
+    global _model
+    if _model is None:
+        logger.info("Lazy-loading crop disease model...")
+        try:
+            if os.path.exists(MODEL_PATH):
+                import tensorflow as tf
+                _model = tf.keras.models.load_model(MODEL_PATH)
+                logger.info(f"Crop disease model loaded successfully from {MODEL_PATH}.")
+            else:
+                logger.warning(f"Model file not found at {MODEL_PATH}. Leaf diagnosis will run in mock/fallback mode.")
+        except Exception as e:
+            logger.error(f"Error loading crop disease model: {e}")
+    return _model
 
 # Labels matching the model's indices 0-15
 class_labels = [
@@ -319,6 +325,7 @@ def scan_crop():
         # Preprocess to 224x224 RGB as requested by Task 4
         img_224 = img.resize((224, 224))
         
+        model = get_model()
         if model is None:
             return jsonify({
                 "success": False,

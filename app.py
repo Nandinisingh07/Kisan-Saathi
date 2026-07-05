@@ -38,14 +38,7 @@ except Exception as e:
     db = None
     print("Firestore client warning:", e)
 
-print("Loading crop disease model...")
-try:
-    import tensorflow as tf
-    model = tf.keras.models.load_model("crop_disease_model.h5")
-    print("Model loaded!")
-except Exception as e:
-    model = None
-    print("Model load failed (mock mode):", e)
+# Crop disease model loading has been moved to model_service.py (lazy-loaded)
 
 PESTICIDE_CSV = os.path.join(os.path.dirname(__file__), "Pesticides.csv")
 try:
