@@ -30,7 +30,7 @@ def get_model():
             logger.error(f"Error loading crop disease model: {e}")
     return _model
 
-# Labels matching the model's indices 0-15
+# Labels matching the model's indices 0-17 (16 PlantVillage + 2 Soybean classes)
 class_labels = [
     'Pepper__bell___Bacterial_spot',
     'Pepper__bell___healthy',
@@ -47,7 +47,9 @@ class_labels = [
     'Tomato__Target_Spot',
     'Tomato__Tomato_YellowLeaf__Curl_Virus',
     'Tomato__Tomato_mosaic_virus',
-    'Tomato_healthy'
+    'Tomato_healthy',
+    'Soybean_Bacterial_Pustule',   # index 16
+    'Soybean_Healthy',             # index 17
 ]
 
 # Bilingual mappings and expert recommendations
@@ -195,6 +197,22 @@ disease_details = {
         'translations': {
             'en': {'crop': 'Tomato', 'disease': 'Healthy', 'pesticide': 'None'},
             'hi': {'crop': 'टमाटर', 'disease': 'स्वस्थ', 'pesticide': 'None'}
+        }
+    },
+    'Soybean_Bacterial_Pustule': {
+        'pesticides': ['Copper Oxychloride (2g/L)', 'Mancozeb (2g/L)'],
+        'organic': ['Neem oil spray (1%)', 'Trichoderma-based bio-fungicide'],
+        'schedule': 'Spray at first signs of pustule formation, repeat every 10 days.',
+        'translations': {
+            'en': {'crop': 'Soybean', 'disease': 'Bacterial Pustule', 'pesticide': 'Copper Oxychloride (2g/L), Mancozeb (2g/L)'},
+            'hi': {'crop': 'सोयाबीन', 'disease': 'जीवाणु फुंसी', 'pesticide': 'कॉपर ऑक्सीक्लोराइड (2 ग्राम/लीटर) या मैनकोजेब (2 ग्राम/लीटर)'}
+        }
+    },
+    'Soybean_Healthy': {
+        'pesticides': [], 'organic': [], 'schedule': 'No treatment required.',
+        'translations': {
+            'en': {'crop': 'Soybean', 'disease': 'Healthy', 'pesticide': 'None'},
+            'hi': {'crop': 'सोयाबीन', 'disease': 'स्वस्थ', 'pesticide': 'कोई आवश्यकता नहीं'}
         }
     },
 }
