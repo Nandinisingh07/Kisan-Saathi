@@ -181,9 +181,9 @@
                 <span class="en-text">Choose your chat language</span>
             </div>
             <div class="lang-pills" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                <button class="lang-pill active" onclick="document.getElementById('language-selector').value='hi'; document.getElementById('language-selector').dispatchEvent(new Event('change')); document.querySelectorAll('.lang-pill').forEach(el => el.classList.remove('active')); this.classList.add('active');">HI</button>
-                <button class="lang-pill" onclick="document.getElementById('language-selector').value='en'; document.getElementById('language-selector').dispatchEvent(new Event('change')); document.querySelectorAll('.lang-pill').forEach(el => el.classList.remove('active')); this.classList.add('active');">EN</button>
-                <button class="lang-pill" onclick="document.getElementById('language-selector').value='hi'; document.getElementById('language-selector').dispatchEvent(new Event('change')); document.querySelectorAll('.lang-pill').forEach(el => el.classList.remove('active')); this.classList.add('active');">Hinglish</button>
+                <button class="lang-pill" data-lang="hi">HI</button>
+                <button class="lang-pill" data-lang="en">EN</button>
+                <button class="lang-pill" data-lang="hl">Hinglish</button>
             </div>
         </div>
     </div>

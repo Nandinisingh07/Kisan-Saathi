@@ -68,7 +68,7 @@ class_labels = [
 bilingual_classes = {
     'Pepper__bell___Bacterial_spot': {'crop':'Pepper Bell','crop_hi':'शिमला मिर्च','disease':'Bacterial Spot','disease_hi':'जीवाणु धब्बा','pesticide':'Streptocycline (0.1g/L) + Copper Oxychloride (2g/L)'},
     'Pepper__bell___healthy': {'crop':'Pepper Bell','crop_hi':'शिमला मिर्च','disease':'Healthy','disease_hi':'स्वस्थ','pesticide':'None'},
-    'PlantVillage': {'crop':'Unknown','crop_hi':'अज्ञात फसल','disease':'Unknown','disease_hi':'अज्ञात रोग','pesticide':'None'},
+    'PlantVillage': {'crop':'Unknown','crop_hi':'अज्ञात','disease':'Unknown','disease_hi':'अज्ञात','pesticide':'None'},
     'Potato___Early_blight': {'crop':'Potato','crop_hi':'आलू','disease':'Early Blight','disease_hi':'अगेती झुलसा','pesticide':'Mancozeb (2g/L water)'},
     'Potato___Late_blight': {'crop':'Potato','crop_hi':'आलू','disease':'Late Blight','disease_hi':'पछैती झुलसा','pesticide':'Metalaxyl + Mancozeb'},
     'Potato___healthy': {'crop':'Potato','crop_hi':'आलू','disease':'Healthy','disease_hi':'स्वस्थ','pesticide':'None'},
@@ -85,16 +85,16 @@ bilingual_classes = {
 }
 
 weather_translations = {
-    'clear sky':'साफ आकाश','few clouds':'कम बादल','scattered clouds':'बिखरे बादल',
-    'broken clouds':'टूटे बादल','shower rain':'बोछारें','rain':'बारिश',
-    'thunderstorm':'आंधी-तूफान','snow':'बर्फबारी','mist':'कोहरा','haze':'धुंध',
-    'overcast clouds':'घने बादल','light rain':'हल्की बारिश',
-    'moderate rain':'सामान्य बारिश','heavy intensity rain':'भारी वर्षा'
+    'clear sky':'साफ आसमान','few clouds':'आंशिक बादल','scattered clouds':'बिखरे बादल',
+    'broken clouds':'घने बादल','shower rain':'तेज बौछारें','rain':'बारिश',
+    'thunderstorm':'आंधी तूफान','snow':'बर्फबारी','mist':'कोहरा','haze':'धुंध',
+    'overcast clouds':'पूरी तरह से बादलमय','light rain':'हल्की बारिश',
+    'moderate rain':'मध्यम बारिश','heavy intensity rain':'भारी बारिश'
 }
 
 ivr_logs = [
-    {"caller":"+91 99999 XXX99","path":"Hindi -> Mandi (Press 2)","duration":"1m 24s","time":"15:10","audio_url":"/static/audio/mandi_hi.mp3","transcript":"इंदौर मंडी में गेहूं का भाव आज 2350 रुपये प्रति क्विंटल है।"},
-    {"caller":"+91 94250 XXX41","path":"Hindi -> Weather (Press 3)","duration":"0m 45s","time":"14:42","audio_url":"/static/audio/weather_hi.mp3","transcript":"आज मौसम साफ रहेगा, तापमान 32 डिग्री रहेगा।"},
+    {"caller":"+91 99999 XXX99","path":"Hindi -> Mandi (Press 2)","duration":"1m 24s","time":"15:10","audio_url":"/static/audio/mandi_hi.mp3","transcript":"इंदौर मंडी में गेहूं का औसत भाव तेईस सौ पचास रुपये प्रति क्विंटल चल रहा है।"},
+    {"caller":"+91 94250 XXX41","path":"Hindi -> Weather (Press 3)","duration":"0m 45s","time":"14:42","audio_url":"/static/audio/weather_hi.mp3","transcript":"इंदौर क्षेत्र में आज मौसम साफ रहेगा।"},
     {"caller":"+91 88710 XXX12","path":"English -> Crop Help (Press 4)","duration":"2m 10s","time":"12:15","audio_url":"/static/audio/crop_en.mp3","transcript":"For wheat Early Blight, spray Mancozeb 2g per litre water."}
 ]
 
@@ -174,129 +174,6 @@ def get_market_data():
     except Exception as e:
         return jsonify({"success":False,"error":str(e)})
 
-@app.route("/api/scan", methods=["POST"])
-def scan_api():
-    req_data = request.get_json()
-    if not req_data or "image" not in req_data:
-        return jsonify({"success":False,"error":"No image"})
-    mode = req_data.get("mode","disease")
-    b64 = req_data["image"]
-    lang = req_data.get("lang","hi")
-    try:
-        if "," in b64: b64 = b64.split(",")[1]
-        frame = cv2.imdecode(np.frombuffer(base64.b64decode(b64),dtype=np.uint8),cv2.IMREAD_COLOR)
-        if mode=="qrcode":
-            pid,_,_ = cv2.QRCodeDetector().detectAndDecode(frame)
-            if pid and db:
-                doc = db.collection("products").document(pid).get()
-                if doc.exists:
-                    p=doc.to_dict()
-                    return jsonify({"success":True,"product_id":pid,"verified":p.get("verified",False),"manufacturer":p.get("manufacturer","Unknown"),"name":p.get("name","Item")})
-            return jsonify({"success":True,"product_id":pid or "","verified":False,"manufacturer":"Unregistered","name":"Unknown"})
-        if model is None:
-            return jsonify({"success":True,"crop":"Tomato","crop_hi":"टमाटर","disease":"Early Blight","disease_hi":"अगेती झुलसा","pesticide":"Mancozeb (2g/L water)"})
-        img = np.expand_dims(np.array(Image.fromarray(cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)).resize((128,128)))/255.0,axis=0)
-        pred_class = class_labels[np.argmax(model.predict(img)[0])]
-        meta = bilingual_classes.get(pred_class,{'crop':'Unknown','crop_hi':'अज्ञात','disease':'Unknown','disease_hi':'अज्ञात','pesticide':'None'})
-        pesticide = meta['pesticide']
-        if pesticide_df is not None:
-            f=pesticide_df[pesticide_df["Disease"].str.lower()==meta['disease'].lower()]
-            if not f.empty: pesticide=f["Pesticide"].values[0]
-        return jsonify({"success":True,"crop":meta['crop'],"crop_hi":meta['crop_hi'] if lang!="en" else meta['crop'],"disease":meta['disease'],"disease_hi":meta['disease_hi'] if lang!="en" else meta['disease'],"pesticide":pesticide})
-    except Exception as e:
-        return jsonify({"success":False,"error":str(e)})
-
-@app.route("/api/ivr/stats")
-def get_ivr_stats():
-    return jsonify({"success":True,"active_calls":0,"logs":ivr_logs})
-
-@app.route("/api/ivr/simulate", methods=["POST"])
-def simulate_ivr():
-    req_data = request.get_json() or {}
-    phone = req_data.get("phone", f"+91 {random.randint(70000,99999)} XXX{random.randint(10,99)}")
-    language = req_data.get("language", "hi")
-    option = int(req_data.get("option", 1))
-    crop = req_data.get("crop", "wheat")
-
-    # Complete responses dictionary
-    responses = {
-        1: {
-            "hi": "नमस्ते! किसान साथी हेल्पलाइन में आपका स्वागत है। कृपया चुनें: मंडी भाव के लिए 2 दबाएं, मौसम जानकारी के लिए 3, फसल रोग सलाह के लिए 4, सरकारी योजनाओं के लिए 5।",
-            "en": "Welcome to Kisan Saathi Helpline! Press 2 for mandi prices, 3 for weather, 4 for crop disease help, 5 for government schemes."
-        },
-        2: {
-            "hi": "आपके क्षेत्र इंदौर में वर्तमान मंडी दरें: गेहूं ₹2350 प्रति क्विंटल, सोयाबीन ₹4650 प्रति क्विंटल, दाल ₹5200 प्रति क्विंटल, मक्का ₹1950 प्रति क्विंटल। यह दरें आज की ताजा जानकारी है।",
-            "en": "Current mandi rates at Indore: Wheat ₹2350/quintal, Soyabean ₹4650/quintal, Lentils ₹5200/quintal, Maize ₹1950/quintal. Today's fresh prices."
-        },
-        3: {
-            "hi": "मध्य प्रदेश के लिए आज का मौसम पूर्वानुमान: तापमान 32 डिग्री सेल्सियस, आर्द्रता 65 प्रतिशत, हल्की हवा चल रही है। अगले 48 घंटों में बारिश की 20 प्रतिशत संभावना है। खेत की सिंचाई आवश्यकतानुसार करें।",
-            "en": "Today's weather for Madhya Pradesh: Temperature 32°C, humidity 65%, light breeze. 20% chance of rain in next 48 hours. Irrigate as needed."
-        },
-        4: {
-            "hi": f"आपकी {crop} फसल में अगेती झुलसा या पत्ती धब्बा रोग हो सकता है। पत्तियों पर भूरे-काले धब्बे दिखें तो तुरंत Mancozeb 2 ग्राम को 1 लीटर पानी में मिलाकर पूरी फसल पर छिड़काव करें। 10 से 15 दिन के अंतराल पर दोबारा छिड़काव अवश्य करें।",
-            "en": f"Your {crop} may have Early Blight or leaf spot disease. If brown spots appear on leaves, immediately spray Mancozeb: 2g per litre of water. Repeat every 10-15 days."
-        },
-        5: {
-            "hi": "प्रधानमंत्री किसान सम्मान निधि योजना: हर साल ₹6000 की आर्थिक सहायता। यह राशि तीन किस्तों में ₹2000 हर चार महीने में मिलती है। सभी किसान परिवार पात्र हैं जिनके पास कृषि योग्य भूमि है। आवेदन के लिए अपने ब्लॉक कार्यालय से संपर्क करें।",
-            "en": "PM-KISAN Scheme: ₹6000 yearly support in 3 installments of ₹2000 every 4 months. All farmer families with cultivable land eligible. Register at your block office."
-        }
-    }
-    
-    # Get complete response
-    resp_data = responses.get(option, responses[1])
-    ivr_text = resp_data.get(language, resp_data.get("en"))
-    
-    # Ensure no truncation
-    if not ivr_text or len(ivr_text) < 20:
-        ivr_text = resp_data.get("hi") if language == "hi" else resp_data.get("en")
-
-    # Map to path
-    path_map = {
-        1: f"{'हिंदी' if language=='hi' else 'English'} -> स्वागत",
-        2: f"{'हिंदी' if language=='hi' else 'English'} -> मंडी दरें",
-        3: f"{'हिंदी' if language=='hi' else 'English'} -> मौसम सलाह",
-        4: f"{'हिंदी' if language=='hi' else 'English'} -> {crop} रोग सलाह",
-        5: f"{'हिंदी' if language=='hi' else 'English'} -> सरकारी योजना",
-    }
-    selected_path = path_map.get(option, path_map[1])
-
-    # Generate audio from COMPLETE text
-    ts = int(time.time())
-    audio_filename = f"ivr_call_{ts}.mp3"
-    audio_url = f"/static/audio/{audio_filename}"
-    try:
-        tts_lang = "hi" if language == "hi" else "en"
-        gTTS(ivr_text, lang=tts_lang, slow=False).save(f"static/audio/{audio_filename}")
-    except Exception as e:
-        print("IVR TTS error:", e)
-        audio_url = "/static/audio/mandi_hi.mp3"
-
-    # Save COMPLETE transcript to logs
-    duration_secs = random.randint(45, 180)
-    new_log = {
-        "caller": phone,
-        "path": selected_path,
-        "duration": f"{duration_secs//60}m {duration_secs%60}s",
-        "time": datetime.datetime.now().strftime("%H:%M"),
-        "audio_url": audio_url,
-        "transcript": ivr_text,  # FULL TEXT, NOT TRUNCATED
-        "language": language,
-        "option": option
-    }
-    ivr_logs.insert(0, new_log)
-    if len(ivr_logs) > 20:
-        ivr_logs.pop()
-
-    # Return COMPLETE response
-    return jsonify({
-        "success": True,
-        "audio_url": audio_url,
-        "transcript": ivr_text,  # COMPLETE TEXT
-        "path": selected_path,
-        "duration": f"{duration_secs//60}m {duration_secs%60}s",
-        "caller": phone
-    })
-
 @app.route("/api/ivr/call", methods=["POST"])
 def ivr_interactive_call():
     req_data = request.get_json() or {}
@@ -336,64 +213,6 @@ If user typed a question give specific expert farming advice."""
         audio_url = ""
 
     return jsonify({"success":True,"reply":reply_text,"audio_url":audio_url})
-
-@app.route("/api/chat", methods=["POST"])
-def chat_api():
-    clean_old_audio()
-    req_data = request.get_json()
-    if not req_data or "message" not in req_data:
-        return jsonify({"success":False,"error":"No message"})
-    query = req_data["message"]
-    lang = req_data.get("lang", "hi")
-    history = req_data.get("history", [])
-
-    if lang == "hi":
-        lang_instruction = "Reply ONLY in Hindi (Devanagari script). Do not use English words except pesticide names."
-    elif lang == "en":
-        lang_instruction = "Reply ONLY in English."
-    elif lang == "hl":
-        lang_instruction = "Reply in Hinglish (Hindi words in Roman English script mixed with English). Example: 'Aapki fasal mein Early Blight ho sakti hai. Mancozeb spray karo 2g per litre paani mein.'"
-    else:
-        lang_instruction = "Reply in English."
-
-    system_prompt = f"""You are Kisan Saathi, an expert AI agricultural assistant for farmers in Madhya Pradesh, India.
-You have deep knowledge of all Indian crops, diseases, treatments, mandi prices, weather impact, fertilizers, pest management, soil health, crop rotation and government schemes.
-{lang_instruction}
-Keep answers concise (3-5 sentences), practical and actionable.
-Always give specific pesticide dosages when recommending treatments.
-Be warm and respectful."""
-
-    try:
-        gemini_history = []
-        for msg in history[-6:]:
-            if msg.get("role") == "user":
-                gemini_history.append({"role":"user","parts":[msg["content"]]})
-            elif msg.get("role") == "assistant":
-                gemini_history.append({"role":"model","parts":[msg["content"]]})
-
-        model_gemini = genai.GenerativeModel(model_name="gemini-2.5-flash", system_instruction=system_prompt)
-        chat = model_gemini.start_chat(history=gemini_history)
-        response = chat.send_message(query)
-        reply = response.text.strip()
-    except Exception as e:
-        print("Gemini error:", e)
-        if lang == "hi":
-            reply = "क्षमा करें, अभी AI सेवा उपलब्ध नहीं है।"
-        elif lang == "hl":
-            reply = "Sorry bhai, abhi AI service available nahi hai."
-        else:
-            reply = "Sorry, AI service is temporarily unavailable."
-
-    ts = int(time.time())
-    afile = f"static/audio/chat_reply_{ts}.mp3"
-    tts_lang = "hi" if lang in ["hi","hl"] else "en"
-    try:
-        gTTS(reply, lang=tts_lang).save(afile)
-        aurl = f"/static/audio/chat_reply_{ts}.mp3"
-    except:
-        aurl = ""
-
-    return jsonify({"success":True,"reply_hi":reply,"reply_en":reply,"audio_url":aurl})
 
 @app.route("/api/settings", methods=["POST"])
 def save_settings():

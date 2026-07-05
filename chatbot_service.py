@@ -3,28 +3,45 @@ import time
 import uuid
 import glob
 import logging
+import json
 from flask import Blueprint, jsonify, request
 import google.generativeai as genai
 from gtts import gTTS
 from langdetect import detect
+from language_config import LANGUAGES
 
 logger = logging.getLogger("kisan_saathi")
 
 chat_bp = Blueprint("chat", __name__)
 
+# Simple in-memory response cache to prevent API rate limiting on repeated demo runs (TTL = 10 minutes)
+chat_cache = {}
+
 # Configure Google Gemini API key
 api_key = os.getenv("GEMINI_API_KEY", "")
 if api_key:
-    genai.configure(api_key=api_key)
-    logger.info("Gemini AI API configured successfully.")
+    try:
+        genai.configure(api_key=api_key)
+        # Startup check: list available models to verify API key validity
+        available_models = [m.name for m in genai.list_models()]
+        logger.info(f"Gemini AI API configured successfully. Available models: {available_models}")
+    except Exception as e:
+        logger.error(f"Gemini startup validation failed: {e}")
 else:
     logger.warning("GEMINI_API_KEY missing in environment. Chatbot will run in fallback rule-based mode.")
 
 SYSTEM_INSTRUCTION = (
-    "You are Kisan Saathi, an expert Indian agricultural assistant. "
-    "Answer only about farming, crops, soil, weather, pests, government schemes, and market prices. "
-    "Reply in the same language the user writes in (Hindi, English, Marathi, Gujarati, or Bengali). "
-    "Be concise, practical, and use simple language suitable for farmers. Limit answers to 3-4 sentences."
+    "You are Kisan Saathi, an expert Indian agricultural assistant serving farmers in Madhya Pradesh. "
+    "Answer questions about: crop diseases and pest management, soil health and fertilizers, weather-based farming decisions, "
+    "government schemes (PM-Kisan, crop insurance, subsidies), market/mandi prices and selling decisions, irrigation and water management, "
+    "seed selection, and post-harvest storage. "
+    "If a farmer describes symptoms (e.g. 'my wheat leaves are turning yellow'), ask ONE clarifying question if needed "
+    "(e.g. crop stage, recent weather) rather than guessing, then give a specific, actionable answer — not a generic one. "
+    "Reply in the same language the user writes in. Be concise and practical: 3-5 sentences, simple vocabulary suitable for a farmer with basic literacy. "
+    "If the question is outside agriculture, politely redirect to what you can help with. "
+    "Respond ONLY as a valid JSON object matching this structure: "
+    "{\"answer\": \"<response in the user's language>\", \"answer_en\": \"<concise English translation of the same response>\"}. "
+    "Do not include any markdown formatting, backticks, or extra text in your output."
 )
 
 def clean_old_audio_files():
@@ -68,62 +85,82 @@ def chat_response():
     if not lang:
         try:
             detected = detect(query)
-            # Map standard codes to supported ones
-            if detected in ["hi", "mr", "gu", "bn", "en"]:
+            if detected in LANGUAGES:
                 lang = detected
             else:
                 lang = "hi"  # Default
         except Exception:
             lang = "hi"
 
-    # Define language maps for translation fallback
-    lang_names = {
-        "hi": "Hindi",
-        "mr": "Marathi",
-        "gu": "Gujarati",
-        "bn": "Bengali",
-        "en": "English"
-    }
-
     reply_target = ""
     reply_en = ""
     success = False
+    query_key = f"{query.strip().lower()}_{lang}"
+
+    # Check cache (10 mins = 600s TTL)
+    if query_key in chat_cache:
+        cached = chat_cache[query_key]
+        if time.time() - cached["timestamp"] < 600:
+            logger.info(f"Serving cached Gemini response for query: '{query}' in lang: {lang}")
+            # Generate new audio file occasionally if required, or reuse the cached audio URL
+            audio_url = cached["audio_url"]
+            return jsonify({
+                "success": True,
+                "reply": cached["reply_target"],
+                "reply_hi": cached["reply_target"],
+                "reply_en": cached["reply_en"],
+                "audio_url": audio_url
+            })
 
     # 1. Use Gemini API if configured
     if api_key:
-        try:
-            # Build conversation history
-            contents = []
-            for h in history:
-                role = "user" if h.get("sender") == "user" else "model"
-                contents.append({"role": role, "parts": [h.get("text", "")]})
-            contents.append({"role": "user", "parts": [query]})
+        lang_info = LANGUAGES.get(lang, LANGUAGES["hi"])
+        lang_instruction = f"Reply ONLY in {lang_info['name']}, using {lang_info['script']} script. Keep it simple, farmer-friendly, max 3-5 sentences."
+        dynamic_system_instruction = f"{SYSTEM_INSTRUCTION} {lang_instruction}"
+        
+        # Build conversation history
+        contents = []
+        for h in history:
+            role = "user" if h.get("sender") == "user" else "model"
+            contents.append({"role": role, "parts": [h.get("text", "")]})
+        contents.append({"role": "user", "parts": [query]})
 
-            model = genai.GenerativeModel(
-                model_name="gemini-1.5-flash",
-                system_instruction=SYSTEM_INSTRUCTION
-            )
-            
-            logger.info(f"Sending prompt to Gemini: '{query}' in language: {lang_names.get(lang, lang)}")
-            response = model.generate_content(contents)
-            
-            if response.text:
-                reply_target = response.text.strip()
-                success = True
-                
-                # Fetch English translation for comparison panel
-                trans_model = genai.GenerativeModel("gemini-1.5-flash")
-                en_response = trans_model.generate_content(
-                    f"Translate the following agricultural text to English concisely: {reply_target}"
+        retries = 2
+        for attempt in range(retries):
+            try:
+                logger.info(f"Sending prompt to Gemini (attempt {attempt+1}): '{query}' in language: {lang_info['name']}")
+                model = genai.GenerativeModel(
+                    model_name="gemini-2.5-flash",
+                    system_instruction=dynamic_system_instruction
                 )
-                reply_en = en_response.text.strip() if en_response.text else reply_target
+                response = model.generate_content(contents)
                 
-        except Exception as e:
-            logger.error(f"Gemini API generation failed: {e}")
+                if response.text:
+                    text = response.text.strip()
+                    # Strip markdown block if model outputted it
+                    if text.startswith("```json"):
+                        text = text[7:]
+                    if text.endswith("```"):
+                        text = text[:-3]
+                    text = text.strip()
+                    
+                    parsed = json.loads(text)
+                    reply_target = parsed.get("answer", "").strip()
+                    reply_en = parsed.get("answer_en", "").strip()
+                    if reply_target:
+                        success = True
+                        break
+            except Exception as e:
+                err_msg = str(e).lower()
+                is_rate_limit = "429" in err_msg or "quota" in err_msg or "exhausted" in err_msg
+                wait_time = 2.5 if is_rate_limit else 1.0
+                logger.warning(f"Gemini API attempt {attempt+1} failed: {e}. Backing off for {wait_time}s...")
+                if attempt < retries - 1:
+                    time.sleep(wait_time)
 
     # 2. Fallback rule-based system if Gemini key is missing or failed
     if not success:
-        logger.info("Executing local rule-based chatbot fallback...")
+        logger.warning("Executing local rule-based chatbot fallback...")
         query_lower = query.lower()
         if "weather" in query_lower or "मौसम" in query_lower or "बारिश" in query_lower:
             reply_hi = "इंदौर क्षेत्र में आज मौसम सुहाना है। तापमान 32 डिग्री सेल्सियस के आसपास रहेगा, बारिश की कोई संभावना नहीं है।"
@@ -141,7 +178,7 @@ def chat_response():
             reply_hi = "मंडी भाव जानने के लिए 'मंडी', मौसम के लिए 'मौसम' या फसल रोगों के उपचार के लिए 'रोग' लिखकर पूछें।"
             reply_en = "Ask about market prices by saying 'mandi', weather forecast by saying 'weather', or crop leaf infections by saying 'disease'."
 
-        # Translate using googletrans or return defaults
+        # Translate or return defaults
         if lang == "en":
             reply_target = reply_en
         elif lang == "hi":
@@ -154,29 +191,31 @@ def chat_response():
             except Exception:
                 reply_target = reply_hi
         reply_en = reply_en
-        success = True
 
     # 3. Synthesize Speech audio if reply length < 300 chars
     audio_url = None
     if len(reply_target) < 300:
-        try:
-            filename = f"chat_reply_{uuid.uuid4().hex}.mp3"
-            audio_dir = os.path.join("static", "audio")
-            os.makedirs(audio_dir, exist_ok=True)
-            audio_path = os.path.join(audio_dir, filename)
-            
-            # gTTS synthesis
-            tts = gTTS(text=reply_target, lang=lang)
-            tts.save(audio_path)
-            audio_url = f"/static/audio/{filename}"
-            logger.info(f"Synthesized chat audio for language locale '{lang}': {audio_url}")
-        except Exception as e:
-            logger.error(f"Failed to generate TTS audio: {e}")
+        lang_info = LANGUAGES.get(lang, LANGUAGES["hi"])
+        if lang_info.get("gtts_supported", False):
+            try:
+                filename = f"chat_reply_{uuid.uuid4().hex}.mp3"
+                audio_dir = os.path.join("static", "audio")
+                os.makedirs(audio_dir, exist_ok=True)
+                audio_path = os.path.join(audio_dir, filename)
+                
+                tts = gTTS(text=reply_target, lang=lang_info["gtts_code"])
+                tts.save(audio_path)
+                audio_url = f"/static/audio/{filename}"
+                logger.info(f"Synthesized chat audio for language locale '{lang}': {audio_url}")
+            except Exception as e:
+                logger.error(f"Failed to generate TTS audio: {e}")
+        else:
+            logger.warning(f"gTTS does not support language '{lang}'. Skipping TTS audio generation.")
 
     return jsonify({
         "success": True,
-        "reply": reply_target,          # For API task specifications
-        "reply_hi": reply_target,       # For scan.js / chat.js frontend display
-        "reply_en": reply_en,           # For bilingual side-by-side translation
+        "reply": reply_target,
+        "reply_hi": reply_target,
+        "reply_en": reply_en,
         "audio_url": audio_url
     })

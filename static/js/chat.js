@@ -8,6 +8,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let recognition = null;
     let isRecording = false;
+    let chatLanguageOverride = null;
+
+    // Set up override behavior for local lang pills
+    const langPills = document.querySelectorAll('.lang-pill');
+    langPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            const selectedLang = pill.getAttribute('data-lang');
+            if (chatLanguageOverride === selectedLang) {
+                chatLanguageOverride = null;
+                pill.classList.remove('active');
+            } else {
+                langPills.forEach(p => p.classList.remove('active'));
+                chatLanguageOverride = selectedLang;
+                pill.classList.add('active');
+            }
+        });
+    });
+
+    // Listen for global languageChanged custom event
+    document.addEventListener('languageChanged', (e) => {
+        chatLanguageOverride = null;
+        langPills.forEach(p => p.classList.remove('active'));
+        if (recognition) {
+            const langMap = {
+                'hi': 'hi-IN', 'en': 'en-IN', 'mr': 'mr-IN', 'gu': 'gu-IN', 'bn': 'bn-IN',
+                'pa': 'pa-IN', 'ta': 'ta-IN', 'te': 'te-IN', 'kn': 'kn-IN', 'ml': 'ml-IN',
+                'or': 'or-IN', 'ur': 'ur-IN', 'as': 'as-IN'
+            };
+            recognition.lang = langMap[e.detail] || 'hi-IN';
+        }
+    });
 
     // Web Speech Recognition setup
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -54,13 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isRecording) {
             recognition.stop();
         } else {
-            const curLang = localStorage.getItem('kisanLanguage') || 'hi';
+            const curLang = chatLanguageOverride || localStorage.getItem('kisanLanguage') || 'hi';
             const langMap = {
-                'hi': 'hi-IN',
-                'en': 'en-IN',
-                'mr': 'mr-IN',
-                'gu': 'gu-IN',
-                'bn': 'bn-IN'
+                'hi': 'hi-IN', 'en': 'en-IN', 'mr': 'mr-IN', 'gu': 'gu-IN', 'bn': 'bn-IN',
+                'pa': 'pa-IN', 'ta': 'ta-IN', 'te': 'te-IN', 'kn': 'kn-IN', 'ml': 'ml-IN',
+                'or': 'or-IN', 'ur': 'ur-IN', 'as': 'as-IN'
             };
             recognition.lang = langMap[curLang] || 'hi-IN';
             recognition.start();
@@ -108,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         messagesBox.appendChild(loadingBubble);
         scrollChat();
 
-        const curLang = localStorage.getItem('kisanLanguage') || 'hi';
+        const curLang = chatLanguageOverride || localStorage.getItem('kisanLanguage') || 'hi';
         try {
             const response = await fetch('/api/chat', {
                 method: 'POST',

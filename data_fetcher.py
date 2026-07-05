@@ -25,11 +25,11 @@ def fetch_live_mandi_prices():
     
     # Try fetching from open govt API (data.gov.in endpoint with standard resource ID if API key present)
     # Resource ID: 9ef84268-d588-465a-a308-a864a43d0070
-    api_key = os.getenv("DATAGOV_API_KEY", "")
+    api_key = os.getenv("DATAGOV_API_KEY", os.getenv("AGMARKNET_API_KEY", ""))
     if api_key:
         try:
             url = f"https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key={api_key}&format=json&limit=200&filters[state]=Madhya Pradesh"
-            response = requests.get(url, timeout=10)
+            response = requests.get(url, timeout=25)
             if response.status_code == 200:
                 data = response.json()
                 records = data.get("records", [])

@@ -47,109 +47,150 @@ class_labels = [
 # Bilingual mappings and expert recommendations
 disease_details = {
     'Pepper__bell___Bacterial_spot': {
-        'crop': 'Pepper Bell', 'crop_hi': 'शिमला मिर्च',
-        'disease': 'Bacterial Spot', 'disease_hi': 'जीवाणु धब्बा',
         'pesticides': ['Streptocycline (0.1g/L)', 'Copper Oxychloride (2g/L)'],
         'organic': ['Neem oil spray (1%)', 'Baking soda solution (10g/L)'],
-        'schedule': 'Spray weekly in the early morning for 3 consecutive weeks.'
+        'schedule': 'Spray weekly in the early morning for 3 consecutive weeks.',
+        'translations': {
+            'en': {'crop': 'Pepper Bell', 'disease': 'Bacterial Spot', 'pesticide': 'Streptocycline (0.1g/L) + Copper Oxychloride (2g/L)'},
+            'hi': {'crop': 'शिमला मिर्च', 'disease': 'जीवाणु धब्बा', 'pesticide': 'स्ट्रेप्टोसाइक्लिन (0.1 ग्राम/लीटर) + कॉपर ऑक्सीक्लोराइड (2 ग्राम/लीटर)'}
+        }
     },
     'Pepper__bell___healthy': {
-        'crop': 'Pepper Bell', 'crop_hi': 'शिमला मिर्च',
-        'disease': 'Healthy', 'disease_hi': 'स्वस्थ',
-        'pesticides': [], 'organic': [], 'schedule': 'No treatment required.'
+        'pesticides': [], 'organic': [], 'schedule': 'No treatment required.',
+        'translations': {
+            'en': {'crop': 'Pepper Bell', 'disease': 'Healthy', 'pesticide': 'None'},
+            'hi': {'crop': 'शिमला मिर्च', 'disease': 'स्वस्थ', 'pesticide': 'None'}
+        }
     },
     'PlantVillage': {
-        'crop': 'Unknown Crop', 'crop_hi': 'अज्ञात फसल',
-        'disease': 'Unknown Issue', 'disease_hi': 'अज्ञात समस्या',
-        'pesticides': [], 'organic': [], 'schedule': 'Monitor crop health.'
+        'pesticides': [], 'organic': [], 'schedule': 'Monitor crop health.',
+        'translations': {
+            'en': {'crop': 'Unknown Crop', 'disease': 'Unknown Issue', 'pesticide': 'None'},
+            'hi': {'crop': 'अज्ञात फसल', 'disease': 'अद्यात समस्या', 'pesticide': 'None'},
+            'ta': {'crop': 'அறியப்படாத பயிர்', 'disease': 'அறியப்படாத பிரச்சனை', 'pesticide': 'ஏதுமில்லை'},
+            'te': {'crop': 'తెలియని పంట', 'disease': 'తెలియని సమస్య', 'pesticide': 'ఏమీ లేదు'},
+            'ur': {'crop': 'نامعلوم فصل', 'disease': 'نامعلوم مسئلہ', 'pesticide': 'کوئی نہیں'}
+        }
     },
     'Potato___Early_blight': {
-        'crop': 'Potato', 'crop_hi': 'आलू',
-        'disease': 'Early Blight', 'disease_hi': 'अगेती झुलसा',
         'pesticides': ['Mancozeb (2g/L water)', 'Chlorothalonil'],
         'organic': ['Neem seed kernel extract (5%)', 'Copper hydroxide sprays'],
-        'schedule': 'Apply at first sign of symptoms, repeat at 7-10 day intervals.'
+        'schedule': 'Apply at first sign of symptoms, repeat at 7-10 day intervals.',
+        'translations': {
+            'en': {'crop': 'Potato', 'disease': 'Early Blight', 'pesticide': 'Mancozeb (2g/L water), Chlorothalonil'},
+            'hi': {'crop': 'आलू', 'disease': 'अगेती झुलसा', 'pesticide': 'मैनकोजेब (2 ग्राम/लीटर पानी) या क्लोरोथालोनिल'},
+            'ta': {'crop': 'உருளைக்கிழங்கு', 'disease': 'ஆரம்பகால வெப்புநோய்', 'pesticide': 'மேன்கோசெப் அல்லது குளோரோதலோனில்'},
+            'te': {'crop': 'బంగాళాదుంప', 'disease': 'అర్లీ బ్లైట్', 'pesticide': 'మాంకోజెబ్ లేదా క్లోరోథలోనిల్'},
+            'ur': {'crop': 'آلو', 'disease': 'अगेتی झुलसा / Early Blight', 'pesticide': 'مینکوزیب یا کلوروتھالونل'}
+        }
     },
     'Potato___Late_blight': {
-        'crop': 'Potato', 'crop_hi': 'आलू',
-        'disease': 'Late Blight', 'disease_hi': 'पछैती झुलसा',
         'pesticides': ['Metalaxyl + Mancozeb (Ridomil Gold)', 'Cymoxanil'],
         'organic': ['Bordeaux mixture (1%)', 'Trichoderma viride culture (5g/L)'],
-        'schedule': 'Apply immediately under cool, cloudy conditions. Re-apply every 7 days.'
+        'schedule': 'Apply immediately under cool, cloudy conditions. Re-apply every 7 days.',
+        'translations': {
+            'en': {'crop': 'Potato', 'disease': 'Late Blight', 'pesticide': 'Metalaxyl + Mancozeb (Ridomil Gold), Cymoxanil'},
+            'hi': {'crop': 'आलू', 'disease': 'पछैती झुलसा', 'pesticide': 'मेटालेक्सिल + मैनकोजेब या साइमोक्सानिल'}
+        }
     },
     'Potato___healthy': {
-        'crop': 'Potato', 'crop_hi': 'आलू',
-        'disease': 'Healthy', 'disease_hi': 'स्वस्थ',
-        'pesticides': [], 'organic': [], 'schedule': 'No treatment required.'
+        'pesticides': [], 'organic': [], 'schedule': 'No treatment required.',
+        'translations': {
+            'en': {'crop': 'Potato', 'disease': 'Healthy', 'pesticide': 'None'},
+            'hi': {'crop': 'आलू', 'disease': 'स्वस्थ', 'pesticide': 'None'}
+        }
     },
     'Tomato_Bacterial_spot': {
-        'crop': 'Tomato', 'crop_hi': 'टमाटर',
-        'disease': 'Bacterial Spot', 'disease_hi': 'जीवाणु धब्बा',
         'pesticides': ['Copper Oxychloride', 'Streptomycin sulfate'],
         'organic': ['Serenade ASO (Bacillus subtilis)', 'Compost tea sprays'],
-        'schedule': 'Spray every 7-10 days during warm, humid conditions.'
+        'schedule': 'Spray every 7-10 days during warm, humid conditions.',
+        'translations': {
+            'en': {'crop': 'Tomato', 'disease': 'Bacterial Spot', 'pesticide': 'Copper Oxychloride, Streptomycin sulfate'},
+            'hi': {'crop': 'टमाटर', 'disease': 'जीवाणु धब्बा', 'pesticide': 'कॉपर ऑक्सीक्लोराइड या स्ट्रेप्टोमाइसिन सल्फेट'}
+        }
     },
     'Tomato_Early_blight': {
-        'crop': 'Tomato', 'crop_hi': 'टमाटर',
-        'disease': 'Early Blight', 'disease_hi': 'अगेती झुलसा',
         'pesticides': ['Mancozeb', 'Chlorothalonil (Daconil)'],
         'organic': ['Baking soda spray', 'Potassium bicarbonate (5g/L)'],
-        'schedule': 'Spray starting at leaf canopy closure, repeat every 10-14 days.'
+        'schedule': 'Spray starting at leaf canopy closure, repeat every 10-14 days.',
+        'translations': {
+            'en': {'crop': 'Tomato', 'disease': 'Early Blight', 'pesticide': 'Mancozeb, Chlorothalonil (Daconil)'},
+            'hi': {'crop': 'टमाटर', 'disease': 'अगेती झुलसा', 'pesticide': 'मैनकोजेब या क्लोरोथालोनिल'},
+            'ta': {'crop': 'தக்காளி', 'disease': 'ஆரம்பகால வெப்புநோய்', 'pesticide': 'மேன்கோசெப் அல்லது குளோரோதலோனில்'},
+            'te': {'crop': 'టమోటా', 'disease': 'అర్లీ బ్లైట్', 'pesticide': 'మాంకోజెబ్ లేదా క్లోరోథలోనిల్'},
+            'ur': {'crop': 'ٹماٹر', 'disease': 'अगेتی झुलसा / Early Blight', 'pesticide': 'مینکوزیب یا کلوروتھالونل'}
+        }
     },
     'Tomato_Late_blight': {
-        'crop': 'Tomato', 'crop_hi': 'टमाटर',
-        'disease': 'Late Blight', 'disease_hi': 'पछैती झुलसा',
         'pesticides': ['Metalaxyl + Mancozeb', 'Famoxadone'],
         'organic': ['Copper fungicides', 'Garlic extract spray'],
-        'schedule': 'Apply immediately upon detection. Prune infected lower branches.'
+        'schedule': 'Apply immediately upon detection. Prune infected lower branches.',
+        'translations': {
+            'en': {'crop': 'Tomato', 'disease': 'Late Blight', 'pesticide': 'Metalaxyl + Mancozeb, Famoxadone'},
+            'hi': {'crop': 'टमाटर', 'disease': 'पछैती झुलसा', 'pesticide': 'मेटालेक्सिल + मैनकोजेब या फेमोक्साडोन'}
+        }
     },
     'Tomato_Leaf_Mold': {
-        'crop': 'Tomato', 'crop_hi': 'टमाटर',
-        'disease': 'Leaf Mold', 'disease_hi': 'पत्ती मोल्ड',
         'pesticides': ['Carbendazim', 'Chlorothalonil'],
         'organic': ['Improve greenhouse ventilation', 'Neem oil sprays'],
-        'schedule': 'Spray lower and upper leaf surfaces thoroughly every 7 days.'
+        'schedule': 'Spray lower and upper leaf surfaces thoroughly every 7 days.',
+        'translations': {
+            'en': {'crop': 'Tomato', 'disease': 'Leaf Mold', 'pesticide': 'Carbendazim, Chlorothalonil'},
+            'hi': {'crop': 'टमाटर', 'disease': 'पत्ती मोल्ड', 'pesticide': 'कार्बेन्डाजिम या क्लोरोथालोनिल'}
+        }
     },
     'Tomato_Septoria_leaf_spot': {
-        'crop': 'Tomato', 'crop_hi': 'टमाटर',
-        'disease': 'Septoria Leaf Spot', 'disease_hi': 'सेप्टोरिया पत्ती धब्बा',
         'pesticides': ['Mancozeb', 'Propiconazole'],
         'organic': ['Mulching soil to prevent spore splash', 'Copper soaps'],
-        'schedule': 'Apply fungicide at first spot detection, repeat every 7-10 days.'
+        'schedule': 'Apply fungicide at first spot detection, repeat every 7-10 days.',
+        'translations': {
+            'en': {'crop': 'Tomato', 'disease': 'Septoria Leaf Spot', 'pesticide': 'Mancozeb, Propiconazole'},
+            'hi': {'crop': 'टमाटर', 'disease': 'सेप्टोरिया पत्ती धब्बा', 'pesticide': 'मैनकोजेब या प्रोपिकोनाज़ोल'}
+        }
     },
     'Tomato_Spider_mites_Two_spotted_spider_mite': {
-        'crop': 'Tomato', 'crop_hi': 'टमाटर',
-        'disease': 'Spider Mites', 'disease_hi': 'मकड़ी घुन',
         'pesticides': ['Abamectin', 'Dicofol'],
         'organic': ['Spynosaad', 'Insecticidal soap wash', 'Neem oil (1.5%)'],
-        'schedule': 'Apply miticides/soap wash focusing on underside of leaves.'
+        'schedule': 'Apply miticides/soap wash focusing on underside of leaves.',
+        'translations': {
+            'en': {'crop': 'Tomato', 'disease': 'Spider Mites', 'pesticide': 'Abamectin, Dicofol'},
+            'hi': {'crop': 'टमाटर', 'disease': 'मकड़ी घुन', 'pesticide': 'एबामेक्टिन या डिकोफोल'}
+        }
     },
     'Tomato__Target_Spot': {
-        'crop': 'Tomato', 'crop_hi': 'टमाटर',
-        'disease': 'Target Spot', 'disease_hi': 'लक्षित धब्बा',
         'pesticides': ['Chlorothalonil', 'Mancozeb'],
         'organic': ['Prune lower leaves', 'Bacillus subtilis bio-fungicide'],
-        'schedule': 'Apply fungicides at 10-day intervals during wet weather.'
+        'schedule': 'Apply fungicides at 10-day intervals during wet weather.',
+        'translations': {
+            'en': {'crop': 'Tomato', 'disease': 'Target Spot', 'pesticide': 'Chlorothalonil, Mancozeb'},
+            'hi': {'crop': 'टमाटर', 'disease': 'लक्षित धब्बा', 'pesticide': 'क्लोरोथालोनिल या मैनकोजेब'}
+        }
     },
     'Tomato__Tomato_YellowLeaf__Curl_Virus': {
-        'crop': 'Tomato', 'crop_hi': 'टमाटर',
-        'disease': 'Yellow Leaf Curl Virus', 'disease_hi': 'पीला पत्ती मरोड़ वायरस',
         'pesticides': ['Imidacloprid (for whiteflies)', 'Acetamiprid'],
         'organic': ['Yellow sticky cards', 'Neem oil to deter whiteflies'],
-        'schedule': 'Control whitefly vector populations early in the morning.'
+        'schedule': 'Control whitefly vector populations early in the morning.',
+        'translations': {
+            'en': {'crop': 'Tomato', 'disease': 'Yellow Leaf Curl Virus', 'pesticide': 'Imidacloprid (for whiteflies), Acetamiprid'},
+            'hi': {'crop': 'टमाटर', 'disease': 'पीला पत्ती मरोड़ वायरस', 'pesticide': 'इमिडाक्लोप्रिड या एसिटामिप्रिड'}
+        }
     },
     'Tomato__Tomato_mosaic_virus': {
-        'crop': 'Tomato', 'crop_hi': 'टमाटर',
-        'disease': 'Mosaic Virus', 'disease_hi': 'मोज़ेक वायरस',
         'pesticides': ['Dimethoate (for aphid vector)'],
         'organic': ['Remove infected plants immediately', 'Sanitize tools in milk'],
-        'schedule': 'Practice vector control and plant resistant varieties.'
+        'schedule': 'Practice vector control and plant resistant varieties.',
+        'translations': {
+            'en': {'crop': 'Tomato', 'disease': 'Mosaic Virus', 'pesticide': 'Dimethoate (for aphid vector)'},
+            'hi': {'crop': 'टमाटर', 'disease': 'मोज़ेक वायरस', 'pesticide': 'डाइमेथोएट'}
+        }
     },
     'Tomato_healthy': {
-        'crop': 'Tomato', 'crop_hi': 'टमाटर',
-        'disease': 'Healthy', 'disease_hi': 'स्वस्थ',
-        'pesticides': [], 'organic': [], 'schedule': 'No treatment required.'
-    }
+        'pesticides': [], 'organic': [], 'schedule': 'No treatment required.',
+        'translations': {
+            'en': {'crop': 'Tomato', 'disease': 'Healthy', 'pesticide': 'None'},
+            'hi': {'crop': 'टमाटर', 'disease': 'स्वस्थ', 'pesticide': 'None'}
+        }
+    },
 }
 
 def get_severity(confidence):
@@ -159,6 +200,42 @@ def get_severity(confidence):
         return "Medium"
     else:
         return "High"
+
+def get_translation(best_meta, lang):
+    if 'translations' not in best_meta:
+        return {
+            'crop': best_meta.get('crop', 'Unknown'),
+            'disease': best_meta.get('disease', 'Unknown'),
+            'pesticide': ", ".join(best_meta.get('pesticides', [])) if best_meta.get('pesticides') else "None"
+        }
+    if lang in best_meta['translations']:
+        return best_meta['translations'][lang]
+        
+    # Translate using Gemini once and cache
+    import google.generativeai as genai
+    from language_config import LANGUAGES
+    lang_info = LANGUAGES.get(lang, LANGUAGES["hi"])
+    lang_name = lang_info["name"]
+    
+    translations = {}
+    for key, english_text in best_meta['translations']['en'].items():
+        if not english_text or english_text.lower() in ["none", "unknown", "healthy", "need not / none", "आवश्यकता नहीं / none"]:
+            translations[key] = english_text
+            continue
+        try:
+            model_g = genai.GenerativeModel("gemini-2.5-flash")
+            prompt = f"Translate the agricultural term '{english_text}' into {lang_name}. Return ONLY the direct translation, nothing else."
+            response = model_g.generate_content(prompt)
+            if response and response.text:
+                translations[key] = response.text.strip()
+            else:
+                translations[key] = english_text
+        except Exception as e:
+            logger.error(f"Gemini translation error for '{english_text}' to {lang_name}: {e}")
+            translations[key] = english_text
+            
+    best_meta['translations'][lang] = translations
+    return translations
 
 @model_bp.route("/api/scan", methods=["POST"])
 def scan_crop():
@@ -243,26 +320,11 @@ def scan_crop():
         img_224 = img.resize((224, 224))
         
         if model is None:
-            # Fallback mock mode
-            mock_class = 'Tomato_Early_blight'
-            meta = disease_details[mock_class]
             return jsonify({
-                "success": True,
-                "crop": meta['crop'],
-                "crop_hi": meta['crop_hi'],
-                "disease": meta['disease'],
-                "disease_hi": meta['disease_hi'],
-                "pesticide": ", ".join(meta['pesticides']) if meta['pesticides'] else "None",
-                "severity": "Medium",
-                "recommended_pesticides": meta['pesticides'],
-                "organic_alternatives": meta['organic'],
-                "application_schedule": meta['schedule'],
-                "predictions": [
-                    {"disease_name": meta['disease'], "confidence": 0.85, "severity": "High"},
-                    {"disease_name": "Late Blight", "confidence": 0.10, "severity": "Low"},
-                    {"disease_name": "Healthy", "confidence": 0.05, "severity": "Low"}
-                ]
-            })
+                "success": False,
+                "error": "The TensorFlow crop disease classification model is currently unavailable on the backend. Verification could not be run.",
+                "verified": False
+            }), 503
             
         # Model expects 128x128 input shape. Resize from 224x224 to 128x128
         img_128 = img_224.resize((128, 128))
@@ -280,8 +342,10 @@ def scan_crop():
             meta = disease_details.get(label, {
                 'disease': label, 'crop': 'Unknown'
             })
+            crop_name = meta['translations']['en']['crop'] if 'translations' in meta else meta.get('crop', 'Unknown')
+            disease_name = meta['translations']['en']['disease'] if 'translations' in meta else meta.get('disease', 'Unknown')
             top_predictions.append({
-                "disease_name": f"{meta['crop']} - {meta['disease']}",
+                "disease_name": f"{crop_name} - {disease_name}",
                 "confidence": round(conf, 4),
                 "severity": get_severity(conf)
             })
@@ -291,16 +355,15 @@ def scan_crop():
         best_meta = disease_details[best_label]
         best_conf = float(predictions[top_indices[0]])
         
-        # Translate pesticide recommendation list for scan.js compatibility
-        pesticide_str = ", ".join(best_meta['pesticides']) if best_meta['pesticides'] else "आवश्यकता नहीं / None"
+        trans = get_translation(best_meta, lang)
         
         return jsonify({
             "success": True,
-            "crop": best_meta['crop'],
-            "crop_hi": best_meta['crop_hi'],
-            "disease": best_meta['disease'],
-            "disease_hi": best_meta['disease_hi'],
-            "pesticide": pesticide_str,
+            "crop": best_meta['translations']['en']['crop'],
+            "crop_hi": trans['crop'],
+            "disease": best_meta['translations']['en']['disease'],
+            "disease_hi": trans['disease'],
+            "pesticide": trans['pesticide'],
             "severity": get_severity(best_conf),
             "recommended_pesticides": best_meta['pesticides'],
             "organic_alternatives": best_meta['organic'],
@@ -311,3 +374,4 @@ def scan_crop():
     except Exception as e:
         logger.error(f"Error during leaf scan inference: {e}")
         return jsonify({"success": False, "error": str(e), "verified": False})
+

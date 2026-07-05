@@ -164,12 +164,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         verified: data.verified,
                         mfg: data.manufacturer,
                         name: data.name,
+                        reg_no: data.registration_no,
                         timestamp: new Date().toLocaleTimeString()
                     });
                     if (data.verified) {
-                        Toast.success("सत्यापन सफल: उत्पाद असली है", "Verification Successful: Genuine Product");
+                        Toast.success(
+                            `पंजीकृत उत्पाद: ${data.registration_no || ''}`,
+                            `Registered Product — ${data.registration_no || ''}`
+                        );
                     } else {
-                        Toast.error("चेतावनी: उत्पाद नकली या अपंजीकृत हो सकता है", "Warning: Counterfeit/Unregistered Product");
+                        Toast.info(
+                            "असत्यापित — पंजीकृत सूची में नहीं मिला",
+                            "Could not verify — not found in registered product list"
+                        );
                     }
                 }
             } else {
@@ -199,17 +206,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function displayQRResult(data) {
         const badge = document.getElementById('qr-status-badge');
-        document.getElementById('res-qr-id').textContent = data.product_id || 'अज्ञात / Unknown';
-        document.getElementById('res-qr-mfg').textContent = data.manufacturer || 'अज्ञात / Unknown';
-        
+
+        // Fill name, manufacturer, registration number
+        const nameEl = document.getElementById('res-qr-name');
+        const mfgEl  = document.getElementById('res-qr-mfg');
+        const regEl  = document.getElementById('res-qr-reg');
+        const catEl  = document.getElementById('res-qr-category');
+        const extraRow = document.getElementById('res-qr-extra-row');
+        const warningsEl = document.getElementById('res-qr-warnings');
+        const scopeEl = document.getElementById('qr-scope-note');
+
+        if (nameEl) nameEl.textContent = data.name || 'अज्ञात / Unknown';
+        if (mfgEl)  mfgEl.textContent  = data.manufacturer || '—';
+        if (regEl)  regEl.textContent  = data.registration_no || '—';
+
+        // Update scope note from backend if provided
+        if (scopeEl && data.scope_note) {
+            scopeEl.textContent = data.scope_note;
+        }
+
+        // Show category + active ingredient only when found
+        if (data.verified && data.category && extraRow && catEl) {
+            catEl.textContent = `${data.category} — ${data.active_ingredient || ''}`;
+            extraRow.style.display = 'block';
+        } else if (extraRow) {
+            extraRow.style.display = 'none';
+        }
+
+        // Warnings box
+        if (warningsEl) {
+            if (data.warnings && data.warnings.length > 0) {
+                warningsEl.style.display = 'block';
+                warningsEl.innerHTML = data.warnings.map(w =>
+                    `<div style="padding:0.75rem; background:rgba(230,57,70,0.08); border-left:3px solid #e63946; border-radius:6px; font-size:0.82rem; line-height:1.5; margin-bottom:0.4rem;">${w}</div>`
+                ).join('');
+            } else {
+                warningsEl.style.display = 'none';
+                warningsEl.innerHTML = '';
+            }
+        }
+
+        // Status badge — honest wording
         if (data.verified) {
-            badge.textContent = "असली उत्पाद / Genuine Product";
-            badge.style.background = "rgba(82, 183, 136, 0.2)";
-            badge.style.color = "var(--primary)";
+            // Use status fields from backend if available
+            const label = data.status_hi || 'पंजीकृत उत्पाद / Registered Product';
+            badge.textContent = label;
+            badge.style.background = 'rgba(82, 183, 136, 0.2)';
+            badge.style.color = 'var(--primary)';
+            badge.style.border = '1.5px solid var(--primary)';
         } else {
-            badge.textContent = "नकली या अपंजीकृत / Counterfeit or Fake";
-            badge.style.background = "rgba(230, 57, 70, 0.2)";
-            badge.style.color = "#e63946";
+            const label = data.status_hi || 'असत्यापित — पंजीकृत सूची में नहीं मिला';
+            badge.textContent = label;
+            badge.style.background = 'rgba(230, 57, 70, 0.08)';
+            badge.style.color = '#c05050';
+            badge.style.border = '1.5px solid #c05050';
         }
     }
 
@@ -243,8 +293,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 titleHi = `${item.crop_hi} - ${item.disease_hi}`;
                 subtitleHi = `कीटनाशक: ${item.pesticide}`;
             } else {
-                titleHi = item.verified ? `असली: ${item.name || 'Agri Product'}` : `संदेहास्पद: नकली उत्पाद`;
-                subtitleHi = `Mfg: ${item.mfg || 'N/A'}`;
+                titleHi = item.verified
+                    ? `पंजीकृत: ${item.name || 'Agri Product'}`
+                    : `असत्यापित: ${item.name || 'Unknown Product'}`;
+                subtitleHi = item.reg_no ? `Reg: ${item.reg_no}` : `Mfg: ${item.mfg || 'N/A'}`;
             }
 
             el.innerHTML = `
@@ -275,7 +327,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         product_id: item.qr_id,
                         verified: item.verified,
                         manufacturer: item.mfg,
-                        name: item.name
+                        name: item.name,
+                        registration_no: item.reg_no || '—',
+                        warnings: []
                     });
                 }
                 Toast.info("इतिहास परिणाम पुनर्प्राप्त किया गया", "History scan details restored");

@@ -325,18 +325,27 @@ async function loadLogs() {
     const data = await res.json();
     const container = document.getElementById('ivr-logs');
     
-    if (data.success && data.logs && data.logs.length > 0) {
-      container.innerHTML = data.logs.slice(0, 10).map(log => `
-        <div class="glass-card" style="border-radius:12px; padding:1rem; border-left:4px solid #52B788; box-shadow:0 2px 8px rgba(0,0,0,0.06); margin-bottom:0.75rem;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-            <span style="font-weight:700; color:var(--forest-deep);">${log.caller || 'Unknown'}</span>
-            <span style="font-size:0.8rem; color:var(--text-muted);">${log.time || '--:--'} | ${log.duration || '--'}</span>
+    if (data.success) {
+      if (document.getElementById('active-calls')) {
+        document.getElementById('active-calls').textContent = data.active_calls || 0;
+      }
+      if (document.getElementById('total-calls') && data.total_calls) {
+        document.getElementById('total-calls').textContent = data.total_calls;
+      }
+      
+      if (data.logs && data.logs.length > 0) {
+        container.innerHTML = data.logs.slice(0, 10).map(log => `
+          <div class="glass-card" style="border-radius:12px; padding:1rem; border-left:4px solid #52B788; box-shadow:0 2px 8px rgba(0,0,0,0.06); margin-bottom:0.75rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+              <span style="font-weight:700; color:var(--forest-deep);">${log.caller || 'Unknown'}</span>
+              <span style="font-size:0.8rem; color:var(--text-muted);">${log.time || '--:--'} | ${log.duration || '--'}</span>
+            </div>
+            <div style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.5rem;">📍 ${log.path || 'N/A'}</div>
+            ${log.transcript ? `<div style="font-size:0.78rem; color:var(--text-body); background:var(--foam-white); padding:8px; border-radius:8px; margin-bottom:0.5rem; max-height:60px; overflow-y:auto;">"${log.transcript.substring(0,150)}${log.transcript.length > 150 ? '...' : ''}"</div>` : ''}
+            ${log.audio_url ? `<audio controls src="${log.audio_url}" style="width:100%; height:28px; border-radius:6px; font-size:0.7rem;"></audio>` : ''}
           </div>
-          <div style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.5rem;">📍 ${log.path || 'N/A'}</div>
-          ${log.transcript ? `<div style="font-size:0.78rem; color:var(--text-body); background:var(--foam-white); padding:8px; border-radius:8px; margin-bottom:0.5rem; max-height:60px; overflow-y:auto;">"${log.transcript.substring(0,150)}${log.transcript.length > 150 ? '...' : ''}"</div>` : ''}
-          ${log.audio_url ? `<audio controls src="${log.audio_url}" style="width:100%; height:28px; border-radius:6px; font-size:0.7rem;"></audio>` : ''}
-        </div>
-      `).join('');
+        `).join('');
+      }
     }
   } catch (error) {
     console.error('Load logs error:', error);

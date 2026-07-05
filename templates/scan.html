@@ -234,18 +234,31 @@
 
             <!-- QR Code Result Output -->
             <div id="result-qrcode-view" style="display: none;">
-                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <!-- Scope note banner (always visible) -->
+                <div id="qr-scope-note" style="padding: 0.65rem 0.85rem; margin-bottom: 0.75rem; border-radius: 8px; background: rgba(100,120,180,0.1); border-left: 4px solid #6475b3; font-size: 0.78rem; color: var(--text-muted); line-height: 1.5;">
+                    Checked against a reference list of registered pesticide products compiled from public regulatory sources (PPQS publications, ICAR crop protection guides). Product names and companies are verified; registration numbers in this demo list are illustrative. For authoritative lookup, use the PPQS CROP portal (cropuser.cgg.gov.in).
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
                     <div id="qr-status-badge" style="padding: 1rem; border-radius: 8px; text-align: center; font-size: 1.3rem; font-weight: bold;">
                         सत्यापन प्रतीक्षारत / Awaiting QR
                     </div>
-                    <div style="padding: 1rem; background: var(--bg); border-radius: 8px;">
-                        <span style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="res_qr_id_label">उत्पाद आईडी / Product ID</span>
-                        <div class="hi-text" id="res-qr-id" style="font-size: 1.2rem;">--</div>
+                    <div style="padding: 0.85rem; background: var(--bg); border-radius: 8px;">
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">उत्पाद का नाम / Product Name</span>
+                        <div id="res-qr-name" style="font-size: 1.1rem; font-weight: 600; margin-top: 0.2rem;">--</div>
                     </div>
-                    <div style="padding: 1rem; background: var(--bg); border-radius: 8px;">
-                        <span style="font-size: 0.85rem; color: var(--text-muted);" data-i18n="res_qr_mfg_label">उत्पादक का नाम / Manufacturer</span>
-                        <div class="hi-text" id="res-qr-mfg" style="font-size: 1.2rem;">--</div>
+                    <div style="padding: 0.85rem; background: var(--bg); border-radius: 8px;">
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">उत्पादक / Manufacturer</span>
+                        <div id="res-qr-mfg" style="font-size: 1rem; margin-top: 0.2rem;">--</div>
                     </div>
+                    <div style="padding: 0.85rem; background: var(--bg); border-radius: 8px;">
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">पंजीकरण संख्या / CIB&RC Reg. No.</span>
+                        <div id="res-qr-reg" style="font-size: 1rem; font-family: monospace; margin-top: 0.2rem;">--</div>
+                    </div>
+                    <div id="res-qr-extra-row" style="display:none; padding: 0.85rem; background: var(--bg); border-radius: 8px;">
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">श्रेणी / Category &amp; Active Ingredient</span>
+                        <div id="res-qr-category" style="font-size: 0.95rem; margin-top: 0.2rem;">--</div>
+                    </div>
+                    <div id="res-qr-warnings" style="display:none;"></div>
                 </div>
             </div>
         </div>

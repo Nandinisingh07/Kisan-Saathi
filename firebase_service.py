@@ -1,6 +1,5 @@
 import os
 import logging
-import datetime
 import firebase_admin
 from firebase_admin import credentials, firestore
 from flask import Blueprint, jsonify, request
@@ -9,7 +8,7 @@ logger = logging.getLogger("kisan_saathi")
 
 firebase_bp = Blueprint("firebase", __name__)
 
-# Initialize Firebase SDK
+# Initialize Firebase SDK (optional)
 db = None
 try:
     if not firebase_admin._apps:
@@ -18,93 +17,113 @@ try:
     db = firestore.client()
     logger.info("Firebase SDK initialized successfully.")
 except Exception as e:
-    logger.warning(f"Failed to initialize Firebase Admin SDK (Local mock fallback will be used): {e}")
+    logger.warning("Firebase Admin SDK not available (CIBRC local DB fallback active): %s", e)
+
 
 @firebase_bp.route("/api/verify-qr", methods=["POST"])
 def verify_qr():
+    """
+    Product verification endpoint.
+
+    Accepts JSON: {"qr_data": "<qr payload string>"}
+
+    QR payload format: "product=<name>|company=<company>|reg=<CIB reg no>"
+
+    Checks the scanned product+company+registration number combination against
+    a reference list of CIBRC-registered pesticides sourced from publicly
+    available PPQS publications and CIB&RC registration circulars.
+
+    SCOPE: This does NOT detect counterfeit individual units. It only checks
+    whether a product name + company + registration number combination is known
+    to be a legitimately registered product. Absence from this list does NOT
+    prove counterfeiting -- it means the combination could not be verified
+    against our partial reference set.
+    """
+    from cibrc_registered_db import parse_qr_payload, lookup_product, ENTRY_COUNT
+
     req_data = request.get_json()
     if not req_data or "qr_data" not in req_data:
-        return jsonify({"success": False, "error": "No QR data provided", "verified": False})
-        
-    product_id = req_data["qr_data"].strip()
-    warnings = []
-    
-    # 1. Fallback to local mock db if Firebase SDK could not initialize
-    if db is None:
-        logger.warning("Firebase DB not initialized. Simulating verification.")
-        # Local verification simulation
-        if product_id in ["1234567890123", "9876543210986"]:
-            return jsonify({
-                "success": True,
-                "verified": True,
-                "product_id": product_id,
-                "name": "Super Urea Premium 50KG",
-                "manufacturer": "Kisan Fertilizers Ltd",
-                "batch": "B-2026-X9",
-                "expiry": "2028-12-31",
-                "warnings": []
-            })
-        else:
-            return jsonify({
-                "success": True,
-                "verified": False,
-                "product_id": product_id,
-                "name": "Unknown Fake Product",
-                "manufacturer": "Unregistered Manufacturer",
-                "batch": "N/A",
-                "expiry": "N/A",
-                "warnings": ["Warning: This product is not registered in our database. It might be counterfeit!"]
-            })
-            
-    try:
-        # 2. Query Firestore collection "products" where document ID = product_id
-        doc_ref = db.collection("products").document(product_id)
-        doc = doc_ref.get()
-        
-        if doc.exists:
-            product = doc.to_dict()
-            name = product.get("name", "Agricultural Item")
-            manufacturer = product.get("manufacturer", "Registered Manufacturer")
-            batch = product.get("batch", "N/A")
-            expiry = product.get("expiry", "")
-            verified = product.get("verified", True)
-            
-            # Check expiry field
-            if expiry:
-                try:
-                    expiry_date = datetime.datetime.strptime(expiry, "%Y-%m-%d").date()
-                    if datetime.date.today() > expiry_date:
-                        verified = False
-                        warnings.append("⚠️ चेतावनी: यह उत्पाद समाप्त हो चुका है! कृपया इसका उपयोग न करें। (This product has expired! Do not use.)")
-                except ValueError:
-                    logger.warning(f"Invalid expiry date format: {expiry} for product {product_id}")
-            
-            p_warnings = product.get("warnings", [])
-            if isinstance(p_warnings, list):
-                warnings.extend(p_warnings)
-                
-            return jsonify({
-                "success": True,
-                "verified": verified,
-                "product_id": product_id,
-                "name": name,
-                "manufacturer": manufacturer,
-                "batch": batch,
-                "expiry": expiry,
-                "warnings": warnings
-            })
-        else:
-            return jsonify({
-                "success": True,
-                "verified": False,
-                "product_id": product_id,
-                "name": "Unknown Fake Product",
-                "manufacturer": "Unregistered Manufacturer",
-                "batch": "N/A",
-                "expiry": "N/A",
-                "warnings": ["⚠️ चेतावनी: यह उत्पाद हमारे डेटाबेस में पंजीकृत नहीं है। यह नकली हो सकता है! (Warning: This product is not registered in our database.)"]
-            })
-            
-    except Exception as e:
-        logger.error(f"Error querying Firestore database: {e}")
-        return jsonify({"success": False, "error": str(e), "verified": False})
+        return jsonify({
+            "success": False,
+            "error": "No QR data provided",
+            "verified": False
+        })
+
+    raw_qr = req_data["qr_data"].strip()
+
+    # Parse structured QR payload
+    parsed = parse_qr_payload(raw_qr)
+
+    scope_note = (
+        "Checked against a reference list of registered pesticide products compiled "
+        "from public regulatory sources (PPQS publications, ICAR crop protection guides). "
+        "Product names and companies are verified; registration numbers in this demo list "
+        "are illustrative. For authoritative lookup, use the PPQS CROP portal "
+        "(cropuser.cgg.gov.in). ["
+        + str(ENTRY_COUNT) + " entries]"
+    )
+
+    if parsed["malformed"]:
+        return jsonify({
+            "success": True,
+            "verified": False,
+            "product_id": raw_qr,
+            "name": "Unknown / अज्ञात",
+            "manufacturer": "--",
+            "registration_no": "--",
+            "category": "--",
+            "active_ingredient": "--",
+            "scope_note": scope_note,
+            "status_hi": "QR code format invalid -- could not verify",
+            "status_en": "Malformed QR code -- product could not be verified",
+            "warnings": [
+                "QR code does not contain product name and registration number. "
+                "This is not a Kisan Saathi-compatible QR code. "
+                "Expected format: product=<name>|company=<company>|reg=<reg_no>"
+            ]
+        })
+
+    # Lookup in CIBRC reference database
+    result = lookup_product(
+        parsed["product_name"],
+        parsed["company_name"],
+        parsed["reg_no"]
+    )
+
+    if result["found"]:
+        info = result["product_info"]
+        return jsonify({
+            "success": True,
+            "verified": True,
+            "product_id": raw_qr,
+            "name": info["product_name"],
+            "manufacturer": info["company"],
+            "registration_no": info["reg_no"],
+            "category": info["category"],
+            "active_ingredient": info["active_ingredient"],
+            "scope_note": scope_note,
+            "status_hi": "Registered Product / पंजीकृत उत्पाद",
+            "status_en": "Registered Product -- " + info["reg_no"],
+            "warnings": []
+        })
+    else:
+        return jsonify({
+            "success": True,
+            "verified": False,
+            "product_id": raw_qr,
+            "name": parsed["product_name"] or "Unknown",
+            "manufacturer": parsed["company_name"] or "--",
+            "registration_no": parsed["reg_no"] or "--",
+            "category": "--",
+            "active_ingredient": "--",
+            "scope_note": scope_note,
+            "status_hi": "Could not verify / असत्यापित",
+            "status_en": "Could not verify -- not found in registered product list",
+            "warnings": [
+                "This product/registration number combination was not found in our "
+                "CIBRC reference list (25 entries from PPQS publications). "
+                "This does NOT confirm it is counterfeit -- our list is partial. "
+                "For authoritative verification, check the PPQS CROP portal "
+                "(cropuser.cgg.gov.in)."
+            ]
+        })
