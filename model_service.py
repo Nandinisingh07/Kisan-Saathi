@@ -10,7 +10,7 @@ logger = logging.getLogger("kisan_saathi")
 
 model_bp = Blueprint("model", __name__)
 
-MODEL_PATH = "crop_disease_model.h5"
+MODEL_PATH = "crop_disease_model.tflite"
 
 # Lazy-loaded model global
 _model = None
@@ -21,8 +21,8 @@ def get_model():
         logger.info("Lazy-loading crop disease model...")
         try:
             if os.path.exists(MODEL_PATH):
-                import tensorflow as tf
-                _model = tf.keras.models.load_model(MODEL_PATH, compile=False)
+                import tflite_runtime.interpreter as tflite
+                _model = tflite.Interpreter(model_path=MODEL_PATH); _model.allocate_tensors()
                 logger.info(f"Crop disease model loaded successfully from {MODEL_PATH}.")
             else:
                 logger.warning(f"Model file not found at {MODEL_PATH}. Leaf diagnosis will run in mock/fallback mode.")
@@ -353,11 +353,11 @@ def scan_crop():
             
         # Model expects 128x128 input shape. Resize from 224x224 to 128x128
         img_128 = img_224.resize((128, 128))
-        img_arr = np.array(img_128) / 255.0
+        img_arr = (np.array(img_128) / 255.0).astype(np.float32)
         img_expanded = np.expand_dims(img_arr, axis=0)
         
         # Run inference
-        predictions = model.predict(img_expanded)[0]
+        input_details = model.get_input_details(); output_details = model.get_output_details(); model.set_tensor(input_details[0]['index'], img_expanded); model.invoke(); predictions = model.get_tensor(output_details[0]['index'])[0]
         top_indices = np.argsort(predictions)[::-1][:3]
         
         top_predictions = []
