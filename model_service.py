@@ -22,7 +22,7 @@ def get_model():
         try:
             if os.path.exists(MODEL_PATH):
                 import tensorflow as tf
-                _model = tf.keras.models.load_model(MODEL_PATH)
+                _model = tf.keras.models.load_model(MODEL_PATH, compile=False)
                 logger.info(f"Crop disease model loaded successfully from {MODEL_PATH}.")
             else:
                 logger.warning(f"Model file not found at {MODEL_PATH}. Leaf diagnosis will run in mock/fallback mode.")
