@@ -21,8 +21,8 @@ def get_model():
         logger.info("Lazy-loading crop disease model...")
         try:
             if os.path.exists(MODEL_PATH):
-                import tflite_runtime.interpreter as tflite
-                _model = tflite.Interpreter(model_path=MODEL_PATH); _model.allocate_tensors()
+                from ai_edge_litert.interpreter import Interpreter
+                _model = Interpreter(model_path=MODEL_PATH); _model.allocate_tensors()
                 logger.info(f"Crop disease model loaded successfully from {MODEL_PATH}.")
             else:
                 logger.warning(f"Model file not found at {MODEL_PATH}. Leaf diagnosis will run in mock/fallback mode.")
