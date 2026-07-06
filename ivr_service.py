@@ -7,7 +7,7 @@ import uuid
 from flask import Blueprint, jsonify, request, Response
 from gtts import gTTS
 import google.generativeai as genai
-from language_config import LANGUAGES
+from language_config import LANGUAGES, FALLBACK_RESPONSES
 from twilio.twiml.voice_response import VoiceResponse, Gather
 
 logger = logging.getLogger("kisan_saathi")
@@ -192,39 +192,15 @@ def handle_menu():
     
     resp = VoiceResponse()
     
-    # Hardcoded responses for options 2, 3, 4, 5 (zero latency)
-    responses = {
-        2: {
-            "hi": "मंडी में गेहूं का औसत भाव तेईस सौ पचास रुपये प्रति क्विंटल चल रहा है।",
-            "en": "The average wheat price in the mandi is two thousand three hundred and fifty rupees per quintal.",
-            "mr": "बाजार समितीमध्ये गव्हाचा सरासरी भाव दोन हजार तीनशे पन्नास रुपये प्रति क्विंटल सुरू आहे.",
-            "gu": "બજારમાં ઘઉંનો સરેરાશ ભાવ બે હજાર ત્રણસો પચાસ રૂપિયા પ્રતિ ક્વિન્ટલ ચાલી રહ્યો છે.",
-            "bn": "বাজারে গমের গড় দাম প্রতি কুইন্টাল দুই হাজার তিনশত পঞ্চাশ টাকা চলছে।"
-        },
-        3: {
-            "hi": "आज मौसम साफ रहेगा और फसलों की सिंचाई जारी रखें।",
-            "en": "Today's weather will be clear. Please continue crop irrigation.",
-            "mr": "आज हवामान स्वच्छ राहील आणि पिकांची सिंचन सुरू ठेवावे.",
-            "gu": "આજે હવામાન ચોખ્ખું રહેશે અને પાકની સિંચાઈ ચાલુ રાખો.",
-            "bn": "আজ আবহাওয়া পরিষ্কার থাকবে এবং ফসলে জলসেচ অব্যাহত রাখুন।"
-        },
-        4: {
-            "hi": "पीएम किसान सम्मान निधि योजना के तहत किसानों को हर साल तीन किश्तों में वित्तीय सहायता दी जाती है। आप अपना स्टेटस पीएम-किसान पोर्टल पर देख सकते हैं या अपने नजदीकी कृषि कार्यालय में संपर्क कर सकते हैं।",
-            "en": "Under the PM Kisan Samman Nidhi scheme, farmers receive financial support in three installments per year. You can check your status on the PM-Kisan portal or contact your local agriculture office.",
-            "mr": "पीएम किसान सन्मान निधी योजनेअंतर्गत शेतकऱ्यांना दरवर्षी तीन हप्त्यांमध्ये आर्थिक मदत दिली जाते. तुम्ही पीएम-किसान पोर्टलवर तुमची स्थिती तपासू शकता किंवा तुमच्या स्थानिक कृषी कार्यालयाशी संपर्क साधू शकता.",
-            "gu": "પીએમ કિસાન સન્માન નિધિ યોજના અંતર્ગત ખેડૂતોને વર્ષમાં ત્રણ હપ્તામાં નાણાકીય સહાય આપવામાં આવે છે. તમે પીએમ-કિસาน પોર્ટલ પર તમારું સ્ટેટસ ચેક કરી શકો છો અથવા તમારી સ્થાનિક કૃષિ કચેરીનો સંપર્ક કરી શકો છો.",
-            "bn": "পিএম কিষাণ সম্মান নিধি প্রকল্পের আওতায় কৃষকরা বছরে তিনটি কিস্তিতে আর্থিক সহায়তা পান। আপনি পিএম-কিষাণ পোর্টালে আপনার স্ট্যাটাস চেক করতে পারেন বা আপনার স্থানীয় কৃষি অফিসে যোগাযোগ করতে পারেন।"
-        },
-        5: {
-            "hi": "कृषि विशेषज्ञ से आपकी कॉल दो घंटे में शेड्यूल्ड कर दी गई है।",
-            "en": "Your callback from an agricultural expert has been scheduled within two hours.",
-            "mr": "कृषी तज्ज्ञांकडून आपला कॉल दोन तासात नियोजित केला गेला आहे.",
-            "gu": "કૃષિ નિષ્ણાત સાથેનો તમારો કોલ બે કલાકમાં શેડ્યૂલ કરવામાં આવ્યો છે.",
-            "bn": "কৃষি বিশেষজ্ঞের সাথে আপনার কলটি দুই ঘণ্টার মধ্যে নির্ধারিত করা হয়েছে।"
-        }
+    # Retrieve responses directly from language_config FALLBACK_RESPONSES (single source of truth)
+    option_intent_map = {
+        2: "mandi",
+        3: "weather",
+        4: "schemes",
+        5: "expert"
     }
-    
-    response_text = responses.get(option, {}).get(lang_code, responses.get(option, {}).get("hi", ""))
+    intent_key = option_intent_map.get(option, "generic-redirect")
+    response_text = FALLBACK_RESPONSES.get(lang_code, FALLBACK_RESPONSES["hi"]).get(intent_key, "")
 
     audio_url = ""
     audio_filename = f"ivr_reply_{uuid_hex()}.mp3"

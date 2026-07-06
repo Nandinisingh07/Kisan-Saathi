@@ -42,6 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Web Speech Recognition setup
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let mediaRecorder = null;
+    let audioChunks = [];
+    const useMediaRecorderFallback = !SpeechRecognition && !!(navigator.mediaDevices && window.MediaRecorder);
+
     if (SpeechRecognition) {
         recognition = new SpeechRecognition();
         recognition.continuous = false;
@@ -71,8 +75,75 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Speech recognition error", evt);
             Toast.error("आवाज इनपुट विफल हुआ", "Speech input failed or timed out");
         };
+    } else if (useMediaRecorderFallback) {
+        btnVoice.title = "Record Audio (Server-side Transcription)";
+        
+        recognition = {
+            start: async () => {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    mediaRecorder = new MediaRecorder(stream);
+                    audioChunks = [];
+                    
+                    mediaRecorder.ondataavailable = (event) => {
+                        audioChunks.push(event.data);
+                    };
+                    
+                    mediaRecorder.onstart = () => {
+                        isRecording = true;
+                        micIcon.className = 'fas fa-stop text-danger';
+                        btnVoice.style.background = 'rgba(230, 57, 70, 0.15)';
+                        Toast.info("रिकॉर्डिंग शुरू... / Recording...", "Speak now...");
+                    };
+                    
+                    mediaRecorder.onstop = async () => {
+                        isRecording = false;
+                        micIcon.className = 'fas fa-microphone';
+                        btnVoice.style.background = '';
+                        
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                        
+                        Toast.info("आवाज पहचानी जा रही है... / Transcribing...", "Transcribing audio server-side...");
+                        
+                        const formData = new FormData();
+                        formData.append('audio', audioBlob, 'recording.webm');
+                        const curLang = chatLanguageOverride || localStorage.getItem('kisanLanguage') || 'hi';
+                        formData.append('lang', curLang);
+                        
+                        try {
+                            const response = await fetch('/api/voice-transcribe', {
+                                method: 'POST',
+                                body: formData
+                            });
+                            const data = await response.json();
+                            if (data.success && data.transcript) {
+                                chatInput.value = data.transcript;
+                                sendChatMessage(data.transcript);
+                            } else {
+                                Toast.error("आवाज इनपुट विफल", data.error || "Could not transcribe audio.");
+                            }
+                        } catch (err) {
+                            console.error("Transcription error", err);
+                            Toast.error("सर्वर से संपर्क करने में असमर्थ।", "Cannot connect to transcription server.");
+                        }
+                        
+                        stream.getTracks().forEach(track => track.stop());
+                    };
+                    
+                    mediaRecorder.start();
+                } catch (err) {
+                    console.error("Error accessing microphone", err);
+                    Toast.error("माइक्रोफोन का उपयोग नहीं हो सका।", "Microphone access denied or not available.");
+                }
+            },
+            stop: () => {
+                if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                    mediaRecorder.stop();
+                }
+            }
+        };
     } else {
-        btnVoice.title = "Web Speech is not supported in this browser";
+        btnVoice.title = "Audio Input is not supported in this browser";
         btnVoice.style.opacity = '0.5';
     }
 
