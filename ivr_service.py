@@ -84,7 +84,7 @@ def uuid_hex():
 def incoming_call():
     """Initial webhook hit by Twilio when a call comes in."""
     resp = VoiceResponse()
-    gather = Gather(numDigits=2, timeout=8, action="/ivr/handle-language")
+    gather = Gather(numDigits=1, timeout=8, action="/ivr/handle-language")
     gather.say("नमस्ते! किसान साथी हेल्पलाइन में आपका स्वागत है। हिंदी के लिए 1 दबाएं।", language="hi-IN")
     gather.say("For English, press 2.", language="en-US")
     gather.say("मराठीसाठी 3 दाबा.", language="mr-IN")
@@ -94,7 +94,7 @@ def incoming_call():
     gather.say("தமிழுக்கு 7 அழுத்தவும்.", language="ta-IN")
     gather.say("తెలుగు కోసం 8 నొక్కండి.", language="te-IN")
     gather.say("ಕನ್ನಡಕ್ಕಾಗಿ 9 ಒತ್ತಿರಿ.", language="kn-IN")
-    gather.say("മലയാളത്തിന് 10 അമർത്തുക.", language="ml-IN")
+    gather.say("മലയാളത്തിന് 0 അമർത്തുക.", language="ml-IN")
     resp.append(gather)
     resp.redirect("/ivr/voice")
     return Response(str(resp), mimetype="text/xml")
@@ -105,8 +105,7 @@ def handle_language():
     digits = request.form.get("Digits", "1").strip()
     lang_mapping = {
     "1": "hi", "2": "en", "3": "mr", "4": "gu", "5": "bn",
-    "6": "pa", "7": "ta", "8": "te", "9": "kn", "10": "ml",
-    "11": "or", "12": "ur", "13": "as"
+    "6": "pa", "7": "ta", "8": "te", "9": "kn", "0": "ml"
 }
     lang_code = lang_mapping.get(digits, "hi")
     call_sid = request.form.get("CallSid")
