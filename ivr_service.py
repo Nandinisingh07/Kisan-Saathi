@@ -27,6 +27,12 @@ else:
 # In-memory dictionary to store language choices by Twilio CallSid
 call_sessions = {}
 
+TWILIO_LANG_MAP = {
+    "hi": "hi-IN", "en": "en-US", "mr": "mr-IN", "gu": "gu-IN",
+    "bn": "bn-IN", "pa": "pa-IN", "ta": "ta-IN", "te": "te-IN",
+    "kn": "kn-IN", "ml": "ml-IN", "or": "en-IN", "ur": "en-IN", "as": "en-IN",
+}
+
 def init_db():
     try:
         conn = sqlite3.connect(DB_PATH)
@@ -78,10 +84,18 @@ def uuid_hex():
 def incoming_call():
     """Initial webhook hit by Twilio when a call comes in."""
     resp = VoiceResponse()
-    gather = Gather(numDigits=2, timeout=5, action="/ivr/handle-language")
-    gather.say("Welcome to Kisan Saathi Helpline. For Hindi, press 1. For English, press 2. For Marathi, press 3. For Gujarati, press 4. For Bengali, press 5. For Punjabi, press 6. For Tamil, press 7. For Telugu, press 8. For Kannada, press 9. For Malayalam, press 10. For Odia, press 11. For Urdu, press 12. For Assamese, press 13.")
+    gather = Gather(numDigits=2, timeout=8, action="/ivr/handle-language")
+    gather.say("नमस्ते! किसान साथी हेल्पलाइन में आपका स्वागत है। हिंदी के लिए 1 दबाएं।", language="hi-IN")
+    gather.say("For English, press 2.", language="en-US")
+    gather.say("मराठीसाठी 3 दाबा.", language="mr-IN")
+    gather.say("गुजराती के लिए 4 दबाएं।", language="gu-IN")
+    gather.say("বাংলার জন্য 5 চাপুন।", language="bn-IN")
+    gather.say("ਪੰਜਾਬੀ ਲਈ 6 ਦਬਾਓ.", language="pa-IN")
+    gather.say("தமிழுக்கு 7 அழுத்தவும்.", language="ta-IN")
+    gather.say("తెలుగు కోసం 8 నొక్కండి.", language="te-IN")
+    gather.say("ಕನ್ನಡಕ್ಕಾಗಿ 9 ಒತ್ತಿರಿ.", language="kn-IN")
+    gather.say("മലയാളത്തിന് 10 അമർത്തുക.", language="ml-IN")
     resp.append(gather)
-    # Redirect if no digits entered
     resp.redirect("/ivr/voice")
     return Response(str(resp), mimetype="text/xml")
 
@@ -90,15 +104,16 @@ def handle_language():
     """Handles digit entered for language, prompts with options menu in that language."""
     digits = request.form.get("Digits", "1").strip()
     lang_mapping = {
-        "1": "hi", "2": "en", "3": "mr", "4": "gu", "5": "bn",
-        "6": "pa", "7": "ta", "8": "te", "9": "kn", "10": "ml",
-        "11": "or", "12": "ur", "13": "as"
-    }
+    "1": "hi", "2": "en", "3": "mr", "4": "gu", "5": "bn",
+    "6": "pa", "7": "ta", "8": "te", "9": "kn", "10": "ml",
+    "11": "or", "12": "ur", "13": "as"
+}
     lang_code = lang_mapping.get(digits, "hi")
     call_sid = request.form.get("CallSid")
     call_sessions[call_sid] = lang_code
     
     lang_info = LANGUAGES.get(lang_code, LANGUAGES["hi"])
+    twilio_lang = TWILIO_LANG_MAP.get(lang_code, "hi-IN")
     
     resp = VoiceResponse()
     gather = Gather(numDigits=1, timeout=8, action="/ivr/handle-menu")
@@ -125,7 +140,7 @@ def handle_language():
         else:
             menu_prompt = "For Crop Disease Info, press 1. For Mandi Prices, press 2. For Weather Advisory, press 3. For Government Schemes, press 4. To speak to an expert, press 5."
             
-    gather.say(menu_prompt)
+    gather.say(menu_prompt, language=twilio_lang)
     resp.append(gather)
     resp.redirect("/ivr/handle-language")
     return Response(str(resp), mimetype="text/xml")
@@ -142,6 +157,7 @@ def handle_menu():
     call_sid = request.form.get("CallSid")
     lang_code = call_sessions.get(call_sid, "hi")
     lang_info = LANGUAGES.get(lang_code, LANGUAGES["hi"])
+    twilio_lang = TWILIO_LANG_MAP.get(lang_code, "hi-IN")
     
     options_map = {
         1: ("Crop Disease Info", "फसल रोग सूचना"),
@@ -162,7 +178,7 @@ def handle_menu():
             f"Generate a helpful, highly concise response (1-2 sentences maximum) in {lang_info['name']} (using {lang_info['script']} script) "
             f"addressing their request. Do not include any English translation. Keep it simple and natural for a farmer."
         )
-        res = model_g.generate_content(prompt)
+        res = model_g.generate_content(prompt, request_options={"timeout": 6})
         response_text = res.text.strip() if res.text else ""
     except Exception as e:
         logger.error(f"Gemini IVR response generation failed: {e}")
@@ -197,10 +213,10 @@ def handle_menu():
             resp.play(audio_url)
         except Exception as e:
             logger.error(f"Failed to generate gTTS audio: {e}")
-            resp.say(response_text)
+            resp.say(response_text, language=twilio_lang)
     else:
         logger.warning(f"gTTS not supported for {lang_code}. Fallback to Twilio say.")
-        resp.say(response_text)
+        resp.say(response_text, language=twilio_lang)
         
     phone = request.form.get("From", "+91 XXXXX XX00")
     duration = "1m 12s"
