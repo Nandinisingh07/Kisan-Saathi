@@ -56,3 +56,8 @@ style.css
  crop detection and pesticide reccomendation.py
 generate_qr_codes.py
 .vscode/
+
+temp_test_venv/
+venv/
+__pycache__/
+*.pyc
