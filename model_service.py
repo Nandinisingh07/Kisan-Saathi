@@ -278,13 +278,14 @@ def scan_crop():
         file.seek(0, os.SEEK_END)
         size = file.tell()
         file.seek(0)
-        
-        if size < 50 * 1024:
-            return jsonify({"success": False, "error": "Image file too small (must be > 50KB for proper leaf scan).", "verified": False})
-            
-        img_bytes = file.read()
+
         mode = request.form.get("mode", "disease")
         lang = request.form.get("lang", "hi")
+
+        if mode != "qrcode" and size < 50 * 1024:
+            return jsonify({"success": False, "error": "Image file too small (must be > 50KB for proper leaf scan).", "verified": False})
+
+        img_bytes = file.read()
         
     else:
         # JSON base64 parser
@@ -304,7 +305,7 @@ def scan_crop():
         except Exception as e:
             return jsonify({"success": False, "error": f"Invalid base64 encoding: {e}", "verified": False})
             
-        if len(img_bytes) < 50 * 1024:
+        if mode != "qrcode" and len(img_bytes) < 50 * 1024:
             return jsonify({"success": False, "error": "Captured frame contains insufficient details (<50KB). Please hold leaf closer.", "verified": False})
 
     # Redirect to QR code validation route if mode is 'qrcode'
