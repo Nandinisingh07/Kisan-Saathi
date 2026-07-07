@@ -138,7 +138,7 @@
             <div class="hi-text" id="dash-scan-recom">खेत स्वस्थ और सुरक्षित है।</div>
         </div>
         <div class="stat-footer">
-            <div class="bilingual-text">
+            <div class="bilingual-text" data-i18n="label_last_verified">
                 <span class="hi-text">अंतिम जांच: आज</span>
                 <span class="en-text">Last verified via AgriScan AI model</span>
             </div>
@@ -198,16 +198,28 @@
         <ul style="list-style: none; display: flex; flex-direction: column; gap: 1rem;">
             <li style="padding: 1rem; background: var(--bg); border-radius: 8px; border-left: 4px solid var(--accent); display: flex; gap: 1rem; align-items: center;">
                 <span style="font-size: 1.5rem;">🚜</span>
-                <div class="bilingual-text">
-                    <span class="hi-text">सोयाबीन बुवाई की तैयारी:</span>
-                    <span class="en-text">Soyabean Sowing preparation: Ensure seed treatment with Thiram (3g/kg seed) before sowing to protect against fungal infections.</span>
+                <div style="display: flex; flex-direction: column;">
+                    <div class="bilingual-text" data-i18n="advisory_soya_title">
+                        <strong class="hi-text">सोयाबीन बुवाई की तैयारी:</strong>
+                        <span class="en-text" style="font-weight: 600;">Soyabean Sowing preparation:</span>
+                    </div>
+                    <div class="bilingual-text" data-i18n="advisory_soya_desc" style="margin-top: 0.25rem; font-size: 0.9rem;">
+                        <span class="hi-text">बुवाई से पहले फफूंद जनित रोगों से सुरक्षा के लिए थिरम (3 ग्राम प्रति किलोग्राम बीज) से बीज उपचार सुनिश्चित करें।</span>
+                        <span class="en-text">Ensure seed treatment with Thiram (3g/kg seed) before sowing to protect against fungal infections.</span>
+                    </div>
                 </div>
             </li>
             <li style="padding: 1rem; background: var(--bg); border-radius: 8px; border-left: 4px solid var(--accent); display: flex; gap: 1rem; align-items: center;">
                 <span style="font-size: 1.5rem;">💦</span>
-                <div class="bilingual-text">
-                    <span class="hi-text">उद्यानिकी फसल सिंचाई:</span>
-                    <span class="en-text">Irrigation advice: Drip irrigate vegetables early morning or late evening to prevent moisture loss from high heat.</span>
+                <div style="display: flex; flex-direction: column;">
+                    <div class="bilingual-text" data-i18n="advisory_irr_title">
+                        <strong class="hi-text">उद्यानिकी फसल सिंचाई:</strong>
+                        <span class="en-text" style="font-weight: 600;">Irrigation advice:</span>
+                    </div>
+                    <div class="bilingual-text" data-i18n="advisory_irr_desc" style="margin-top: 0.25rem; font-size: 0.9rem;">
+                        <span class="hi-text">भीषण गर्मी में पानी के वाष्पीकरण को रोकने के लिए सब्जियों में सुबह जल्दी या शाम को ड्रिप सिंचाई करें।</span>
+                        <span class="en-text">Drip irrigate vegetables early morning or late evening to prevent moisture loss from high heat.</span>
+                    </div>
                 </div>
             </li>
         </ul>
@@ -220,21 +232,15 @@
     // Fetch live weather details on load to fill the dashboard stats
     document.addEventListener('DOMContentLoaded', async () => {
         try {
-            const response = await fetch('/api/weather?city=Indore');
+            const curLang = localStorage.getItem('kisanLanguage') || 'hi';
+            const url = `/api/weather?city=Indore&lang=${curLang}`;
+            console.log(`[index.html] DOMContentLoaded fetching weather from: ${url}`);
+            const response = await fetch(url);
             const data = await response.json();
+            console.log(`[index.html] DOMContentLoaded weather response:`, data);
             if (data && data.success) {
                 document.getElementById('dash-weather-temp').textContent = `${Math.round(data.temp)}°C`;
-                
-                // Handle localized weather description mapping
-                const curLang = localStorage.getItem('kisanLanguage') || 'hi';
-                if (curLang !== 'hi' && curLang !== 'en') {
-                    // Query googletrans or use dynamic local mapping in javascript translations
-                    document.getElementById('dash-weather-desc').textContent = data.desc_hi || data.desc;
-                } else if (curLang === 'en') {
-                    document.getElementById('dash-weather-desc').textContent = data.desc;
-                } else {
-                    document.getElementById('dash-weather-desc').textContent = data.desc_hi || data.desc;
-                }
+                document.getElementById('dash-weather-desc').textContent = data.desc_hi || data.desc;
             }
         } catch (err) {
             console.error("Dashboard weather fetch failed", err);
@@ -272,14 +278,13 @@
     // Re-localize weather description when language selection updates
     document.addEventListener('languageChanged', async (e) => {
         try {
-            const response = await fetch('/api/weather?city=Indore');
+            const url = `/api/weather?city=Indore&lang=${e.detail}`;
+            console.log(`[index.html] languageChanged fetching weather from: ${url}`);
+            const response = await fetch(url);
             const data = await response.json();
+            console.log(`[index.html] languageChanged weather response:`, data);
             if (data && data.success) {
-                if (e.detail === 'en') {
-                    document.getElementById('dash-weather-desc').textContent = data.desc;
-                } else {
-                    document.getElementById('dash-weather-desc').textContent = data.desc_hi || data.desc;
-                }
+                document.getElementById('dash-weather-desc').textContent = data.desc_hi || data.desc;
             }
         } catch (err) {
             console.error("Language change weather fetch failed", err);

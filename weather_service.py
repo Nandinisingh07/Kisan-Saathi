@@ -2,6 +2,9 @@ import os
 import logging
 import requests
 from flask import Blueprint, jsonify, request
+from dotenv import load_dotenv
+
+load_dotenv()
 
 logger = logging.getLogger("kisan_saathi")
 
@@ -31,18 +34,33 @@ def translate_weather(desc, lang):
         return weather_translations.get(desc_lower, desc).capitalize()
     elif lang == "en":
         return desc.capitalize()
-    else:
-        try:
-            from googletrans import Translator
-            translator = Translator()
-            return translator.translate(desc, src='en', dest=lang).text.capitalize()
-        except Exception:
-            return weather_translations.get(desc_lower, desc).capitalize()
+    
+    try:
+        import google.generativeai as genai
+        from language_config import LANGUAGES
+        lang_info = LANGUAGES.get(lang, LANGUAGES["hi"])
+        lang_name = lang_info["name"]
+        
+        api_key = os.getenv("GEMINI_API_KEY", "")
+        if api_key:
+            genai.configure(api_key=api_key)
+            model = genai.GenerativeModel("gemini-2.5-flash")
+            prompt = f"Translate the weather description term '{desc}' into the language {lang_name}. Return ONLY the direct translation, nothing else."
+            response = model.generate_content(prompt)
+            if response and response.text:
+                return response.text.strip().capitalize()
+    except Exception as e:
+        logger.error(f"Gemini weather translation failed: {e}")
+        
+    return weather_translations.get(desc_lower, desc).capitalize()
 
 @weather_bp.route("/api/weather")
 def get_weather():
     city = request.args.get("city", "Indore")
     lang = request.args.get("lang", "hi")
+    
+    logger.info(f"[/api/weather] Received query: city='{city}', lang='{lang}'")
+    print(f"[/api/weather] Received query: city='{city}', lang='{lang}'")
     
     api_key = os.getenv("OPENWEATHER_API_KEY", "")
     
@@ -65,7 +83,22 @@ def get_weather():
 
     if not api_key:
         logger.warning("OPENWEATHER_API_KEY missing in environment. Using fallback data.")
-        return jsonify(fallback_data)
+        localized_fallback = fallback_data.copy()
+        localized_fallback["desc_hi"] = translate_weather(fallback_data["desc"], lang)
+        
+        forecast_list = []
+        for item in fallback_data["forecast"]:
+            forecast_list.append({
+                "day": item["day"],
+                "temp": item["temp"],
+                "desc": item["desc"],
+                "desc_hi": translate_weather(item["desc"], lang)
+            })
+        localized_fallback["forecast"] = forecast_list
+        
+        logger.info(f"[/api/weather] Fallback response for lang='{lang}': desc_hi='{localized_fallback['desc_hi']}'")
+        print(f"[/api/weather] Fallback response for lang='{lang}': desc_hi='{localized_fallback['desc_hi']}'")
+        return jsonify(localized_fallback)
 
     try:
         # 1. Fetch current weather
@@ -74,7 +107,18 @@ def get_weather():
         
         if curr_res.status_code != 200:
             logger.error(f"OpenWeather current weather query failed for {city}: {curr_res.text}")
-            return jsonify(fallback_data)
+            localized_fallback = fallback_data.copy()
+            localized_fallback["desc_hi"] = translate_weather(fallback_data["desc"], lang)
+            forecast_list = []
+            for item in fallback_data["forecast"]:
+                forecast_list.append({
+                    "day": item["day"],
+                    "temp": item["temp"],
+                    "desc": item["desc"],
+                    "desc_hi": translate_weather(item["desc"], lang)
+                })
+            localized_fallback["forecast"] = forecast_list
+            return jsonify(localized_fallback)
             
         curr_data = curr_res.json()
         
@@ -87,7 +131,6 @@ def get_weather():
         
         if fore_res.status_code == 200:
             fore_data = fore_res.json()
-            # Group by days (approx. 24 hour intervals or 8 steps later)
             cnt = 0
             for i in range(8, len(fore_data.get("list", [])), 8):
                 if cnt >= 3:
@@ -101,11 +144,10 @@ def get_weather():
                     "day": f"Day {cnt+1}",
                     "temp": round(item["main"]["temp"]),
                     "desc": desc_val.capitalize(),
-                    "desc_hi": translate_weather(desc_val, "hi")
+                    "desc_hi": translate_weather(desc_val, lang)
                 })
                 cnt += 1
                 
-        # Determine agricultural advisories
         advisories = []
         temp = curr_data["main"]["temp"]
         humidity = curr_data["main"]["humidity"]
@@ -122,12 +164,16 @@ def get_weather():
             advisories.append("🌾 फसलों की सामान्य देखरेख जारी रखें। (Keep normal crop monitoring.)")
             
         desc = curr_data["weather"][0]["description"]
+        translated_desc = translate_weather(desc, lang)
+        
+        logger.info(f"[/api/weather] Live response for lang='{lang}': desc='{desc}', translated='{translated_desc}'")
+        print(f"[/api/weather] Live response for lang='{lang}': desc='{desc}', translated='{translated_desc}'")
         
         return jsonify({
             "success": True,
             "temp": temp,
             "desc": desc.capitalize(),
-            "desc_hi": translate_weather(desc, lang),
+            "desc_hi": translated_desc,
             "main_desc": curr_data["weather"][0]["main"],
             "humidity": humidity,
             "wind": curr_data["wind"]["speed"],
@@ -137,4 +183,15 @@ def get_weather():
         
     except Exception as e:
         logger.error(f"Error querying weather service: {e}")
-        return jsonify(fallback_data)
+        localized_fallback = fallback_data.copy()
+        localized_fallback["desc_hi"] = translate_weather(fallback_data["desc"], lang)
+        forecast_list = []
+        for item in fallback_data["forecast"]:
+            forecast_list.append({
+                "day": item["day"],
+                "temp": item["temp"],
+                "desc": item["desc"],
+                "desc_hi": translate_weather(item["desc"], lang)
+            })
+        localized_fallback["forecast"] = forecast_list
+        return jsonify(localized_fallback)

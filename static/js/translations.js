@@ -70,7 +70,12 @@ const translations = {
         label_rain_alert: "Rain Probability Alert",
         label_price_drop: "Mandi Price Drop Warning",
         label_audio: "Hear automated call audio playback",
-        btn_apply_rules: "Apply Rules"
+        btn_apply_rules: "Apply Rules",
+        label_last_verified: "Last verified via AgriScan AI model",
+        advisory_soya_title: "Soyabean Sowing preparation:",
+        advisory_soya_desc: "Ensure seed treatment with Thiram (3g/kg seed) before sowing to protect against fungal infections.",
+        advisory_irr_title: "Irrigation advice:",
+        advisory_irr_desc: "Drip irrigate vegetables early morning or late evening to prevent moisture loss from high heat."
     },
     hi: {
         nav_dashboard: "डैशबोर्ड",
@@ -143,7 +148,12 @@ const translations = {
         label_rain_alert: "बारिश की चेतावनी थ्रेशोल्ड",
         label_price_drop: "मंडी भाव गिरावट चेतावनी",
         label_audio: "वॉयस मैसेजेस ऑडियो",
-        btn_apply_rules: "नियम लागू करें"
+        btn_apply_rules: "नियम लागू करें",
+        label_last_verified: "अंतिम बार अग्रिस्कैन एआई मॉडल द्वारा सत्यापित।",
+        advisory_soya_title: "सोयाबीन बुवाई की तैयारी:",
+        advisory_soya_desc: "बुवाई से पहले फफूंद जनित रोगों से सुरक्षा के लिए थिरम (3 ग्राम प्रति किलोग्राम बीज) से बीज उपचार सुनिश्चित करें।",
+        advisory_irr_title: "Irrigation advice:",
+        advisory_irr_desc: "तेज गर्मी से नमी के नुकसान को रोकने के लिए, सब्जियों की ड्रिप सिंचाई सुबह जल्दी या देर शाम करें।"
     },
     mr: {
         nav_dashboard: "डॅशबोर्ड",
@@ -216,7 +226,12 @@ const translations = {
         label_rain_alert: "पाऊस चेतावणी मर्यादा",
         label_price_drop: "बाजार भाव घसरण चेतावणी",
         label_audio: "व्हॉईस मेसेज ऑडिओ प्लेबॅक",
-        btn_apply_rules: "नियम लागू करा"
+        btn_apply_rules: "नियम लागू करा",
+        label_last_verified: "शेवटचे सत्यापन ॲग्रीस्कॅन एआय मॉडेलद्वारे",
+        advisory_soya_title: "सोयाबीन पेरणीची तयारी:",
+        advisory_soya_desc: "बुरशीजन्य संसर्गापासून बचाव करण्यासाठी पेरणीपूर्वी थायरम (३ ग्रॅम/किग्रॅ बियाणे) प्रक्रिया केल्याची खात्री करा.",
+        advisory_irr_title: "भाजीपाला सिंचन सल्ला:",
+        advisory_irr_desc: "उष्णतेमुळे ओलावा कमी होऊ नये म्हणून भाजीपाल्याला सकाळी लवकर किंवा संध्याकाळी उशिरा ठिबक सिंचन करा."
     },
     gu: {
         nav_dashboard: "ડેશબોર્ડ",
@@ -289,7 +304,12 @@ const translations = {
         label_rain_alert: "વરસાદ ચેતવણી લિમિટ",
         label_price_drop: "બજાર દર ઘટાડા ચેતવણી",
         label_audio: "વોઈસ મેસેજ ઓડિયો પ્લેબેક",
-        btn_apply_rules: "નિયમો લાગુ કરો"
+        btn_apply_rules: "નિયમો લાગુ કરો",
+        label_last_verified: "Last verified via AgriScan AI model",
+        advisory_soya_title: "Soyabean Sowing preparation:",
+        advisory_soya_desc: "Ensure seed treatment with Thiram (3g/kg seed) before sowing to protect against fungal infections.",
+        advisory_irr_title: "Irrigation advice:",
+        advisory_irr_desc: "Drip irrigate vegetables early morning or late evening to prevent moisture loss from high heat."
     },
     bn: {
         nav_dashboard: "ড্যাশবোর্ড",
@@ -362,7 +382,12 @@ const translations = {
         label_rain_alert: "বৃষ্টির সতর্কতার মাত্রা",
         label_price_drop: "বাজার দর পতনের সতর্কতা",
         label_audio: "ভয়েস মেসেজ অডিও প্লেব্যাক",
-        btn_apply_rules: "নিয়মাবলী প্রয়োগ করুন"
+        btn_apply_rules: "নিয়মাবলী প্রয়োগ করুন",
+        label_last_verified: "Last verified via AgriScan AI model",
+        advisory_soya_title: "Soyabean Sowing preparation:",
+        advisory_soya_desc: "Ensure seed treatment with Thiram (3g/kg seed) before sowing to protect against fungal infections.",
+        advisory_irr_title: "Irrigation advice:",
+        advisory_irr_desc: "Drip irrigate vegetables early morning or late evening to prevent moisture loss from high heat."
     },
     pa: {
         "nav_dashboard": "ਡੈਸ਼ਬੋਰਡ",

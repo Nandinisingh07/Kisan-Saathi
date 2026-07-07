@@ -200,6 +200,7 @@ header {
   flex-direction: column;
   align-items: center;
   border-bottom: 2px solid transparent;
+  white-space: nowrap;
 }
 
 .nav-link:hover {

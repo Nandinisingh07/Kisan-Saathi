@@ -17,8 +17,24 @@ chat_bp = Blueprint("chat", __name__)
 # Simple in-memory response cache to prevent API rate limiting on repeated demo runs (TTL = 10 minutes)
 chat_cache = {}
 
-# Configure Google Gemini API key
-api_key = os.getenv("GEMINI_API_KEY", "")
+# Configure Google Gemini API keys (supports rotation on rate-limit)
+_gemini_key_1 = os.getenv("GEMINI_API_KEY", "")
+_gemini_key_2 = os.getenv("GEMINI_API_KEY_2", "")
+GEMINI_KEYS = [k for k in [_gemini_key_1, _gemini_key_2] if k]
+_current_key_idx = 0
+api_key = GEMINI_KEYS[0] if GEMINI_KEYS else ""
+
+def get_next_gemini_key():
+    """Rotate to the next available Gemini API key and reconfigure genai."""
+    global _current_key_idx
+    if len(GEMINI_KEYS) <= 1:
+        return api_key
+    _current_key_idx = (_current_key_idx + 1) % len(GEMINI_KEYS)
+    new_key = GEMINI_KEYS[_current_key_idx]
+    genai.configure(api_key=new_key)
+    logger.info(f"Rotated to Gemini API key index {_current_key_idx}")
+    return new_key
+
 if api_key:
     try:
         genai.configure(api_key=api_key)
@@ -193,9 +209,14 @@ def chat_response():
                     
                     if attempt < retries - 1:
                         if is_rate_limit:
-                            wait_time = [1.0, 3.0, 6.0][attempt]
-                            logger.info(f"Rate limit / quota error. Backing off for {wait_time}s...")
-                            time.sleep(wait_time)
+                            if len(GEMINI_KEYS) > 1:
+                                logger.info("Rate limit hit. Rotating to next Gemini API key...")
+                                get_next_gemini_key()
+                                time.sleep(0.5)
+                            else:
+                                wait_time = [1.0, 3.0, 6.0][attempt]
+                                logger.info(f"Rate limit / quota error. Backing off for {wait_time}s...")
+                                time.sleep(wait_time)
                         else:
                             time.sleep(0.1)
             
@@ -472,3 +493,4 @@ def run_startup_self_test():
 
 # Execute self-test on load
 run_startup_self_test()
+

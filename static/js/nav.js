@@ -33,9 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (weatherTextHi && weatherTextEn) {
         const fetchMiniWeather = async () => {
             try {
-                // Fetch settings or default city
-                const response = await fetch('/api/weather?city=Indore');
+                const curLang = localStorage.getItem('kisanLanguage') || 'hi';
+                const url = `/api/weather?city=Indore&lang=${curLang}`;
+                console.log(`[nav.js] Fetching mini weather from: ${url}`);
+                const response = await fetch(url);
                 const data = await response.json();
+                console.log(`[nav.js] Mini weather response:`, data);
                 if (data && data.success) {
                     const temp = Math.round(data.temp);
                     const desc = data.desc_hi || data.desc;
