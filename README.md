@@ -1,3 +1,7 @@
+<table width="100%" bgcolor="#FAF9F6">
+<tr>
+<td bgcolor="#FAF9F6">
+
 <div align="center">
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:14532D,50:15803D,100:65A30D&height=220&section=header&text=Kisan%20Saathi&fontSize=62&fontColor=FEF9C3&fontAlignY=38&desc=AI-Powered%20Agricultural%20Intelligence%20for%20Farmers%20of%20Madhya%20Pradesh&descAlignY=58&descSize=18&descColor=ECFCCB" width="100%"/>
@@ -259,3 +263,7 @@ B.Tech AI/ML · Indore Institute of Science and Technology
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:65A30D,50:15803D,100:14532D&height=100&section=footer" width="100%"/>
 
 </div>
+
+</td>
+</tr>
+</table>
