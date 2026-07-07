@@ -12,7 +12,7 @@ if not account_sid or not auth_token:
     print("Error: TWILIO_ACCOUNT_SID or TWILIO_AUTH_TOKEN not set in environment.")
     sys.exit(1)
 
-to_number = "+91XXXXXXXXXX"
+to_number = os.getenv("MY_PHONE_NUMBER")
 from_number = "+17622912153"
 url = "https://decaf-brim-steadfast.ngrok-free.dev/ivr/voice"
 
