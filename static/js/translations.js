@@ -974,6 +974,16 @@ function applyTranslation(lang) {
         }
     });
 
+    // Toggle English subtitles if the selected language is English to prevent duplicates like "Dashboard/Dashboard"
+    const enSubtitles = document.querySelectorAll('.en-text');
+    enSubtitles.forEach(el => {
+        if (lang === 'en') {
+            el.style.display = 'none';
+        } else {
+            el.style.display = '';
+        }
+    });
+
     // Save language to localStorage
     localStorage.setItem('kisanLanguage', lang);
     
@@ -983,19 +993,20 @@ function applyTranslation(lang) {
 
 // Automatically apply selected language on load
 document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('kisanLanguage') || 'hi';
+    const savedLang = window.currentLang || localStorage.getItem('kisanLanguage') || 'hi';
+    localStorage.setItem('kisanLanguage', savedLang);
     
     // Bind change listener to language selector if it exists
     const selector = document.getElementById('language-selector');
     if (selector) {
         selector.value = savedLang;
         selector.addEventListener('change', (e) => {
-            applyTranslation(e.target.value);
-            if (typeof Toast !== 'undefined') {
-                Toast.success("भाषा परिवर्तित की गई", "Language changed successfully");
-            }
+            const selectedLang = e.target.value;
+            localStorage.setItem('kisanLanguage', selectedLang);
+            applyTranslation(selectedLang);
         });
     }
     
     applyTranslation(savedLang);
 });
+
