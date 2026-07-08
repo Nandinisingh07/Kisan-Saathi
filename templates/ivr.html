@@ -43,10 +43,10 @@
           <div style="color:#FFD166; font-weight:700; font-size:0.8rem; margin-bottom:0.5rem; font-family:monospace;">🌾 KISAN SAATHI HELPLINE</div>
           <div id="ivr-transcript" style="color:#74C69D; font-size:0.78rem; font-family:monospace; line-height:1.6; max-height:140px; overflow-y:auto;">
             किसान साथी हेल्पलाइन में आपका स्वागत है।<br>
+            Press 1: फसल रोग<br>
             Press 2: मंडी भाव<br>
             Press 3: मौसम जानकारी<br>
-            Press 4: फसल रोग<br>
-            Press 5: सरकारी योजनाएं
+            Press 4: सरकारी योजनाएं
           </div>
           <!-- Blinking cursor -->
           <span style="color:#52B788; animation: blink 1s infinite;">▋</span>
@@ -178,9 +178,11 @@ async function startCall() {
   clearScreen();
   addToScreen('📞 Call Connected...', '#FFD166');
   addToScreen('नमस्ते! किसान साथी हेल्पलाइन में आपका स्वागत है।', '#B7E4C7');
-  addToScreen('Press 2: मंडी भाव | Press 3: मौसम | Press 4: रोग | Press 5: योजना', '#74C69D');
-}
+  addToScreen('Press 1: रोग | Press 2: मंडी भाव | Press 3: मौसम | Press 4: योजना', '#74C69D');
 
+  const lang = document.getElementById('ivr-language').value;
+  playAudio(`/static/audio/ivr_welcome_${lang}.mp3`);
+}
 function endCall() {
   callActive = false;
   callStep = 'ended';
