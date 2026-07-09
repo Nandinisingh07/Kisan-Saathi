@@ -186,7 +186,46 @@ python run.py          # → http://127.0.0.1:5000
 
 **Python version:** 3.11
 <br><br>
+<br>
+<br>
+<div align="center">
+<img src="https://img.shields.io/badge/SCREENSHOTS-8E24AA?style=for-the-badge&labelColor=8E24AA&color=8E24AA&logoColor=white"/>
+</div>
+<br/>
 
+<div align="center">
+
+<table>
+<tr>
+<td align="center" width="50%">
+<b>🌐 Multilingual Dashboard</b><br/><br/>
+<img src="assets/screenshots/dashboard.png" width="100%"/>
+</td>
+<td align="center" width="50%">
+<b>🩺 Crop Disease Detection & Pesticide Recommendation</b><br/><br/>
+<img src="assets/screenshots/crop-disease-detection.png" width="100%"/>
+</td>
+</tr>
+<tr>
+<td align="center" width="50%">
+<b>☎️ IVR Helpline — English</b><br/><br/>
+<img src="assets/screenshots/ivr-english.png" width="100%"/>
+</td>
+<td align="center" width="50%">
+<b>☎️ IVR Helpline — Hindi</b><br/><br/>
+<img src="assets/screenshots/ivr-hindi.png" width="100%"/>
+</td>
+</tr>
+<tr>
+<td align="center" colspan="2">
+<b>🔍 Pesticide Product Verification (CIB&RC)</b><br/><br/>
+<img src="assets/screenshots/product-verification.png" width="60%"/>
+</td>
+</tr>
+</table>
+<br>
+
+</div>
 <div align="center">
 
 <img src="https://img.shields.io/badge/WHY%20THIS%20MATTERS-2E7D32?style=for-the-badge&labelColor=2E7D32&color=2E7D32&logoColor=white"/>
