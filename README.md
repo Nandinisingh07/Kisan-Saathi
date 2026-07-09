@@ -73,42 +73,40 @@ Compares scanned product details (via OpenCV) against `cibrc_registered_db.py` �
 <br>
 <br>
 <div align="center">
-
-<img src="https://img.shields.io/badge/TECH%20STACK-E67E22?style=for-the-badge&labelColor=E67E22&color=E67E22&logoColor=white"/>
-
-</div>
-
-<br/>
-
 <div align="center">
-
+<img src="https://img.shields.io/badge/TECH%20STACK-E67E22?style=for-the-badge&labelColor=E67E22&color=E67E22&logoColor=white"/>
+</div>
+<br/>
+<div align="center">
 <img src="https://img.shields.io/badge/Python_3.11-3776AB?style=for-the-badge&logo=python&logoColor=FFD43B"/>
 <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white"/>
 <img src="https://img.shields.io/badge/Flask_Session-4B5563?style=for-the-badge&logo=flask&logoColor=white"/>
+<img src="https://img.shields.io/badge/Gunicorn-499848?style=for-the-badge&logo=gunicorn&logoColor=white"/>
+<br>
 <img src="https://img.shields.io/badge/Google_Gemini_2.5_Flash-4285F4?style=for-the-badge&logo=googlegemini&logoColor=white"/>
-
-<br>
-
 <img src="https://img.shields.io/badge/TFLite_(ai_edge_litert)-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white"/>
-<img src="https://img.shields.io/badge/Firebase_Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black"/>
-<img src="https://img.shields.io/badge/Twilio-F22F46?style=for-the-badge&logo=twilio&logoColor=white"/>
-<img src="https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=000000"/>
-
-<br>
-
 <img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white"/>
+<br>
+<img src="https://img.shields.io/badge/Firebase_Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black"/>
+<img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white"/>
+<br>
+<img src="https://img.shields.io/badge/Twilio-F22F46?style=for-the-badge&logo=twilio&logoColor=white"/>
+<img src="https://img.shields.io/badge/gTTS-4285F4?style=for-the-badge&logo=google&logoColor=white"/>
+<img src="https://img.shields.io/badge/OpenWeatherMap-EB6E4B?style=for-the-badge&logo=openweathermap&logoColor=white"/>
+<br>
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
-
+<br>
+<img src="https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=000000"/>
 </div>
 
 <br><br>
-<br>
+
 
 <div align="center">
 <img src="https://img.shields.io/badge/%20ARCHITECTURE%20-1F2937?style=for-the-badge&logoColor=black&labelColor=F5F5DC&color=F5F5DC"/>
 </div>
-
 <br/>
 
 <div align="center">
@@ -202,43 +200,13 @@ python run.py          # → http://127.0.0.1:5000
 - **True multilingual sync** — handles both static UI labels and dynamic feeds (weather descriptions, crop advisory headings, scan details) across 13 native Indian languages
 - **Anti-fail key rotation** — automatically rotates Gemini keys on API errors to prevent standard rate-limit blocks
 
-**Known limitations (kept honest, not hidden):**
+**Known limitations:**
 - gTTS does not support voice synthesis for Odia (`or`) and Assamese (`as`) — chatbot defaults to visual text output for these
 - Free-tier Gemini API is limited to 20 requests/minute; mitigated with dictionary caches, but not eliminated
 
 <br><br>
 
-<div align="center">
 
-<img src="https://img.shields.io/badge/SCREENSHOTS-7C3AED?style=for-the-badge&labelColor=7C3AED&color=7C3AED&logoColor=white"/>
-
-</div>
-
-<br/>
-
-<div align="center">
-
-<table>
-<tr>
-<td align="center" width="33%">
-<b>Main Dashboard</b><br/><br/>
-<img src="./screenshots/dashboard.png" width="100%"/><br/>
-<sub>Weather card, mandi price trends, and crop scan alerts at a glance</sub>
-</td>
-<td align="center" width="33%">
-<b>IVR Support Page</b><br/><br/>
-<img src="./screenshots/ivr.png" width="100%"/><br/>
-<sub>Twilio call simulator with live support logs and interaction charts</sub>
-</td>
-<td align="center" width="33%">
-<b>AgriScan · Diagnosis & Verification</b><br/><br/>
-<img src="./screenshots/agriscan.png" width="100%"/><br/>
-<sub>Crop disease detection, treatment recommendations, and pesticide QR verification</sub>
-</td>
-</tr>
-</table>
-
-</div>
 <br>
 
 <div align="center">
