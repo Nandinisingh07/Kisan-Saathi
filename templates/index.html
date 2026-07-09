@@ -114,10 +114,13 @@
                 <div class="stat-icon"><i class="fas fa-cloud-sun"></i></div>
             </div>
             <div class="stat-value" id="dash-weather-temp">--°C</div>
-            <div class="hi-text" id="dash-weather-desc">मौसम लोड हो रहा है...</div>
+            <div class="bilingual-text" data-i18n="base_weather_loading">
+                <span class="hi-text" id="dash-weather-desc">मौसम लोड हो रहा है...</span>
+                <span class="en-text">Loading weather...</span>
+            </div>
         </div>
         <div class="stat-footer">
-            <div class="bilingual-text">
+            <div class="bilingual-text" data-i18n="dash_weather_city">
                 <span class="hi-text" id="dash-weather-city">स्थान: इंदौर (मध्य प्रदेश)</span>
                 <span class="en-text">Indore, MP (Forecast next 12 hrs)</span>
             </div>
@@ -134,8 +137,8 @@
                 </div>
                 <div class="stat-icon" style="color:#e63946; background:rgba(230,57,70,0.15);"><i class="fas fa-bug"></i></div>
             </div>
-            <div class="stat-value" style="font-size: 1.4rem; color: #e63946;" id="dash-scan-title">कोई हालिया संक्रमण नहीं</div>
-            <div class="hi-text" id="dash-scan-recom">खेत स्वस्थ और सुरक्षित है।</div>
+            <div class="stat-value" style="font-size: 1.4rem; color: #e63946;" id="dash-scan-title" data-i18n="dash_scan_no_infection">कोई हालिया संक्रमण नहीं</div>
+            <div class="hi-text" id="dash-scan-recom" data-i18n="dash_scan_healthy_field">खेत स्वस्थ और सुरक्षित है।</div>
         </div>
         <div class="stat-footer">
             <div class="bilingual-text" data-i18n="label_last_verified">
@@ -159,10 +162,10 @@
             <div class="hi-text" id="dash-mandi-crop">सोयाबीन (इंदौर मंडी)</div>
         </div>
         <div class="stat-footer">
-            <div class="bilingual-text">
-                <span class="hi-text"><a href="/market" style="color: var(--primary); text-decoration:none;">सभी मंडी भाव देखें &rarr;</a></span>
-                <span class="en-text">View all MP Mandi market price lists</span>
-            </div>
+            <a href="/market" class="bilingual-text" style="color: var(--primary); text-decoration:none;" data-i18n="dash_view_all_mandi">
+                <span class="hi-text">सभी मंडी भाव देखें &rarr;</span>
+                <span class="en-text">View all MP Mandi market price lists &rarr;</span>
+            </a>
         </div>
     </div>
 
@@ -177,13 +180,16 @@
                 <div class="stat-icon"><i class="fas fa-phone-alt"></i></div>
             </div>
             <div class="stat-value" style="font-size: 1.4rem; color: var(--primary);" id="dash-ivr-num">1800-180-1551</div>
-            <div class="hi-text" id="dash-ivr-status">सक्रिय (ट्विलियो लाइव) | Active</div>
+            <div class="bilingual-text" data-i18n="dash_ivr_status">
+                <span class="hi-text" id="dash-ivr-status">सक्रिय (ट्विलियो लाइव) | Active</span>
+                <span class="en-text">Active (Twilio Live)</span>
+            </div>
         </div>
         <div class="stat-footer">
-            <div class="bilingual-text">
-                <span class="hi-text"><a href="/ivr" style="color: var(--primary); text-decoration:none;">कॉल लॉग व चार्ट देखें &rarr;</a></span>
-                <span class="en-text">Helpline caller log & system diagram</span>
-            </div>
+            <a href="/ivr" class="bilingual-text" style="color: var(--primary); text-decoration:none;" data-i18n="dash_view_call_logs">
+                <span class="hi-text">कॉल लॉग व चार्ट देखें &rarr;</span>
+                <span class="en-text">Helpline caller log & system diagram &rarr;</span>
+            </a>
         </div>
     </div>
 </div>
@@ -229,66 +235,184 @@
 
 {% block scripts %}
 <script>
-    // Fetch live weather details on load to fill the dashboard stats
-    document.addEventListener('DOMContentLoaded', async () => {
-        try {
-            const curLang = localStorage.getItem('kisanLanguage') || 'hi';
-            const url = `/api/weather?city=Indore&lang=${curLang}`;
-            console.log(`[index.html] DOMContentLoaded fetching weather from: ${url}`);
-            const response = await fetch(url);
-            const data = await response.json();
-            console.log(`[index.html] DOMContentLoaded weather response:`, data);
-            if (data && data.success) {
-                document.getElementById('dash-weather-temp').textContent = `${Math.round(data.temp)}°C`;
-                document.getElementById('dash-weather-desc').textContent = data.desc_hi || data.desc;
-            }
-        } catch (err) {
-            console.error("Dashboard weather fetch failed", err);
-        }
+    // Global state variables to cache last-fetched responses
+    let lastWeatherData = null;
+    let lastMarketData = null;
 
-        // Fetch last scan from localstorage or API
+    // Helper translation lookup functions
+    function getTranslation(key) {
+        const lang = localStorage.getItem('kisanLanguage') || 'hi';
+        return (translations[lang] && translations[lang][key]) || 
+               (translations['en'] && translations['en'][key]) || 
+               (translations['hi'] && translations['hi'][key]) || '';
+    }
+
+    function translateWeatherCondition(condition) {
+        if (!condition) return '';
+        const key = condition.toLowerCase();
+        const lang = localStorage.getItem('kisanLanguage') || 'hi';
+        if (typeof weatherConditions !== 'undefined' && weatherConditions[key]) {
+            return weatherConditions[key][lang] || weatherConditions[key]['en'] || condition;
+        }
+        return condition;
+    }
+
+    function translateCropName(crop) {
+        if (!crop) return '';
+        const key = crop.toLowerCase();
+        const lang = localStorage.getItem('kisanLanguage') || 'hi';
+        if (typeof cropNames !== 'undefined' && cropNames[key]) {
+            return cropNames[key][lang] || cropNames[key]['en'] || crop;
+        }
+        return crop;
+    }
+
+    // Render weather UI based on cached data
+    function renderWeather() {
+        if (!lastWeatherData) return;
+        document.getElementById('dash-weather-temp').textContent = `${Math.round(lastWeatherData.temp)}°C`;
+        
+        const translatedDesc = translateWeatherCondition(lastWeatherData.desc);
+        const descEl = document.getElementById('dash-weather-desc');
+        if (descEl) {
+            descEl.textContent = translatedDesc;
+            
+            // Remove parent data-i18n to prevent applyTranslation from resetting it, and hide static en subtitle
+            const parent = descEl.parentElement;
+            if (parent) {
+                parent.removeAttribute('data-i18n');
+                const siblingEn = descEl.nextElementSibling;
+                if (siblingEn && siblingEn.classList.contains('en-text')) {
+                    siblingEn.style.display = 'none';
+                }
+            }
+        }
+    }
+
+    // Render mandi market UI based on cached data
+    function renderMarket() {
+        if (!lastMarketData || !lastMarketData.records || lastMarketData.records.length === 0) return;
+        // Find highest price
+        const sorted = lastMarketData.records.slice().sort((a,b) => b.modal_price - a.modal_price);
+        const highest = sorted[0];
+        
+        const quintalLabel = getTranslation('label_quintal') || 'quintal';
+        const mandiSuffix = getTranslation('label_mandi_suffix') || 'Mandi';
+        
+        document.getElementById('dash-mandi-price').textContent = `₹${highest.modal_price}/${quintalLabel}`;
+        
+        const translatedCrop = translateCropName(highest.commodity);
+        document.getElementById('dash-mandi-crop').textContent = `${translatedCrop} (${highest.market} ${mandiSuffix})`;
+    }
+
+    // Render rotating Crop Scan Alert Card
+    function renderScanCard() {
+        // If there's a scanned history, show that
         const lastScan = localStorage.getItem('lastScanResult');
         if (lastScan) {
             try {
                 const parsed = JSON.parse(lastScan);
-                document.getElementById('dash-scan-title').textContent = parsed.disease || 'स्वस्थ फसल | Healthy';
-                document.getElementById('dash-scan-title').style.color = parsed.is_healthy ? 'var(--primary)' : '#e63946';
-                document.getElementById('dash-scan-recom').textContent = `कीटनाशक: ${parsed.pesticide || 'आवश्यकता नहीं / None'}`;
+                const titleEl = document.getElementById('dash-scan-title');
+                const recomEl = document.getElementById('dash-scan-recom');
+                if (titleEl && recomEl) {
+                    titleEl.removeAttribute('data-i18n');
+                    recomEl.removeAttribute('data-i18n');
+                    titleEl.textContent = parsed.disease || getTranslation('dash_scan_healthy_crop');
+                    titleEl.style.color = parsed.is_healthy ? 'var(--primary)' : '#e63946';
+                    recomEl.textContent = `${getTranslation('dash_scan_pesticide')}: ${parsed.pesticide || getTranslation('dash_scan_none')}`;
+                    return;
+                }
             } catch (e) {
                 console.error("Error parsing scan result from storage", e);
             }
         }
 
-        // Fetch actual market prices to populate highest price crop in Indore
+        // Otherwise, rotate logic
+        const count = parseInt(localStorage.getItem('cropScanStateCount') || '0');
+        const stateIndex = count % 3;
+        
+        const states = [
+            { titleKey: "scan_title_healthy", descKey: "scan_state_healthy", color: "var(--primary)" },
+            { titleKey: "scan_title_caution", descKey: "scan_state_caution", color: "#d97706" }, // safe Amber
+            { titleKey: "scan_title_action", descKey: "scan_state_action", color: "#e63946" }  // Red
+        ];
+        
+        const activeState = states[stateIndex];
+        
+        const titleEl = document.getElementById('dash-scan-title');
+        const recomEl = document.getElementById('dash-scan-recom');
+        
+        if (titleEl && recomEl) {
+            // Remove static data-i18n attributes so applyTranslation doesn't overwrite
+            titleEl.removeAttribute('data-i18n');
+            recomEl.removeAttribute('data-i18n');
+            
+            titleEl.textContent = getTranslation(activeState.titleKey);
+            titleEl.style.color = activeState.color;
+            recomEl.textContent = getTranslation(activeState.descKey);
+        }
+    }
+
+    // Fetch operations
+    async function fetchWeather() {
+        const lang = localStorage.getItem('kisanLanguage') || 'hi';
+        try {
+            const url = `/api/weather?city=Indore&lang=${lang}`;
+            const response = await fetch(url);
+            const data = await response.json();
+            if (data && data.success) {
+                lastWeatherData = data;
+                renderWeather();
+            }
+        } catch (err) {
+            console.error("Dashboard weather fetch failed", err);
+        }
+    }
+
+    async function fetchMarket() {
         try {
             const response = await fetch('/api/market?state=Madhya Pradesh&district=Indore');
             const data = await response.json();
-            if (data && data.success && data.records && data.records.length > 0) {
-                // Find highest price
-                const sorted = data.records.sort((a,b) => b.modal_price - a.modal_price);
-                const highest = sorted[0];
-                document.getElementById('dash-mandi-price').textContent = `₹${highest.modal_price}/क्विं`;
-                document.getElementById('dash-mandi-crop').textContent = `${highest.commodity} (${highest.market} मंडी)`;
+            if (data && data.success) {
+                lastMarketData = data;
+                renderMarket();
             }
         } catch (err) {
             console.error("Dashboard market fetch failed", err);
         }
+    }
+
+    // DOM Content Loaded Handler
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Increment localstorage counter for page-load round-robin of alert card
+        let count = parseInt(localStorage.getItem('cropScanStateCount') || '0');
+        localStorage.setItem('cropScanStateCount', count + 1);
+
+        // 2. Initial render of scan card
+        renderScanCard();
+
+        // 3. Initial fetches
+        fetchWeather();
+        fetchMarket();
+
+        // 4. Setup Intervals
+        // Weather every 15 minutes (15 * 60 * 1000 ms)
+        setInterval(fetchWeather, 15 * 60 * 1000);
+        // Mandi every 30 minutes (30 * 60 * 1000 ms)
+        setInterval(fetchMarket, 30 * 60 * 1000);
+        // Crop scan alert rotates every 5 minutes (5 * 60 * 1000 ms)
+        setInterval(() => {
+            let currentCount = parseInt(localStorage.getItem('cropScanStateCount') || '0');
+            localStorage.setItem('cropScanStateCount', currentCount + 1);
+            renderScanCard();
+        }, 5 * 60 * 1000);
     });
 
-    // Re-localize weather description when language selection updates
-    document.addEventListener('languageChanged', async (e) => {
-        try {
-            const url = `/api/weather?city=Indore&lang=${e.detail}`;
-            console.log(`[index.html] languageChanged fetching weather from: ${url}`);
-            const response = await fetch(url);
-            const data = await response.json();
-            console.log(`[index.html] languageChanged weather response:`, data);
-            if (data && data.success) {
-                document.getElementById('dash-weather-desc').textContent = data.desc_hi || data.desc;
-            }
-        } catch (err) {
-            console.error("Language change weather fetch failed", err);
-        }
+    // Language change event handler (immediate re-render using cached data)
+    document.addEventListener('languageChanged', () => {
+        renderWeather();
+        renderMarket();
+        renderScanCard();
     });
 </script>
 {% endblock %}
