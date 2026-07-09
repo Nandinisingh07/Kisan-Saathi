@@ -307,30 +307,37 @@ def ivr_stats():
 
 @app.route("/api/ivr/simulate", methods=["POST"])
 def ivr_simulate():
-    req_data = request.get_json() or {}
-    key_pressed = req_data.get("key", "1")
-    language = req_data.get("language", "hi")
+    req_data = request.get_json(force=True) or {}
 
-    menu_map = {"2": "mandi", "3": "weather", "4": "disease", "5": "scheme"}
-    step = menu_map.get(key_pressed, "welcome")
+    raw_option = req_data.get("option", req_data.get("key", "welcome"))
+    option_key = str(raw_option).strip()
 
-    lang_note = "Reply in Hindi (Devanagari). Helpline operator style. Max 3 sentences." if language == "hi" else "Reply in English. Helpline operator style. Max 3 sentences."
-    prompt = f"""You are Kisan Saathi IVR helpline operator for farmers in Madhya Pradesh India.
-Current step: {step}
-Farmer pressed: {key_pressed}
-{lang_note}
-If step is mandi give mandi prices with rupee amounts.
-If step is weather give weather advisory with temperature.
-If step is disease give crop disease advice with pesticide names and dosages.
-If step is scheme give PM-KISAN scheme info."""
+    lang_raw = str(req_data.get("language", "hi")).strip().lower()
+    language = "hi" if lang_raw in ("hi", "hindi") else "en"
 
-    try:
-        model_g = genai.GenerativeModel("gemini-2.5-flash")
-        response = model_g.generate_content(prompt)
-        reply_text = response.text.strip()
-    except Exception as e:
-        print("IVR simulate error:", e)
-        reply_text = "नमस्ते किसान भाई। कृपया पुनः प्रयास करें।" if language == "hi" else "Please try again shortly."
+    IVR_MENU_RESPONSES = {
+        "hi": {
+            "welcome": "नमस्ते किसान भाई, कृषि सलाह के लिए स्वागत है। कृपया एक विकल्प चुनें।",
+            "1": "फसल में रोग की जानकारी के लिए कृपया अपनी फसल का नाम बताएं। सामान्य रोगों में पत्ती झुलसा, रस्ट और तना गलन शामिल हैं। सही सलाह के लिए हमारे कृषि विशेषज्ञ से संपर्क करें।",
+            "2": "आपके क्षेत्र में आज गेहूं का भाव 2450 रुपये प्रति क्विंटल है।",
+            "3": "अगले तीन दिन मौसम साफ रहेगा, बारिश की संभावना नहीं है।",
+            "4": "फसल की पत्तियों पर पीलापन दिखे तो नाइट्रोजन की कमी हो सकती है। मैंकोजेब 2 ग्राम प्रति लीटर पानी में छिड़काव करें।",
+            "5": "प्रधानमंत्री किसान सम्मान निधि योजना के तहत आपको सालाना 6000 रुपये मिल सकते हैं।",
+        },
+        "en": {
+            "welcome": "Welcome to Kisan advisory helpline. Please choose an option.",
+            "1": "For crop disease information, please tell us your crop name. Common diseases include leaf blight, rust, and stem rot. Contact our agriculture expert for specific advice.",
+            "2": "Today wheat price in your area is 2450 rupees per quintal.",
+            "3": "Weather will remain clear for the next three days, no rain expected.",
+            "4": "Yellowing leaves may indicate nitrogen deficiency. Spray Mancozeb 2 grams per litre of water.",
+            "5": "Under PM Kisan Samman Nidhi, you may receive 6000 rupees annually.",
+        }
+    }
+
+    menu = IVR_MENU_RESPONSES[language]
+    step_map = {"1": "disease", "2": "mandi", "3": "weather", "4": "disease", "5": "scheme"}
+    step = step_map.get(option_key, "welcome")
+    reply_text = menu.get(option_key, menu["welcome"])
 
     ts = int(time.time())
     audio_filename = f"ivr_sim_{ts}.mp3"
@@ -338,10 +345,12 @@ If step is scheme give PM-KISAN scheme info."""
         tts_lang = "hi" if language == "hi" else "en"
         gTTS(reply_text, lang=tts_lang).save(f"static/audio/{audio_filename}")
         audio_url = f"/static/audio/{audio_filename}"
-    except:
+    except Exception as e:
+        print("TTS error:", e)
         audio_url = ""
 
-    return jsonify({"success": True, "reply": reply_text, "audio_url": audio_url, "step": step})
+    return jsonify({"success": True, "transcript": reply_text, "reply": reply_text, "audio_url": audio_url, "step": step, "option": option_key, "language": language})
+
 
 @app.route("/api/settings", methods=["POST"])
 def save_settings():
