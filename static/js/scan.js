@@ -196,10 +196,16 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('res-disease-en').textContent = data.disease || '';
         document.getElementById('res-pesticide').textContent = data.pesticide || 'कोई सिफारिश नहीं / No recommendation';
 
-        // Update dashboard cache
+        // Update dashboard cache - store BOTH English and the language active at scan time,
+        // so the dashboard can pick the correct one instead of freezing whatever was shown at scan time
         localStorage.setItem('lastScanResult', JSON.stringify({
-            disease: `${data.crop_hi || data.crop} (${data.disease_hi || data.disease})`,
-            pesticide: data.pesticide,
+            disease_en: `${data.crop} (${data.disease})`,
+            disease_translated: `${data.crop_hi || data.crop} (${data.disease_hi || data.disease})`,
+            pesticide_en: (data.recommended_pesticides && data.recommended_pesticides.length)
+                ? data.recommended_pesticides.join(', ')
+                : (data.pesticide || 'None'),
+            pesticide_translated: data.pesticide,
+            lang_at_scan: curLang,
             is_healthy: (data.disease || '').toLowerCase().includes('healthy')
         }));
     }

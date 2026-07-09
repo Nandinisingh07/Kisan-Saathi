@@ -317,9 +317,12 @@
                 if (titleEl && recomEl) {
                     titleEl.removeAttribute('data-i18n');
                     recomEl.removeAttribute('data-i18n');
-                    titleEl.textContent = parsed.disease || getTranslation('dash_scan_healthy_crop');
+                    const currentLang = localStorage.getItem('kisanLanguage') || 'hi';
+                    const useTranslated = parsed.lang_at_scan === currentLang;
+                    titleEl.textContent = (useTranslated ? parsed.disease_translated : parsed.disease_en) || getTranslation('dash_scan_healthy_crop');
                     titleEl.style.color = parsed.is_healthy ? 'var(--primary)' : '#e63946';
-                    recomEl.textContent = `${getTranslation('dash_scan_pesticide')}: ${parsed.pesticide || getTranslation('dash_scan_none')}`;
+                    const pesticideText = (useTranslated ? parsed.pesticide_translated : parsed.pesticide_en) || getTranslation('dash_scan_none');
+                    recomEl.textContent = `${getTranslation('dash_scan_pesticide')}: ${pesticideText}`;
                     return;
                 }
             } catch (e) {
