@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             if (data.success) {
                 if (currentMode === 'disease') {
-                    displayDiseaseResult(data);
+                    displayDiseaseResult(data, curLang);
                     saveToHistory({
                         mode: 'disease',
                         image: base64Image,
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Display helpers
-    function displayDiseaseResult(data) {
+    function displayDiseaseResult(data, curLang) {
         document.getElementById('res-crop-hi').textContent = data.crop_hi || data.crop;
         document.getElementById('res-crop-en').textContent = data.crop || '';
         document.getElementById('res-disease-hi').textContent = data.disease_hi || data.disease;
@@ -325,7 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         disease: item.disease_en,
                         disease_hi: item.disease_hi,
                         pesticide: item.pesticide
-                    });
+                    }, localStorage.getItem('kisanLanguage') || 'hi');
                 } else {
                     currentMode = 'qrcode';
                     modeQrcodeBtn.click();
