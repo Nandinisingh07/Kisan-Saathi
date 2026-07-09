@@ -168,16 +168,17 @@
                 <span class="en-text">AI Guidance Scope</span>
             </div>
             <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem;">
-                <li><i class="fas fa-leaf" style="color:var(--accent);"></i>  फसल रोगों का निदान</li>
-                <li><i class="fas fa-hand-holding-usd" style="color:var(--secondary);"></i>  लाइव मंडी दरें और भाव</li>
-                <li><i class="fas fa-umbrella" style="color:#4a90e2;"></i>  मौसम अपडेट और बुवाई सलाह</li>
-                <li><i class="fas fa-spray-can" style="color:red;"></i>  कीटनाशक उपयोग दिशानिर्देश</li>
+                <li><i class="fas fa-leaf" style="color:var(--accent);"></i> <span data-i18n="chat_scope_disease">फसल रोगों का निदान</span></li>
+                <li><i class="fas fa-hand-holding-usd" style="color:var(--secondary);"></i> <span data-i18n="chat_scope_market">लाइव मंडी दरें और भाव</span></li>
+                <li><i class="fas fa-umbrella" style="color:#4a90e2;"></i> <span data-i18n="chat_scope_weather">मौसम अपडेट और बुवाई सलाह</span></li>
+                <li><i class="fas fa-spray-can" style="color:red;"></i> <span data-i18n="chat_scope_pesticide">कीटनाशक उपयोग दिशानिर्देश</span></li>
             </ul>
         </div>
 
         <div style="background:var(--bg); padding:0.75rem; border-radius:8px; font-size:0.8rem; border:1px solid var(--border);">
-            <div class="bilingual-text" style="margin-bottom: 0.5rem;">
-                <span class="hi-text" style="color:var(--primary-dark);"><i class="fas fa-language"></i>  भाषा चुनें / Select Language</span>
+            <div class="bilingual-text" style="margin-bottom: 0.5rem; color: var(--primary-dark);" data-i18n="chat_select_lang">
+                <i class="fas fa-language"></i>
+                <span class="hi-text">भाषा चुनें / Select Language</span>
                 <span class="en-text">Choose your chat language</span>
             </div>
             <div class="lang-pills" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
@@ -201,18 +202,17 @@
             </div>
         </div>
 
-        <!-- Suggestion box -->
         <div style="padding: 0 1.5rem;">
             <div class="suggestion-container" id="chat-suggestions">
-                <div class="suggestion-chip" data-query="गेहूं का भाव क्या है?">गेहूं भाव क्या है? / Wheat price?</div>
-                <div class="suggestion-chip" data-query="टमाटर रोग अर्ली ब्लाइट का कीटनाशक बताएं?">अर्ली ब्लाइट कीटनाशक / Early Blight?</div>
-                <div class="suggestion-chip" data-query="इंदौर का मौसम कैसा रहेगा?">इंदौर का मौसम / Indore weather?</div>
+                <div class="suggestion-chip" data-query="गेहूं का भाव क्या है?" data-i18n="chat_suggest_wheat">गेहूं भाव क्या है? / Wheat price?</div>
+                <div class="suggestion-chip" data-query="टमाटर रोग अर्ली ब्लाइट का कीटनाशक बताएं?" data-i18n="chat_suggest_blight">अर्ली ब्लाइट कीटनाशक / Early Blight?</div>
+                <div class="suggestion-chip" data-query="इंदौर का मौसम कैसा रहेगा?" data-i18n="chat_suggest_weather">इंदौर का मौसम / Indore weather?</div>
             </div>
         </div>
 
         <!-- Floating Input area -->
         <div class="chat-input-area">
-            <button class="btn btn-outline" id="btn-voice-rec" title="आवाज से दर्ज करें / Speech Input" style="border-radius: 50%; width: 45px; height: 45px; padding: 0;">
+            <button class="btn btn-outline" id="btn-voice-rec" title="आवाज से दर्ज करें / Speech Input" data-i18n="tooltip_voice_rec" style="border-radius: 50%; width: 45px; height: 45px; padding: 0;">
                 <i class="fas fa-microphone" id="mic-icon"></i>
             </button>
             

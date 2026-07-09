@@ -139,7 +139,10 @@
                     </div>
                     <div id="recommended-crops-list" style="display:flex; flex-direction:column; gap:0.5rem;">
                         <!-- JS Loaded -->
-                        <span style="color: var(--text-muted);">लोड हो रहा है... / Loading...</span>
+                        <span class="bilingual-text" style="color: var(--text-muted);" data-i18n="market_loading">
+                            <span class="hi-text">लोड हो रहा है...</span>
+                            <span class="en-text">Loading...</span>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -153,7 +156,10 @@
                     </div>
                     <div id="popular-crops-list" style="display:flex; flex-direction:column; gap:0.5rem;">
                         <!-- JS Loaded -->
-                        <span style="color: var(--text-muted);">लोड हो रहा है... / Loading...</span>
+                        <span class="bilingual-text" style="color: var(--text-muted);" data-i18n="market_loading">
+                            <span class="hi-text">लोड हो रहा है...</span>
+                            <span class="en-text">Loading...</span>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -189,20 +195,21 @@
                 <table class="mandi-table">
                     <thead>
                         <tr>
-                            <th>फसल (Commodity)</th>
-                            <th>मंडी (Market)</th>
-                            <th>किस्म (Variety)</th>
-                            <th>न्यूनतम (Min)</th>
-                            <th>अधिकतम (Max)</th>
-                            <th>औसत भाव (Modal)</th>
-                            <th>तारीख (Date)</th>
+                            <th data-i18n="market_header_commodity">फसल</th>
+                            <th data-i18n="market_header_market">मंडी</th>
+                            <th data-i18n="market_header_variety">किस्म</th>
+                            <th data-i18n="market_header_min_price">न्यूनतम</th>
+                            <th data-i18n="market_header_max_price">अधिकतम</th>
+                            <th data-i18n="market_header_modal_price">औसत भाव</th>
+                            <th data-i18n="market_header_date">तारीख</th>
                         </tr>
                     </thead>
                     <tbody id="mandi-table-body">
                         <!-- Loaded dynamically -->
                         <tr>
-                            <td colspan="7" style="text-align: center; color: var(--text-muted); padding: 2rem;">
-                                डेटा लोड हो रहा है... कृपया प्रतीक्षा करें। / Loading live mandi data...
+                            <td colspan="7" style="text-align: center; color: var(--text-muted); padding: 2rem;" data-i18n="market_table_loading">
+                                <span class="hi-text">डेटा लोड हो रहा है... कृपया प्रतीक्षा करें।</span>
+                                <span class="en-text">Loading live mandi data...</span>
                             </td>
                         </tr>
                     </tbody>

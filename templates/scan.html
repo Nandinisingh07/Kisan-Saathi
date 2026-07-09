@@ -183,10 +183,10 @@
             <canvas class="scanner-canvas" id="capture-canvas"></canvas>
             <div class="scanner-overlay"></div>
             <div class="scan-laser" id="laser-line"></div>
-            <div id="no-camera-msg" style="color: white; display: none; text-align: center; padding: 1rem;">
+            <div id="no-camera-msg" style="color: white; display: none; text-align: center; padding: 1rem;" data-i18n="scan_no_camera">
                 <i class="fas fa-video-slash" style="font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--text-muted);"></i>
-                <p>कैमरा बंद है। कृपया फाइल अपलोड करें।</p>
-                <p style="font-size: 0.8rem; color: #aaa;">Camera is off. Please upload an image.</p>
+                <p class="hi-text">कैमरा बंद है। कृपया फाइल अपलोड करें।</p>
+                <p class="en-text" style="font-size: 0.8rem; color: #aaa;">Camera is off. Please upload an image.</p>
             </div>
         </div>
 
@@ -239,11 +239,11 @@
                     Checked against a reference list of registered pesticide products compiled from public regulatory sources (PPQS publications, ICAR crop protection guides). Product names and companies are verified; registration numbers in this demo list are illustrative. For authoritative lookup, use the PPQS CROP portal (cropuser.cgg.gov.in).
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-                    <div id="qr-status-badge" style="padding: 1rem; border-radius: 8px; text-align: center; font-size: 1.3rem; font-weight: bold;">
+                    <div id="qr-status-badge" style="padding: 1rem; border-radius: 8px; text-align: center; font-size: 1.3rem; font-weight: bold;" data-i18n="scan_qr_awaiting">
                         सत्यापन प्रतीक्षारत / Awaiting QR
                     </div>
                     <div style="padding: 0.85rem; background: var(--bg); border-radius: 8px;">
-                        <span style="font-size: 0.8rem; color: var(--text-muted);">उत्पाद का नाम / Product Name</span>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);" data-i18n="scan_qr_name_label">उत्पाद का नाम / Product Name</span>
                         <div id="res-qr-name" style="font-size: 1.1rem; font-weight: 600; margin-top: 0.2rem;">--</div>
                     </div>
                     <div style="padding: 0.85rem; background: var(--bg); border-radius: 8px;">
@@ -251,11 +251,11 @@
                         <div id="res-qr-mfg" style="font-size: 1rem; margin-top: 0.2rem;">--</div>
                     </div>
                     <div style="padding: 0.85rem; background: var(--bg); border-radius: 8px;">
-                        <span style="font-size: 0.8rem; color: var(--text-muted);">पंजीकरण संख्या / CIB&RC Reg. No.</span>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);" data-i18n="scan_qr_reg_label">पंजीकरण संख्या / CIB&RC Reg. No.</span>
                         <div id="res-qr-reg" style="font-size: 1rem; font-family: monospace; margin-top: 0.2rem;">--</div>
                     </div>
                     <div id="res-qr-extra-row" style="display:none; padding: 0.85rem; background: var(--bg); border-radius: 8px;">
-                        <span style="font-size: 0.8rem; color: var(--text-muted);">श्रेणी / Category &amp; Active Ingredient</span>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);" data-i18n="scan_qr_category_label">श्रेणी / Category &amp; Active Ingredient</span>
                         <div id="res-qr-category" style="font-size: 0.95rem; margin-top: 0.2rem;">--</div>
                     </div>
                     <div id="res-qr-warnings" style="display:none;"></div>
@@ -276,7 +276,7 @@
             </div>
             <div class="history-list" id="history-container">
                 <!-- History items populated via JS -->
-                <p style="text-align: center; color: var(--text-muted); padding: 1.5rem 0;" id="history-empty">कोई पिछला इतिहास नहीं पाया गया।</p>
+                <p style="text-align: center; color: var(--text-muted); padding: 1.5rem 0;" id="history-empty" data-i18n="scan_history_empty">कोई पिछला इतिहास नहीं पाया गया।</p>
             </div>
         </div>
     </div>

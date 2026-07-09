@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌾 किसान साथी | Kisan Saathi - AI Farmer Platform</title>
+    <title data-i18n="base_title">🌾 किसान साथी | Kisan Saathi - AI Farmer Platform</title>
     <!-- Fonts and icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
@@ -106,7 +106,7 @@
             <div class="header-meta">
                 <div class="weather-widget-mini" id="weather-mini">
                     <i class="fas fa-cloud-sun" id="mini-weather-icon"></i>
-                    <div class="bilingual-text" style="font-size: 0.75rem; line-height: 1.1;">
+                    <div class="bilingual-text" style="font-size: 0.75rem; line-height: 1.1;" data-i18n="base_weather_loading">
                         <span class="hi-text" id="mini-weather-hi">तापमान लोड हो रहा है...</span>
                         <span class="en-text" id="mini-weather-en" style="color: rgba(255,255,255,0.8);">Loading...</span>
                     </div>
@@ -138,8 +138,8 @@
     <!-- Advisory Alert Bar -->
     <div class="advisory-banner">
         <i class="fas fa-bullhorn" style="color: #1b4332;"></i>
-        <marquee scrollamount="4" onmouseover="this.stop();" onmouseout="this.start();">
-            ⚠️ <strong>मौसम चेतावनी:</strong> मालवा क्षेत्र में अगले 48 घंटों में हल्की वर्षा की संभावना, कटी फसलों को सुरक्षित स्थान पर रखें। / <strong>Weather Warning:</strong> Light rain expected in Malwa region in the next 48 hrs. Guard harvested crops. &nbsp;&nbsp;&nbsp;&nbsp; 📈 <strong>बाजार भाव:</strong> सोयाबीन का इंदौर मंडी में नया रेट ₹4650 प्रति क्विंटल। / <strong>Market Price:</strong> Soyabean rate at Indore Mandi is ₹4650/quintal.
+        <marquee scrollamount="4" onmouseover="this.stop();" onmouseout="this.start();" data-i18n="base_marquee_advisory">
+            ⚠️ मौसम चेतावनी: मालवा क्षेत्र में अगले 48 घंटों में हल्की वर्षा की संभावना, कटी फसलों को सुरक्षित स्थान पर रखें। 📈 बाजार भाव: सोयाबीन का इंदौर मंडी में नया रेट ₹4650 प्रति क्विंटल।
         </marquee>
     </div>
 
@@ -153,26 +153,35 @@
         <div class="footer-container">
             <div class="footer-section" style="flex: 2; min-width: 280px;">
                 <h3>🌾 <span data-i18n="logo_name">किसान साथी | Kisan Saathi</span></h3>
-                <p>मध्य प्रदेश के किसानों के लिए समर्पित एक एकीकृत आई.टी. और ए.आई. मंच। यहाँ आपको फसल रोग निदान, सटीक मंडी भाव और मौसम सलाह मिलेगी।</p>
-                <p style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">An AI-powered agricultural intelligence platform custom-built for farmers of Madhya Pradesh, India.</p>
+                <div class="bilingual-text" data-i18n="footer_desc">
+                    <p class="hi-text">मध्य प्रदेश के किसानों के लिए समर्पित एक एकीकृत आई.टी. और ए.आई. मंच। यहाँ आपको फसल रोग निदान, सटीक मंडी भाव और मौसम सलाह मिलेगी।</p>
+                    <p class="en-text" style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">An AI-powered agricultural intelligence platform custom-built for farmers of Madhya Pradesh, India.</p>
+                </div>
             </div>
             <div class="footer-section" style="flex: 1; min-width: 150px;">
-                <h3>त्वरित लिंक्स / Links</h3>
+                <h3 data-i18n="footer_quick_links">
+                    <span class="hi-text">त्वरित लिंक्स / Links</span>
+                    <span class="en-text">Quick Links</span>
+                </h3>
                 <ul style="list-style: none; line-height: 1.8;">
-                    <li><a href="/" style="color: rgba(255,255,255,0.7); text-decoration: none;" data-i18n="nav_dashboard"><i class="fas fa-chevron-right" style="font-size: 0.7rem; margin-right: 5px;"></i> डैशबोर्ड / Dashboard</a></li>
-                    <li><a href="/scan" style="color: rgba(255,255,255,0.7); text-decoration: none;" data-i18n="nav_scan"><i class="fas fa-chevron-right" style="font-size: 0.7rem; margin-right: 5px;"></i> कृषि स्कैन / AgriScan</a></li>
-                    <li><a href="/market" style="color: rgba(255,255,255,0.7); text-decoration: none;" data-i18n="nav_market"><i class="fas fa-chevron-right" style="font-size: 0.7rem; margin-right: 5px;"></i> मंडी भाव / Market</a></li>
+                    <li><a href="/" style="color: rgba(255,255,255,0.7); text-decoration: none;" data-i18n="nav_dashboard"><i class="fas fa-chevron-right" style="font-size: 0.7rem; margin-right: 5px;"></i> <span class="hi-text">डैशबोर्ड / Dashboard</span><span class="en-text">Dashboard</span></a></li>
+                    <li><a href="/scan" style="color: rgba(255,255,255,0.7); text-decoration: none;" data-i18n="nav_scan"><i class="fas fa-chevron-right" style="font-size: 0.7rem; margin-right: 5px;"></i> <span class="hi-text">कृषि स्कैन / AgriScan</span><span class="en-text">AgriScan</span></a></li>
+                    <li><a href="/market" style="color: rgba(255,255,255,0.7); text-decoration: none;" data-i18n="nav_market"><i class="fas fa-chevron-right" style="font-size: 0.7rem; margin-right: 5px;"></i> <span class="hi-text">मंडी भाव / Market</span><span class="en-text">Market Price</span></a></li>
                 </ul>
             </div>
             <div class="footer-section" style="flex: 1; min-width: 200px;">
-                <h3>संपर्क व सहायता / Contact</h3>
-                <p><i class="fas fa-phone-alt"></i> हेल्पलाइन: 1800-180-1551</p>
+                <h3 data-i18n="footer_contact_header">
+                    <span class="hi-text">संपर्क व सहायता / Contact</span>
+                    <span class="en-text">Contact & Support</span>
+                </h3>
+                <p data-i18n="footer_helpline"><i class="fas fa-phone-alt"></i> <span class="hi-text">हेल्पलाइन: 1800-180-1551</span><span class="en-text">Helpline: 1800-180-1551</span></p>
                 <p><i class="fas fa-envelope"></i> support@kisansaathi.in</p>
-                <p><i class="fas fa-map-marker-alt"></i> भोपाल, मध्य प्रदेश, भारत</p>
+                <p data-i18n="footer_location"><i class="fas fa-map-marker-alt"></i> <span class="hi-text">भोपाल, मध्य प्रदेश, भारत</span><span class="en-text">Bhopal, Madhya Pradesh, India</span></p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 किसान साथी टीम। सर्वाधिकार सुरक्षित। | Kisan Saathi. All Rights Reserved.</p>
+        <div class="footer-bottom" data-i18n="footer_copyright">
+            <span class="hi-text">&copy; 2026 किसान साथी टीम। सर्वाधिकार सुरक्षित। | Kisan Saathi. All Rights Reserved.</span>
+            <span class="en-text">&copy; 2026 Kisan Saathi Team. All Rights Reserved.</span>
         </div>
     </footer>
 

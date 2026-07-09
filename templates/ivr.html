@@ -6,23 +6,23 @@
   <div style="display:grid; grid-template-columns: repeat(4,1fr); gap:1rem; margin-bottom:2rem;">
     <div class="glass-card" style="text-align:center; padding:1.5rem;">
       <div style="font-size:2.5rem; font-weight:800; color:var(--forest-deep);" id="total-calls">1,420</div>
-      <div style="color:var(--text-muted); font-size:0.85rem;">Total Calls</div>
-      <div style="color:#52B788; font-size:0.8rem;">+12% this week</div>
+      <div style="color:var(--text-muted); font-size:0.85rem;" data-i18n="kpi_total">Total Calls</div>
+      <div style="color:#52B788; font-size:0.8rem;" data-i18n="ivr_total_calls_sub">+12% this week</div>
     </div>
     <div class="glass-card" style="text-align:center; padding:1.5rem;">
       <div style="font-size:2.5rem; font-weight:800; color:var(--forest-deep); display: flex; align-items: center; justify-content: center; gap: 8px;">
         <span class="active-dot"></span>
         <span id="active-calls">0</span>
       </div>
-      <div style="color:var(--text-muted); font-size:0.85rem;">Active Callers</div>
+      <div style="color:var(--text-muted); font-size:0.85rem;" data-i18n="kpi_active">Active Callers</div>
     </div>
     <div class="glass-card" style="text-align:center; padding:1.5rem;">
-      <div style="font-size:2.5rem; font-weight:800; color:var(--forest-deep);">मंडी</div>
-      <div style="color:var(--text-muted); font-size:0.85rem;">Top Option (42%)</div>
+      <div style="font-size:2.5rem; font-weight:800; color:var(--forest-deep);" data-i18n="ivr_top_option_val">मंडी</div>
+      <div style="color:var(--text-muted); font-size:0.85rem;" data-i18n="kpi_menu">Top Option (42%)</div>
     </div>
     <div class="glass-card" style="text-align:center; padding:1.5rem;">
-      <div style="font-size:2.5rem; font-weight:800; color:var(--forest-deep);">हिंदी</div>
-      <div style="color:var(--text-muted); font-size:0.85rem;">Primary Language (85%)</div>
+      <div style="font-size:2.5rem; font-weight:800; color:var(--forest-deep);" data-i18n="ivr_lang_val">हिंदी</div>
+      <div style="color:var(--text-muted); font-size:0.85rem;" data-i18n="kpi_lang">Primary Language (85%)</div>
     </div>
   </div>
 
@@ -30,7 +30,7 @@
 
     <!-- LEFT: Interactive Phone Simulator -->
     <div class="glass-card">
-      <h3 style="color:var(--forest-deep); margin-bottom:1.5rem;">📞 Interactive IVR Simulator</h3>
+      <h3 style="color:var(--forest-deep); margin-bottom:1.5rem;" data-i18n="ivr_simulator_title">📞 Interactive IVR Simulator</h3>
       
       <!-- Phone Mockup -->
       <div style="background:#0d1f12; border-radius:28px; padding:1.5rem; max-width:300px; margin:0 auto; box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);">
@@ -40,8 +40,8 @@
         
         <!-- Screen -->
         <div id="ivr-screen" style="background:#071a0b; border-radius:16px; padding:1rem; min-height:200px; margin-bottom:1rem; border:1px solid #1a3a1f; position:relative; overflow:hidden;">
-          <div style="color:#FFD166; font-weight:700; font-size:0.8rem; margin-bottom:0.5rem; font-family:monospace;">🌾 KISAN SAATHI HELPLINE</div>
-          <div id="ivr-transcript" style="color:#74C69D; font-size:0.78rem; font-family:monospace; line-height:1.6; max-height:140px; overflow-y:auto;">
+          <div style="color:#FFD166; font-weight:700; font-size:0.8rem; margin-bottom:0.5rem; font-family:monospace;" data-i18n="ivr_screen_header">🌾 KISAN SAATHI HELPLINE</div>
+          <div id="ivr-transcript" style="color:#74C69D; font-size:0.78rem; font-family:monospace; line-height:1.6; max-height:140px; overflow-y:auto;" data-i18n="ivr_sim_menu">
             किसान साथी हेल्पलाइन में आपका स्वागत है।<br>
             Press 1: फसल रोग<br>
             Press 2: मंडी भाव<br>
@@ -76,10 +76,10 @@
         <!-- Keypad -->
         <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:0.4rem; margin-bottom:1rem;">
           <button onclick="pressKey('1')" class="ivr-key">1</button>
-          <button onclick="pressKey('2')" class="ivr-key" title="Mandi Prices">2<span style="font-size:0.5rem; display:block;">मंडी</span></button>
-          <button onclick="pressKey('3')" class="ivr-key" title="Weather">3<span style="font-size:0.5rem; display:block;">मौसम</span></button>
-          <button onclick="pressKey('4')" class="ivr-key" title="Disease">4<span style="font-size:0.5rem; display:block;">रोग</span></button>
-          <button onclick="pressKey('5')" class="ivr-key" title="Schemes">5<span style="font-size:0.5rem; display:block;">योजना</span></button>
+          <button onclick="pressKey('2')" class="ivr-key" title="Mandi Prices" data-i18n="ivr_tooltip_mandi">2<span style="font-size:0.5rem; display:block;" data-i18n="ivr_label_mandi">मंडी</span></button>
+          <button onclick="pressKey('3')" class="ivr-key" title="Weather" data-i18n="ivr_tooltip_weather">3<span style="font-size:0.5rem; display:block;" data-i18n="ivr_label_weather">मौसम</span></button>
+          <button onclick="pressKey('4')" class="ivr-key" title="Disease" data-i18n="ivr_tooltip_disease">4<span style="font-size:0.5rem; display:block;" data-i18n="ivr_label_disease">रोग</span></button>
+          <button onclick="pressKey('5')" class="ivr-key" title="Schemes" data-i18n="ivr_tooltip_schemes">5<span style="font-size:0.5rem; display:block;" data-i18n="ivr_label_schemes">योजना</span></button>
           <button onclick="pressKey('6')" class="ivr-key">6</button>
           <button onclick="pressKey('7')" class="ivr-key">7</button>
           <button onclick="pressKey('8')" class="ivr-key">8</button>
@@ -90,10 +90,10 @@
         </div>
 
         <!-- Call Button -->
-        <button id="call-btn" onclick="startCall()" style="width:100%; background:linear-gradient(135deg,#40916C,#2D6A4F); color:white; border:none; border-radius:14px; padding:12px; font-size:1rem; cursor:pointer; font-weight:600;">
+        <button id="call-btn" onclick="startCall()" data-i18n="ivr_btn_start_call" style="width:100%; background:linear-gradient(135deg,#40916C,#2D6A4F); color:white; border:none; border-radius:14px; padding:12px; font-size:1rem; cursor:pointer; font-weight:600;">
           📞 Start Call
         </button>
-        <button id="end-btn" onclick="endCall()" style="width:100%; background:#BC4749; color:white; border:none; border-radius:14px; padding:12px; font-size:1rem; cursor:pointer; font-weight:600; display:none; margin-top:0.5rem;">
+        <button id="end-btn" onclick="endCall()" data-i18n="ivr_btn_end_call" style="width:100%; background:#BC4749; color:white; border:none; border-radius:14px; padding:12px; font-size:1rem; cursor:pointer; font-weight:600; display:none; margin-top:0.5rem;">
           📵 End Call
         </button>
       </div>
@@ -101,37 +101,37 @@
       <!-- Text Input for typing questions -->
       <div id="text-input-area" style="display:none; margin-top:1rem;">
         <div style="display:flex; gap:0.5rem;">
-          <input type="text" id="ivr-text-input" placeholder="Type your question or crop name..." 
+          <input type="text" id="ivr-text-input" placeholder="Type your question or crop name..." data-i18n="ivr_placeholder_chat"
             style="flex:1; border:1.5px solid var(--border-soft); border-radius:10px; padding:10px; font-size:0.9rem;"
             onkeypress="if(event.key==='Enter') sendTextInput()">
-          <button onclick="sendTextInput()" style="background:var(--forest-light); color:white; border:none; border-radius:10px; padding:10px 16px; cursor:pointer;">Send</button>
+          <button onclick="sendTextInput()" data-i18n="ivr_btn_send" style="background:var(--forest-light); color:white; border:none; border-radius:10px; padding:10px 16px; cursor:pointer;">Send</button>
         </div>
       </div>
     </div>
 
     <!-- RIGHT: Call Logs -->
     <div class="glass-card">
-      <h3 style="color:var(--forest-deep); margin-bottom:1rem;">📋 Live Call Log</h3>
+      <h3 style="color:var(--forest-deep); margin-bottom:1rem;" data-i18n="ivr_logs_title">📋 Live Call Log</h3>
       <div id="ivr-logs" style="display:flex; flex-direction:column; gap:0.75rem; max-height:600px; overflow-y:auto;">
-        <div style="text-align:center; color:var(--text-muted); padding:2rem;">Loading logs...</div>
+        <div style="text-align:center; color:var(--text-muted); padding:2rem;" data-i18n="ivr_loading_logs">Loading logs...</div>
       </div>
     </div>
   </div>
 
   <!-- IVR Architecture -->
   <div class="glass-card" style="margin-top:2rem;">
-    <h3 style="color:var(--forest-deep); margin-bottom:1.5rem;">🗺️ IVR Menu Architecture</h3>
+    <h3 style="color:var(--forest-deep); margin-bottom:1.5rem;" data-i18n="diagram_header">🗺️ IVR Menu Architecture</h3>
     <div style="display:flex; gap:1rem; align-items:flex-start; overflow-x:auto; padding-bottom:1rem;">
-      <div class="ivr-node" style="background:var(--forest-deep); color:white;">📞 Welcome</div>
+      <div class="ivr-node" style="background:var(--forest-deep); color:white;" data-i18n="ivr_node_welcome">📞 Welcome</div>
       <div style="color:var(--forest-light); font-size:1.5rem; margin-top:1rem;">→</div>
       <div style="display:flex; flex-direction:column; gap:0.5rem;">
-        <div class="ivr-node" style="background:var(--foam-white); border:2px solid var(--leaf-fresh); color: var(--forest-deep);">2️⃣ Mandi Prices</div>
-        <div class="ivr-node" style="background:var(--foam-white); border:2px solid var(--leaf-fresh); color: var(--forest-deep);">3️⃣ Weather Info</div>
-        <div class="ivr-node" style="background:var(--foam-white); border:2px solid var(--leaf-fresh); color: var(--forest-deep);">4️⃣ Crop Disease</div>
-        <div class="ivr-node" style="background:var(--foam-white); border:2px solid var(--leaf-fresh); color: var(--forest-deep);">5️⃣ Govt Schemes</div>
+        <div class="ivr-node" style="background:var(--foam-white); border:2px solid var(--leaf-fresh); color: var(--forest-deep);" data-i18n="ivr_node_mandi">2️⃣ Mandi Prices</div>
+        <div class="ivr-node" style="background:var(--foam-white); border:2px solid var(--leaf-fresh); color: var(--forest-deep);" data-i18n="ivr_node_weather">3️⃣ Weather Info</div>
+        <div class="ivr-node" style="background:var(--foam-white); border:2px solid var(--leaf-fresh); color: var(--forest-deep);" data-i18n="ivr_node_disease">4️⃣ Crop Disease</div>
+        <div class="ivr-node" style="background:var(--foam-white); border:2px solid var(--leaf-fresh); color: var(--forest-deep);" data-i18n="ivr_node_schemes">5️⃣ Govt Schemes</div>
       </div>
       <div style="color:var(--forest-light); font-size:1.5rem; margin-top:1rem;">→</div>
-      <div class="ivr-node" style="background:var(--gold-warm); color:var(--ink-dark);">🤖 AI Response + Audio</div>
+      <div class="ivr-node" style="background:var(--gold-warm); color:var(--ink-dark);" data-i18n="ivr_node_ai">🤖 AI Response + Audio</div>
     </div>
   </div>
 </div>
@@ -176,11 +176,14 @@ async function startCall() {
   document.getElementById('end-btn').style.display = 'block';
   document.getElementById('text-input-area').style.display = 'block';
   clearScreen();
-  addToScreen('📞 Call Connected...', '#FFD166');
-  addToScreen('नमस्ते! किसान साथी हेल्पलाइन में आपका स्वागत है।', '#B7E4C7');
-  addToScreen('Press 1: रोग | Press 2: मंडी भाव | Press 3: मौसम | Press 4: योजना', '#74C69D');
 
   const lang = document.getElementById('ivr-language').value;
+  const getTranslation = (key) => (translations[lang] && translations[lang][key]) || (translations['hi'] && translations['hi'][key]) || (translations['en'] && translations['en'][key]) || '';
+
+  addToScreen(getTranslation('ivr_sim_connected'), '#FFD166');
+  addToScreen(getTranslation('ivr_sim_welcome'), '#B7E4C7');
+  addToScreen(getTranslation('ivr_sim_menu'), '#74C69D');
+
   playAudio(`/static/audio/ivr_welcome_${lang}.mp3`);
 }
 function endCall() {
@@ -189,26 +192,33 @@ function endCall() {
   document.getElementById('call-btn').style.display = 'block';
   document.getElementById('end-btn').style.display = 'none';
   document.getElementById('text-input-area').style.display = 'none';
-  addToScreen('📵 Call Ended. Thank you!', '#BC4749');
+
+  const lang = document.getElementById('ivr-language').value;
+  const getTranslation = (key) => (translations[lang] && translations[lang][key]) || (translations['hi'] && translations['hi'][key]) || (translations['en'] && translations['en'][key]) || '';
+
+  addToScreen(getTranslation('ivr_sim_ended'), '#BC4749');
 }
 
 function clearScreen() {
-  document.getElementById('ivr-transcript').innerHTML = '<div style="color:#FFD166; font-weight:700; font-size:0.8rem; margin-bottom:0.5rem; font-family:monospace;">🌾 KISAN SAATHI HELPLINE</div>';
+  document.getElementById('ivr-transcript').innerHTML = '<div style="color:#FFD166; font-weight:700; font-size:0.8rem; margin-bottom:0.5rem; font-family:monospace;" data-i18n="ivr_screen_header">🌾 KISAN SAATHI HELPLINE</div>';
 }
 
 async function pressKey(key) {
+  const lang = document.getElementById('ivr-language').value;
+  const getTranslation = (keyName) => (translations[lang] && translations[lang][keyName]) || (translations['hi'] && translations['hi'][keyName]) || (translations['en'] && translations['en'][keyName]) || '';
+
   if (!callActive) { 
-    addToScreen('Please start a call first', '#BC4749');
+    addToScreen(getTranslation('ivr_sim_start_first'), '#BC4749');
     return; 
   }
   
   const optionMap = {'1':1,'2':2,'3':3,'4':4,'5':5};
   const option = optionMap[key];
   
-  addToScreen(`📱 You pressed: ${key}`, '#FFD166');
+  addToScreen(`${getTranslation('ivr_sim_pressed')}${key}`, '#FFD166');
   
   if (!option) {
-    addToScreen('Invalid option. Press 2-5.', '#E9C46A');
+    addToScreen(getTranslation('ivr_sim_invalid'), '#E9C46A');
     return;
   }
 
@@ -219,8 +229,9 @@ async function pressKey(key) {
 async function sendToIVR(option) {
   const lang = document.getElementById('ivr-language').value;
   const crop = document.getElementById('ivr-crop').value;
-  
-  addToScreen('⏳ Connecting to AI...', '#B7E4C7');
+  const getTranslation = (keyName) => (translations[lang] && translations[lang][keyName]) || (translations['hi'] && translations['hi'][keyName]) || (translations['en'] && translations['en'][keyName]) || '';
+
+  addToScreen(getTranslation('ivr_sim_connecting'), '#B7E4C7');
   
   try {
     const response = await fetch('/api/ivr/simulate', {
@@ -235,7 +246,7 @@ async function sendToIVR(option) {
     });
 
     if (!response.ok) {
-      addToScreen('❌ API Error: ' + response.status, '#BC4749');
+      addToScreen(getTranslation('ivr_sim_api_error') + response.status, '#BC4749');
       return;
     }
 
@@ -249,14 +260,14 @@ async function sendToIVR(option) {
         playAudio(data.audio_url);
       }
       
-      addToScreen('✅ Reply received. Type your question or press another key.', '#52B788');
+      addToScreen(getTranslation('ivr_sim_reply_received'), '#52B788');
       loadLogs();
     } else {
       addToScreen('❌ Error: ' + (data.error || 'Unknown error'), '#BC4749');
     }
   } catch (error) {
     console.error('API Error:', error);
-    addToScreen('❌ Connection Error: ' + error.message, '#BC4749');
+    addToScreen(getTranslation('ivr_sim_connection_error') + ': ' + error.message, '#BC4749');
   }
 }
 
@@ -264,14 +275,16 @@ async function sendTextInput() {
   const input = document.getElementById('ivr-text-input').value.trim();
   if (!input || !callActive) return;
   
+  const lang = document.getElementById('ivr-language').value;
+  const getTranslation = (keyName) => (translations[lang] && translations[lang][keyName]) || (translations['hi'] && translations['hi'][keyName]) || (translations['en'] && translations['en'][keyName]) || '';
+
   document.getElementById('ivr-text-input').value = '';
   addToScreen(`You: "${input}"`, '#E9C46A');
   conversationHistory.push({role: 'user', content: input});
   
-  const lang = document.getElementById('ivr-language').value;
   const crop = document.getElementById('ivr-crop').value;
   
-  addToScreen('⏳ AI thinking...', '#B7E4C7');
+  addToScreen(getTranslation('ivr_sim_thinking'), '#B7E4C7');
   
   try {
     const response = await fetch('/api/ivr/call', {
@@ -298,7 +311,7 @@ async function sendTextInput() {
     }
   } catch (error) {
     console.error('Error:', error);
-    addToScreen('❌ Connection Error', '#BC4749');
+    addToScreen(getTranslation('ivr_sim_connection_error'), '#BC4749');
   }
 }
 

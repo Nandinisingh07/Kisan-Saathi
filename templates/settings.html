@@ -41,7 +41,7 @@
                 <label class="form-label" data-i18n="label_name">
                     <span class="hi-text" style="font-size:0.85rem;">किसान का नाम / Farmer Name</span>
                 </label>
-                <input type="text" class="form-control" id="set-name" value="Nandini Singh" placeholder="नाम लिखें">
+                <input type="text" class="form-control" id="set-name" value="Nandini Singh" placeholder="नाम लिखें" data-i18n="placeholder_name">
             </div>
 
             <div class="form-group">
@@ -98,9 +98,9 @@
                     <span class="hi-text" style="font-size:0.85rem;">बारिश की चेतावनी थ्रेशोल्ड (%) / Rain Probability Alert</span>
                 </label>
                 <select class="form-control" id="set-rain-alert">
-                    <option value="50">50% और ऊपर (High warning)</option>
-                    <option value="70" selected>70% और ऊपर (Critical rain warning)</option>
-                    <option value="90">90% और ऊपर (Extreme weather only)</option>
+                    <option value="50" data-i18n="settings_rain_high">50% और ऊपर (High warning)</option>
+                    <option value="70" selected data-i18n="settings_rain_critical">70% और ऊपर (Critical rain warning)</option>
+                    <option value="90" data-i18n="settings_rain_extreme">90% और ऊपर (Extreme weather only)</option>
                 </select>
             </div>
 
@@ -109,9 +109,9 @@
                     <span class="hi-text" style="font-size:0.85rem;">मंडी भाव गिरावट चेतावनी (%) / Mandi Price Drop Warning</span>
                 </label>
                 <select class="form-control" id="set-price-drop">
-                    <option value="5">5% से अधिक गिरावट पर</option>
-                    <option value="10" selected>10% से अधिक गिरावट पर</option>
-                    <option value="20">20% से अधिक गिरावट पर</option>
+                    <option value="5" data-i18n="settings_price_5">5% से अधिक गिरावट पर</option>
+                    <option value="10" selected data-i18n="settings_price_10">10% से अधिक गिरावट पर</option>
+                    <option value="20" data-i18n="settings_price_20">20% से अधिक गिरावट पर</option>
                 </select>
             </div>
 
@@ -170,7 +170,10 @@
                 })
             }).then(r => r.json()).then(data => {
                 if (data.success) {
-                    Toast.success("प्रोफाइल सफलतापूर्वक सहेजी गई", "Profile preferences saved successfully");
+                    const curLang = localStorage.getItem('kisanLanguage') || 'hi';
+                    const getTranslation = (key) => (translations[curLang] && translations[curLang][key]) || (translations['hi'] && translations['hi'][key]) || (translations['en'] && translations['en'][key]) || '';
+                    const getTranslationEn = (key) => (translations['en'] && translations['en'][key]) || '';
+                    Toast.success(getTranslation('settings_toast_saved'), getTranslationEn('settings_toast_saved'));
                 }
             });
         });
@@ -188,7 +191,10 @@
             localStorage.setItem('smsEnabled', sms);
             localStorage.setItem('audioEnabled', audio);
 
-            Toast.success("अलार्म और एसएमएस नियम लागू हुए", "Threshold rules applied and saved locally");
+            const curLang = localStorage.getItem('kisanLanguage') || 'hi';
+            const getTranslation = (key) => (translations[curLang] && translations[curLang][key]) || (translations['hi'] && translations['hi'][key]) || (translations['en'] && translations['en'][key]) || '';
+            const getTranslationEn = (key) => (translations['en'] && translations['en'][key]) || '';
+            Toast.success(getTranslation('settings_toast_rules'), getTranslationEn('settings_toast_rules'));
         });
     });
 </script>
