@@ -12,7 +12,21 @@ if not account_sid or not auth_token:
     print("Error: TWILIO_ACCOUNT_SID or TWILIO_AUTH_TOKEN not set in environment.")
     sys.exit(1)
 
-to_number = os.getenv("MY_PHONE_NUMBER")
+number1 = os.getenv("MY_PHONE_NUMBER")
+number2 = os.getenv("MY_PHONE_NUMBER_2")
+
+print("Kis number par call karni hai?")
+print(f"1. {number1}")
+print(f"2. {number2}")
+choice = input("Enter 1 or 2: ").strip()
+
+if choice == "2":
+    if not number2:
+        print("Error: MY_PHONE_NUMBER_2 .env mein set nahi hai.")
+        sys.exit(1)
+    to_number = number2
+else:
+    to_number = number1
 from_number = "+17622912153"
 url = "https://decaf-brim-steadfast.ngrok-free.dev/ivr/voice"
 
