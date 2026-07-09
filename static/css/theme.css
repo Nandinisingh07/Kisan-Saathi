@@ -1048,3 +1048,22 @@ input[type="checkbox"] {
   background: linear-gradient(135deg, var(--forest-light), var(--forest-deep)) !important;
   color: white !important;
 }
+
+/* ===== Mobile Responsive: IVR Simulator Page ===== */
+@media (max-width: 768px) {
+  .ivr-page-wrapper { padding: 1rem !important; }
+  .ivr-stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.75rem !important; }
+  .ivr-main-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+  .ivr-page-wrapper .glass-card { padding: 1.25rem !important; }
+  .ivr-node { font-size: 0.78rem !important; padding: 8px 12px !important; }
+}
+
+@media (max-width: 480px) {
+  .ivr-stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.5rem !important; }
+  .ivr-stats-grid .glass-card { padding: 1rem !important; }
+  .ivr-stats-grid div[style*="font-size:2.5rem"] { font-size: 1.5rem !important; }
+  .ivr-key { padding: 12px 4px !important; font-size: 0.85rem !important; min-height: 44px !important; }
+  #call-btn, #end-btn { padding: 14px !important; font-size: 0.95rem !important; min-height: 44px !important; }
+  #ivr-language, #ivr-crop { min-height: 40px !important; font-size: 0.85rem !important; }
+  .ivr-node { font-size: 0.72rem !important; padding: 6px 10px !important; }
+}

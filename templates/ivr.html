@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-<div style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
+<div class="ivr-page-wrapper" style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
 
   <!-- Stats Row -->
-  <div style="display:grid; grid-template-columns: repeat(4,1fr); gap:1rem; margin-bottom:2rem;">
+  <div class="ivr-stats-grid" style="display:grid; grid-template-columns: repeat(4,1fr); gap:1rem; margin-bottom:2rem;">
     <div class="glass-card" style="text-align:center; padding:1.5rem;">
       <div style="font-size:2.5rem; font-weight:800; color:var(--forest-deep);" id="total-calls">1,420</div>
       <div style="color:var(--text-muted); font-size:0.85rem;" data-i18n="kpi_total">Total Calls</div>
@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
+  <div class="ivr-main-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem;">
 
     <!-- LEFT: Interactive Phone Simulator -->
     <div class="glass-card">
